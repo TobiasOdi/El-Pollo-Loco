@@ -1,5 +1,4 @@
 class World {
-
     character = new Character();
     level = level1;
     canvas;
@@ -43,7 +42,6 @@ class World {
 
         this.ctx.translate(-this.cameraX, 0);
 
-
         let self = this;                    //in der Funktion kann das Wort 'this' nicht verwendet werden, darum weist man diesem eine Variable zu
         requestAnimationFrame(function() {  //Die Funktion wird so oft aufgerufen wie es mit der Grafikkarte möglich ist.
             self.draw();
@@ -66,6 +64,5 @@ class World {
         if(mo.otherDirection) {
             mo.flipImageBack(this.ctx);
         }
-
     }
 }
