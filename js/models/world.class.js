@@ -2,7 +2,6 @@ class World {
 
     character = new Character();
     level = level1;
-
     canvas;
     ctx;
     keyboard;
@@ -14,10 +13,22 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
+        this.checkCollisions();
     };
 
     setWorld(){
         this.character.world = this;
+    }
+
+    checkCollisions() {
+        setInterval(() => {
+            this.level.enemies.forEach((enemy) => {
+                if(this.character.isColliding(enemy)){
+                    console.log('COLLISION');
+                }
+                
+            });
+        }, 200);
     }
 
     draw() {
