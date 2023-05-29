@@ -10,6 +10,8 @@ class MovableObject {
     otherDirection = false;
     speedY = 0;
     acceleration = 2.5;
+    energy = 100;
+    lastHit = 0;
 
     applyGravity() {
         setInterval(() => {
@@ -53,6 +55,25 @@ class MovableObject {
         this.y < mo.y + mo.height
     }
 
+    hit() {
+        this.energy -= 5;
+        if(this.energy < 0) {
+            this.energy = 0;
+        } else  {
+            this.lastHit = new Date().getTime();
+        }
+    }
+
+    isHurt(){
+        let timePassed = new Date().getTime() - this.lastHit; // Differenz in Milisekunden
+        timePassed = timePassed / 1000; // Differenz in Sekunden
+        return timePassed < 0.5;
+    }
+
+    isDead() {
+        return this.energy == 0;
+    }
+
     flipImage(ctx){
         ctx.save();
         ctx.translate(this.width, 0);
@@ -77,19 +98,19 @@ class MovableObject {
         });
     }
 
+    playAnimation(images) {
+        let i = this.currentImage % images.length; // let i = 0 % 6
+        let path = images[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+    }
+
     moveRight() {
         this.x += this.speed;
     }
 
     moveLeft() {
         this.x -= this.speed;
-    }
-
-    playAnimation(images) {
-        let i = this.currentImage % this.imagesWalking.length; // let i = 0 % 6
-        let path = images[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
     }
 
     jump() {
