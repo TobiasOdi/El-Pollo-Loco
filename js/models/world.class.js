@@ -5,6 +5,10 @@ class World {
     ctx;
     keyboard;
     cameraX = 0;
+    statusbarHealth = new StatusbarHealth();
+    statusbarCoins = new StatusbarCoins();
+    statusbarBottles = new StatusbarBottles();
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -24,9 +28,8 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if(this.character.isColliding(enemy)){
                     this.character.hit();
-                    console.log('Collision wieth Character, enemy ', this.character.energy);
+                    this.healthbar.setPercentage(this.character.energy);
                 }
-                
             });
         }, 200);
     }
@@ -38,6 +41,15 @@ class World {
 
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
+
+        this.ctx.translate(-this.cameraX, 0); // Kamera bzw. Koordinatensystem nach hinten verschieben
+        // ------------- Space for fixed objects --------------
+        this.addToMap(this.statusbarHealth);
+        this.addToMap(this.statusbarCoins);
+        this.addToMap(this.statusbarBottles);
+
+        this.ctx.translate(this.cameraX, 0); // Kamera bzw. Koordinatensystem nach vorne verschieben
+
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
 

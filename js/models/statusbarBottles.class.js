@@ -1,0 +1,9 @@
+class StatusbarBottles extends DrawableObject {
+    
+
+
+
+
+
+    
+}
