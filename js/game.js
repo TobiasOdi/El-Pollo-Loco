@@ -3,6 +3,24 @@ let ctx;
 let world;
 let keyboard= new Keyboard();
 
+
+
+// AUFGABEN
+// 1. Start Screen
+// 2. Musik + sounds
+// 3. Coins einsammeln
+// 4. Falschen einsammeln
+// 5. Flaschen nur werfen, wenn sie vorhanden sind
+// 6. Falschen kollision mit gegnern
+// 7. Endgegner besiegen => Endgegner Healthbar
+// 8. Game-Over Screen + Restart
+// 9. Fullscreen Modus => Vollbildmodus mitder Methode requestfullscreen()
+// 10. Anleitung/Legende welche Tasten was machen
+// 11. Design => Hintergrundbild, Menu (Settings, Help, Start Game etc.)
+// 12. Sound on/off button
+// 13. Responsiveness => bei Smartphones muss ab einer gewissen Breite das Bild gedreht werden und die anderern Elemente neben dem Canvas ausgeblendet werden. 
+
+
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
