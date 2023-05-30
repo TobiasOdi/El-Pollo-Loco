@@ -27,8 +27,8 @@ window.addEventListener('keydown', (event) => {
         keyboard.down = true;
     }
 
-    if(event.keyCode == 32) {
-        keyboard.space = true;
+    if(event.keyCode == 32 || event.keyCode == 69) {
+        keyboard.throw = true;
     }
 });
 
@@ -49,7 +49,7 @@ window.addEventListener('keyup', (event) => {
         keyboard.down = false;
     }
 
-    if(event.keyCode == 32) {
-        keyboard.space = false;
+    if(event.keyCode == 32 || event.keyCode == 69) {
+        keyboard.throw = false;
     }
 });

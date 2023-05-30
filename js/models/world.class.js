@@ -8,6 +8,7 @@ class World {
     statusbarHealth = new StatusbarHealth();
     statusbarCoins = new StatusbarCoins();
     statusbarBottles = new StatusbarBottles();
+    throwableObject = [];
 
 
     constructor(canvas, keyboard) {
@@ -16,22 +17,34 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.checkCollisions();
+        this.run();
     };
 
     setWorld(){
         this.character.world = this;
     }
 
-    checkCollisions() {
+    run() {
         setInterval(() => {
-            this.level.enemies.forEach((enemy) => {
-                if(this.character.isColliding(enemy)){
-                    this.character.hit();
-                    this.healthbar.setPercentage(this.character.energy);
-                }
-            });
+            this.checkCollisions();
+            this.checkThrowObject();
         }, 200);
+    }
+
+    checkCollisions() {
+        this.level.enemies.forEach((enemy) => {
+            if(this.character.isColliding(enemy)){
+                this.character.hit();
+                this.statusbarHealth.setPercentage(this.character.energy);
+            }
+        });
+    }
+
+    checkThrowObject() {
+        if(this.keyboard.throw) {
+            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+            this.throwableObject.push(bottle);
+        }
     }
 
     draw() {
@@ -45,13 +58,14 @@ class World {
         this.ctx.translate(-this.cameraX, 0); // Kamera bzw. Koordinatensystem nach hinten verschieben
         // ------------- Space for fixed objects --------------
         this.addToMap(this.statusbarHealth);
-        this.addToMap(this.statusbarCoins);
-        this.addToMap(this.statusbarBottles);
-
+        //this.addToMap(this.statusbarCoins);
+        //this.addToMap(this.statusbarBottles);
         this.ctx.translate(this.cameraX, 0); // Kamera bzw. Koordinatensystem nach vorne verschieben
 
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.throwableObject);
+
 
         this.ctx.translate(-this.cameraX, 0);
 
