@@ -2,11 +2,11 @@ let canvas;
 let ctx;
 let world;
 let keyboard= new Keyboard();
-
+let fullSize = false;
 
 
 // AUFGABEN
-// 1. Start Screen
+// 1. Start Screen => Schriftart "Alfa Slab One" / "Soiled Doves - Font Monger / La Tequila - Leosupply.co
 // 2. Musik + sounds
 // 3. Coins einsammeln
 // 4. Falschen einsammeln
@@ -19,6 +19,9 @@ let keyboard= new Keyboard();
 // 11. Design => Hintergrundbild, Menu (Settings, Help, Start Game etc.)
 // 12. Sound on/off button
 // 13. Responsiveness => bei Smartphones muss ab einer gewissen Breite das Bild gedreht werden und die anderern Elemente neben dem Canvas ausgeblendet werden. 
+// 14. Mobile Version > keine Tastatur möglich 
+//     Container mit der der id="hud" erstellen mit 2 div's darin. Wo Knöpfe zum drücken integriert sind.
+//     Neue Funktion bauen wie bei 
 
 
 function init() {
@@ -71,3 +74,32 @@ window.addEventListener('keyup', (event) => {
         keyboard.throw = false;
     }
 });
+
+
+function mute() {
+    let soundIcon = document.getElementById('sound');
+
+    if(soundIcon.src == 'http://127.0.0.1:5500/img/icons/volume.svg') {
+        soundIcon.src = 'http://127.0.0.1:5500/img/icons/mute.svg';
+    } else {
+        soundIcon.src = 'http://127.0.0.1:5500/img/icons/volume.svg';
+    }
+    }
+
+function fullScreen() {
+    let gameSize = document.getElementById('gameContainer');
+
+    if (fullSize == false) {
+        gameSize.style.position = 'absolute';
+        gameSize.style.width = '100%';
+        gameSize.style.height = '100%';
+
+        fullSize = true;
+    } else {
+        gameSize.style.position = 'relative';
+        gameSize.style.width = '720px';
+        gameSize.style.height = '480px';
+
+        fullSize = false;
+    }
+}

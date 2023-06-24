@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -7,6 +11,108 @@ body {
 canvas {
     background-color: black;
     display: block;
+}
+
+.gameContainer {
+    position: relative;
+}
+
+.startScreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    background-image: url('img/9_intro_outro_screens/start/startscreen_1.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 1rem 2rem;
+}
+
+.upperScreen {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.upperScreen img {
+    height: 30px;
+    width: 30px;
+}
+
+.controls {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+}
+
+.controls img {
+    cursor: pointer;
+}
+
+.startGame {
+    width: 120px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #FFDE02;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.startGame:hover {
+    cursor: pointer;
+    box-shadow: 0 0 5px grey;
+}
+
+.startGame > div {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.lowerScreen {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lowerScreen > div {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.lowerScreen img {
+    height: 40px;
+    width: 40px;
+}
+
+.lowerScreen > div > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.lowerScreenLeftSide {
+    justify-content: flex-start;
+    gap: 15px;
+}
+
+.lowerScreenRightSide {
+    justify-content: flex-end;
 }
 
 

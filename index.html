@@ -22,16 +22,51 @@
     <script src="./js/models/endBoss.class.js"></script>
     <script src="./js/levels/level1.js"></script>
     <script src="./js/game.js"></script>
-
 </head>
 <body onload="init()">
 
     <h1>El Pollo Loco</h1>
-    <canvas width="720px" height="480px" id="canvas">
 
-    </canvas>
+    <div id="gameContainer" class="gameContainer">
+        <div id="startScreen" class="startScreen">
+            <div class="upperScreen">
+                <div class="controls">
+                    <img src="img/icons/expand.svg" alt="fullscreen" onclick="fullScreen()">
+                    <img id="sound" src="img/icons/volume.svg" onclick="mute()">
+                    <img src="img/icons/joystick.svg" alt="controls">
+                    <img src="img/icons/domotics.svg" alt="showMobileControls">
+                </div>
+                <div class="startGame">
+                    <div class="startGame">
+                        <div>Start Game</div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="lowerScreen">
+                <div class="lowerScreenLeftSide">
+                    <div>
+                        <img class="moveLeft" src="img/icons/arrow-left.svg" alt="">
+                    </div>
+                    <div>
+                        <img class="moveRight" src="img/icons/arrow-right.svg" alt="">
+                    </div>
+                </div>
+                <div class="lowerScreenRightSide">
+                    <div>
+                        <img src="img/icons/trampoline.svg" alt="">
+                    </div>
+                    <div>
+                        <img src="img/icons/bottle.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
 
-
+        <canvas width="720px" height="480px" id="canvas">
+    
+        </canvas>
+    </div>
 
 </body>
 </html>
