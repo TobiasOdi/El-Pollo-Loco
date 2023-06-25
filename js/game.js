@@ -27,8 +27,6 @@ let fullSize = false;
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-   
-    console.log('My character ist', world.character);
 }
 
 window.addEventListener('keydown', (event) => {
@@ -75,24 +73,72 @@ window.addEventListener('keyup', (event) => {
     }
 });
 
+function mobileControls() {
+    document.getElementById('walkLeft').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.left = true;
+    });
+
+    document.getElementById('walkLeft').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.left = false;
+    });
+
+    document.getElementById('walkRight').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.left = true;
+    });
+
+    document.getElementById('walkRight').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.left = false;
+    });
+
+    document.getElementById('jump').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.left = true;
+    });
+
+    document.getElementById('jump').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.left = false;
+    });
+
+    document.getElementById('throwBottle').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.left = true;
+    });
+
+    document.getElementById('throwBottle').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.left = false;
+    });
+}
 
 function mute() {
     let soundIcon = document.getElementById('sound');
 
     if(soundIcon.src == 'http://127.0.0.1:5500/img/icons/volume.svg') {
         soundIcon.src = 'http://127.0.0.1:5500/img/icons/mute.svg';
+        document.getElementById("gameSoundtrack").pause();
+
     } else {
         soundIcon.src = 'http://127.0.0.1:5500/img/icons/volume.svg';
+        document.getElementById("gameSoundtrack").play();
     }
-    }
+}
 
 function fullScreen() {
     let gameSize = document.getElementById('gameContainer');
+    let canvas = document.getElementById('canvas');
 
     if (fullSize == false) {
         gameSize.style.position = 'absolute';
         gameSize.style.width = '100%';
         gameSize.style.height = '100%';
+
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
 
         fullSize = true;
     } else {
@@ -100,6 +146,24 @@ function fullScreen() {
         gameSize.style.width = '720px';
         gameSize.style.height = '480px';
 
+        canvas.style.width = '720px';
+        canvas.style.height = '480px';
+
+
         fullSize = false;
     }
+}
+
+function startGame() {
+    document.getElementById('startScreen').style.backgroundImage = 'none';
+    document.getElementById('startGame').style.display = 'none';
+    init();
+}
+
+function showControls() {
+    document.getElementById('controls').style.display = "flex";
+}
+
+function closeControls() {
+    document.getElementById('controls').style.display = "none";
 }

@@ -23,21 +23,20 @@
     <script src="./js/levels/level1.js"></script>
     <script src="./js/game.js"></script>
 </head>
-<body onload="init()">
-
-    <h1>El Pollo Loco</h1>
+<body onload="mobileControls()">
+    <audio id="gameSoundtrack" src="./audio/la cucaracha.mp3" loop="loop"></audio>
 
     <div id="gameContainer" class="gameContainer">
         <div id="startScreen" class="startScreen">
             <div class="upperScreen">
-                <div class="controls">
+                <div class="icons">
                     <img src="img/icons/expand.svg" alt="fullscreen" onclick="fullScreen()">
-                    <img id="sound" src="img/icons/volume.svg" onclick="mute()">
-                    <img src="img/icons/joystick.svg" alt="controls">
+                    <img id="sound" src="img/icons/mute.svg" onclick="mute()">
+                    <img src="img/icons/joystick.svg" onclick="showControls()">
                     <img src="img/icons/domotics.svg" alt="showMobileControls">
                 </div>
-                <div class="startGame">
-                    <div class="startGame">
+                <div id="startGame" class="startGame" onclick="init()">
+                    <div class="startGame" onclick="startGame()">
                         <div>Start Game</div>
                     </div>
                 </div>
@@ -45,28 +44,75 @@
     
             <div class="lowerScreen">
                 <div class="lowerScreenLeftSide">
-                    <div>
+                    <div id="walkLeft">
                         <img class="moveLeft" src="img/icons/arrow-left.svg" alt="">
                     </div>
-                    <div>
+                    <div id="walkRight">
                         <img class="moveRight" src="img/icons/arrow-right.svg" alt="">
                     </div>
                 </div>
                 <div class="lowerScreenRightSide">
-                    <div>
+                    <div id="jump">
                         <img src="img/icons/trampoline.svg" alt="">
                     </div>
-                    <div>
+                    <div id="throwBottle">
                         <img src="img/icons/bottle.svg" alt="">
                     </div>
                 </div>
             </div>
         </div>
 
-        <canvas width="720px" height="480px" id="canvas">
+        <div id="controls" class="controls">
+            <div>
+                <img src="./img/icons/letter-x.svg" onclick="closeControls()">
+            </div>
+            <div>
+                <div>
+                    <img src="./img/icons/arrow-left (1).svg" alt="">                    
+                    <div>/</div>
+                    <img src="./img/icons/letter-a.svg" alt="">
+                </div>
+                <div>
+                    <p>Move left</p>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <img src="./img/icons/arrow-right (1).svg" alt="">                    
+                    <div>/</div>
+                    <img src="./img/icons/keyboard.svg" alt="">
+                </div>
+                <div>
+                    <p>Move right</p>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <img src="./img/icons/arrow-up (1).svg" alt="">                    
+                    <div>/</div>
+                    <img src="./img/icons/letter-w.svg" alt="">
+                </div>
+                <div>
+                    <p>Jump</p>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <img src="./img/icons/space.svg" alt="">                    
+                    <div>/</div>
+                    <img src="./img/icons/letter-e.svg" alt="">
+                </div>
+                <div>
+                    <p>Trow bottle</p>
+                </div>
+            </div>
+         </div>
+
+        <canvas id="canvas" width="720px" height="480px" id="canvas">
     
         </canvas>
-    </div>
 
+
+    </div>
 </body>
 </html>

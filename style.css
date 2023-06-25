@@ -6,6 +6,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0;
 }
 
 canvas {
@@ -48,7 +49,7 @@ canvas {
     width: 30px;
 }
 
-.controls {
+.icons {
     width: 100%;
     display: flex;
     justify-content: flex-end;
@@ -56,7 +57,7 @@ canvas {
     gap: 15px;
 }
 
-.controls img {
+.icons img {
     cursor: pointer;
 }
 
@@ -113,6 +114,68 @@ canvas {
 
 .lowerScreenRightSide {
     justify-content: flex-end;
+}
+
+.lowerScreenRightSide > div {
+    border: 3px solid black;
+    border-radius: 10px;
+    padding: 4px;
+}
+
+.lowerScreenRightSide > div > img {
+    height: 30px;
+    width: 30px;
+}
+
+.controls {
+    display:  none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    height: 100%;   
+    backdrop-filter: blur(5px);
+    padding: 50px;
+}
+
+.controls > div:first-of-type {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 50px;
+    cursor: pointer;
+}
+
+.controls > div:first-of-type > img {
+    height: 30px;
+    width: 30px;
+}
+
+.controls > div:first-of-type > img:hover {
+    box-shadow: 0 0 5px 0 black;
+}
+
+.controls > div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.controls > div > div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.controls img {
+    height: 50px;
+    width: 50px;
 }
 
 
