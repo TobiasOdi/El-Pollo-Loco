@@ -7,7 +7,7 @@ let fullSize = false;
 
 // AUFGABEN
 // 1. Start Screen => Schriftart "Alfa Slab One" / "Soiled Doves - Font Monger / La Tequila - Leosupply.co
-// 2. Musik + sounds
+// 2. Sounds
 // 3. Coins einsammeln
 // 4. Falschen einsammeln
 // 5. Flaschen nur werfen, wenn sie vorhanden sind
@@ -136,6 +136,8 @@ function fullScreen() {
         gameSize.style.position = 'absolute';
         gameSize.style.width = '100%';
         gameSize.style.height = '100%';
+        gameSize.style.top = "0";
+
 
         canvas.style.width = '100%';
         canvas.style.height = '100%';
@@ -145,6 +147,8 @@ function fullScreen() {
         gameSize.style.position = 'relative';
         gameSize.style.width = '720px';
         gameSize.style.height = '480px';
+        gameSize.style.top = "calc((100vh - 480px) / 2)";
+
 
         canvas.style.width = '720px';
         canvas.style.height = '480px';

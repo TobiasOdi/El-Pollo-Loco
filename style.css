@@ -4,9 +4,9 @@
 
 body {
     display: flex;
-    flex-direction: column;
     align-items: center;
     margin: 0;
+    font-size: 16px;
 }
 
 canvas {
@@ -16,6 +16,11 @@ canvas {
 
 .gameContainer {
     position: relative;
+    top: 0;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    top: calc((100vh - 480px) / 2);
 }
 
 .startScreen {
@@ -146,7 +151,7 @@ canvas {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     cursor: pointer;
 }
 
@@ -176,6 +181,59 @@ canvas {
 .controls img {
     height: 50px;
     width: 50px;
+}
+
+.icon > div {
+    display: flex;
+    gap: 10px;
+}
+
+.icon > div > div {
+    font-size: 4rem;
+}
+
+.icon p {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.5rem;
+}
+
+.gameOverScreen {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 30px;
+    width: 100%;
+    height: 100%;  
+    background-image: url('img/9_intro_outro_screens/game_over/game over.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 50px;
+    backdrop-filter: blur(5px);
+}
+
+ .gameOverScreenBtns {
+    width: 120px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #FFDE02;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gameOverScreenBtns:hover {
+    cursor: pointer;
+    box-shadow: 0 0 5px grey;
+}
+
+.gameOverScreenBtns > div {
+    font-weight: bold;
+    font-size: 1.2rem;
 }
 
 
