@@ -15,19 +15,19 @@ class StatusbarBottles extends DrawableObject {
         super();  // Methoden vom übergeordneten Objekt werden so initialisiert!
         this.loadImages(this.images);
         this.x = 20;
-        this.y = 40;
+        this.y = 80;
         this.height = 60;
         this.width = 200;
-        //this.setPercentage(100);
+        this.setPercentage(0);
     }
 
- /*    setPercentage(percentage) {
+   setPercentage(percentage) {
         this.percentage = percentage; // => 0 .. 5
         let path = this.images[this.resolveImageIndex()];
         this.img = this.imageCache[path]; // jeweiliges Bild aus dem Bilder Cache laden
-    } */
+    }
 
-/*     resolveImageIndex() {
+    resolveImageIndex() {
         if(this.percentage == 100) {
             return 5;
         } else if(this.percentage > 80) {
@@ -41,6 +41,6 @@ class StatusbarBottles extends DrawableObject {
         } else {
             return 0;
         }
-    } */
+    }
 }
 

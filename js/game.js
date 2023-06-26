@@ -6,8 +6,8 @@ let fullSize = false;
 
 
 // AUFGABEN
-// 1. Start Screen => Schriftart "Alfa Slab One" / "Soiled Doves - Font Monger / La Tequila - Leosupply.co
-// 2. Sounds
+// 1. Schriftart wählen => "Alfa Slab One" / "Soiled Doves - Font Monger / La Tequila - Leosupply.co
+// 2. Sounds suchen
 // 3. Coins einsammeln
 // 4. Falschen einsammeln
 // 5. Flaschen nur werfen, wenn sie vorhanden sind
@@ -15,9 +15,6 @@ let fullSize = false;
 // 7. Endgegner besiegen => Endgegner Healthbar
 // 8. Game-Over Screen + Restart
 // 9. Fullscreen Modus => Vollbildmodus mitder Methode requestfullscreen()
-// 10. Anleitung/Legende welche Tasten was machen
-// 11. Design => Hintergrundbild, Menu (Settings, Help, Start Game etc.)
-// 12. Sound on/off button
 // 13. Responsiveness => bei Smartphones muss ab einer gewissen Breite das Bild gedreht werden und die anderern Elemente neben dem Canvas ausgeblendet werden. 
 // 14. Mobile Version > keine Tastatur möglich 
 //     Container mit der der id="hud" erstellen mit 2 div's darin. Wo Knöpfe zum drücken integriert sind.

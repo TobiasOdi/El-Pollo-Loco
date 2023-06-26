@@ -20,13 +20,13 @@ class DrawableObject {
      * 
      * @param {Array} arr - ['img/image1.png', 'img/image2.png', ...] => Loading images into the imageCache array
      */
-        loadImages(arr) {
-            arr.forEach((path) => {
-                let img = new Image();
-                img.src = path;
-                this.imageCache[path] = img;
-            });
-        }
+    loadImages(arr) {
+        arr.forEach((path) => {
+            let img = new Image();
+            img.src = path;
+            this.imageCache[path] = img;
+        });
+    }
 
     drawFrame(ctx) {
 

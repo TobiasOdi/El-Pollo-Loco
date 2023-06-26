@@ -26,12 +26,12 @@ class World {
 
     run() {
         setInterval(() => {
-            this.checkCollisions();
+            this.checkCollisionsEnemy();
             this.checkThrowObject();
         }, 200);
     }
 
-    checkCollisions() {
+    checkCollisionsEnemy() {
         this.level.enemies.forEach((enemy) => {
             if(this.character.isColliding(enemy)){
                 this.character.hit();
@@ -58,8 +58,8 @@ class World {
         this.ctx.translate(-this.cameraX, 0); // Kamera bzw. Koordinatensystem nach hinten verschieben
         // ------------- Space for fixed objects --------------
         this.addToMap(this.statusbarHealth);
-        //this.addToMap(this.statusbarCoins);
-        //this.addToMap(this.statusbarBottles);
+        this.addToMap(this.statusbarCoins);
+        this.addToMap(this.statusbarBottles);
         this.ctx.translate(this.cameraX, 0); // Kamera bzw. Koordinatensystem nach vorne verschieben
 
         this.addToMap(this.character);
