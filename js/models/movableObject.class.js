@@ -5,6 +5,7 @@ class MovableObject extends DrawableObject {
     acceleration = 2.5;
     energy = 100;
     coinsColected = 0;
+    bottlesColected = 0;
     lastHit = 0;
 
 
@@ -34,7 +35,7 @@ class MovableObject extends DrawableObject {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
-    //character.isColliding(chicken);
+    //character.isColliding(chicken, coins, bottles);
     isColliding (mo) {
     return this.x + this.width > mo.x &&
         this.y + this.height > mo.y &&
@@ -51,10 +52,17 @@ class MovableObject extends DrawableObject {
         }
     }
 
-    colect() {
+    colectCoins() {
         this.coinsColected += 1;
         if(this.coinsColected >= 10) {
             this.coinsColected = 10;
+        }
+    }
+
+    colectBottles() {
+        this.bottlesColected += 1;
+        if(this.bottlesColected >= 10) {
+            this.bottlesColected = 10;
         }
     }
 
