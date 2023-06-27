@@ -9,6 +9,7 @@ class World {
     statusbarCoins = new StatusbarCoins();
     statusbarBottles = new StatusbarBottles();
     coins = new Coins();
+    bottles = new Bottles();
     throwableObject = [];
 
 
@@ -41,6 +42,15 @@ class World {
         });
     }
 
+    checkCollisionsCoins() {
+        this.level.coins.forEach((coin) => {
+            if(this.character.isColliding(coin)){
+                this.character.colect();
+                this.statusbarCoins.setPercentage(this.character.coinsColected);
+            }
+        });
+    }
+
     checkThrowObject() {
         if(this.keyboard.throw) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
@@ -55,7 +65,8 @@ class World {
 
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
-        this.addToMap(this.coins);
+        this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.bottles);
 
         this.ctx.translate(-this.cameraX, 0); // Kamera bzw. Koordinatensystem nach hinten verschieben
         // ------------- Space for fixed objects --------------
