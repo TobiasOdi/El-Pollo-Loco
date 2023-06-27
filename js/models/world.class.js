@@ -8,6 +8,7 @@ class World {
     statusbarHealth = new StatusbarHealth();
     statusbarCoins = new StatusbarCoins();
     statusbarBottles = new StatusbarBottles();
+    coins = new Coins();
     throwableObject = [];
 
 
@@ -54,12 +55,15 @@ class World {
 
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
+        this.addToMap(this.coins);
 
         this.ctx.translate(-this.cameraX, 0); // Kamera bzw. Koordinatensystem nach hinten verschieben
         // ------------- Space for fixed objects --------------
         this.addToMap(this.statusbarHealth);
         this.addToMap(this.statusbarCoins);
         this.addToMap(this.statusbarBottles);
+        // ----------------------------------------------------
+
         this.ctx.translate(this.cameraX, 0); // Kamera bzw. Koordinatensystem nach vorne verschieben
 
         this.addToMap(this.character);
@@ -86,7 +90,7 @@ class World {
         }
 
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
+        //mo.drawFrame(this.ctx);
 
         if(mo.otherDirection) {
             mo.flipImageBack(this.ctx);
