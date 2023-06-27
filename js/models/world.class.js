@@ -32,6 +32,10 @@ class World {
             this.checkCollisionsEnemy();
             this.checkCollisionsCoins();
             this.checkCollisionsBottles();
+        }, 200);
+
+        setInterval(() => {
+            this.checkThrowObject();
         }, 100);
     }
 
@@ -40,6 +44,13 @@ class World {
             if(this.character.isColliding(enemy)){
                 this.character.hit();
                 this.statusbarHealth.setPercentage(this.character.energy);
+
+                if(this.character.coinsColected > 0) {
+                    this.character.coinsColected--;
+                    this.statusbarCoins.setPercentage(this.character.coinsColected);
+                } else {
+                    this.character.coinsColected = 0;
+                }
             }
         });
     }
