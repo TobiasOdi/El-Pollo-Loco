@@ -56,10 +56,10 @@ class World {
                 }
             }
 
-            if(this.character.isCollidingTop(enemy)){
+/*             if(this.character.isCollidingTop(enemy)){
                 enemy.x = 0;
                 enemy.y = -200;
-            }
+            } */
 
 
         });
