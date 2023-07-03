@@ -28,15 +28,17 @@ class World {
 
     run() {
         setInterval(() => {
-            this.checkThrowObject();
             this.checkCollisionsEnemy();
-            this.checkCollisionsCoins();
-            this.checkCollisionsBottles();
         }, 200);
 
         setInterval(() => {
+            this.checkCollisionsCoins();
+            this.checkCollisionsBottles();
+        }, 1000 / 60);
+
+        setInterval(() => {
             this.checkThrowObject();
-        }, 100);
+        }, 150);
     }
 
     checkCollisionsEnemy() {
@@ -60,6 +62,8 @@ class World {
             if(this.character.isColliding(coin)){
                 this.character.colectCoins();
                 this.statusbarCoins.setPercentage(this.character.coinsColected);
+                coin.x = 0;
+                coin.y = -100;
             }
         });
     }
@@ -69,6 +73,8 @@ class World {
             if(this.character.isColliding(bottle)){
                 this.character.colectBottles();
                 this.statusbarBottles.setPercentage(this.character.bottlesColected);
+                bottle.x = 0;
+                bottle.y = -100;
             }
         });
     }
@@ -91,7 +97,6 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.ctx.translate(this.cameraX, 0);
-
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.coins);
