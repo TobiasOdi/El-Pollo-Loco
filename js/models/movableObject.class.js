@@ -8,6 +8,9 @@ class MovableObject extends DrawableObject {
     bottlesColected = 0;
     lastHit = 0;
 
+    intervalIds = [];
+    i = 1;
+
     offset =  {
         top: 0,
         left: 0,
@@ -15,6 +18,10 @@ class MovableObject extends DrawableObject {
         bottom: 0
     }
 
+    setStoppableInterval(fn, time) {
+        let id = setInterval(fn, time);
+        this.intervalIds.push(id);
+    }
 
     applyGravity() {
         setInterval(() => {
@@ -52,12 +59,20 @@ class MovableObject extends DrawableObject {
 
     isCollidingEnemy (mo) {
         return this.x + this.width > mo.x &&
-            this.x < mo.x + mo.width &&
-            this.y < mo.y + mo.height
+            this.y + this.height > mo.y &&
+            this.x < mo.x + mo.width 
     }
 
-/*     isCollidingTop (mo) {
+/*   isCollidingTop(mo) {
         return this.y + this.height > mo.y
+
+                setInterval(() => {
+        if(this.isCollidingTop()) {
+            // Clear Interval moveLeft
+            // Clear Interval playAnimation Walking
+            this.playAnimation(this.imagesDead);
+            }
+        }, 50) 
     } */
 
     hit() {

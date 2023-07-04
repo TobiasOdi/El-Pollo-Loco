@@ -12,7 +12,6 @@ class World {
     bottles = new Bottles();
     throwableObject = [];
 
-
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;

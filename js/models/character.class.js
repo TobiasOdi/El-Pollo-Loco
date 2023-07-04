@@ -85,6 +85,13 @@ class Character extends MovableObject {
         setInterval(() => {
             if(this.isDead()) {
                 this.playAnimation(this.imagesDead);
+                window.mute;
+                // Play death sound
+                this.clearAllIntervals();
+                setTimeout(() => {
+                    document.getElementById('gameOverScreen').style.display = "flex";
+                }, 1000);
+
             } else if(this.isHurt()) {
                 this.playAnimation(this.imagesHurt);
             } else if(this.isAboveGround()) {
@@ -96,4 +103,8 @@ class Character extends MovableObject {
             }
         }, 50)
     }
+
+    clearAllIntervals() {
+        for (let i = 1; i < 9999; i++) window.clearInterval(i);
+    };
 }
