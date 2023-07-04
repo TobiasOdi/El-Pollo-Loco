@@ -84,8 +84,10 @@ class Character extends MovableObject {
 
         setInterval(() => {
             if(this.isDead()) {
+                window.removeEventListener('keydown', event);
                 this.playAnimation(this.imagesDead);
-                window.mute;
+                //document.getElementById('gameSoundtrack').muted = true; // => prüfen mit mute Funktion
+                // mute walking sound / jump sound etc.
                 // Play death sound
                 this.clearAllIntervals();
                 setTimeout(() => {
