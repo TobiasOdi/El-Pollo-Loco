@@ -11,6 +11,7 @@ class World {
     coins = new Coins();
     bottles = new Bottles();
     throwableObject = [];
+    movableObject = new MovableObject();
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -60,9 +61,8 @@ class World {
 
     checkCollisionsTop() {
         this.level.enemies.forEach((enemy) => {
-            if(this.character.isCollidingTop(enemy)){
-                //enemy.x = 0;
-                //enemy.y = -200;
+            if(this.character.isCollidingTop(enemy) && this.character.isAboveGround()){
+                this.movableObject.playAnimation();
             }
         });
     }
