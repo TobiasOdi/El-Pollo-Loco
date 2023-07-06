@@ -6,10 +6,14 @@ let fullSize = false;
 
 
 // AUFGABEN
-// 1. Schriftart wählen => "Alfa Slab One" / "Soiled Doves - Font Monger / La Tequila - Leosupply.co
-// 2. Sounds suchen
+// 2. Sounds suchen 
+//      - Springen
+//      - Flasche werfen
+//      - impact, zerbrechen, spritzer
+//      - Geräusche Hühner, kleiner Hühner, Boss
+//      - Todesschrei??
 // 6. Falschen kollision mit gegnern
-// 5. Kleine Gegner mit Spruch besiegen
+// 5. Kleine Gegner mit Sprung besiegen
 // 7. Endgegner besiegen => Endgegner Healthbar
 // 8. Game-Over Screen + Restart
 // 9. Fullscreen Modus => Vollbildmodus mitder Methode requestfullscreen() => genau anschauen

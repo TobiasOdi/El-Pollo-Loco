@@ -28,9 +28,9 @@ class DrawableObject {
         });
     }
 
-/*     drawFrame(ctx) {
 
-        if(this instanceof Character || this instanceof Chicken) {
+   drawFrame(ctx) {
+        if(this instanceof Character || this instanceof Chicken || this instanceof ChickenSmall || this instanceof Endboss || this instanceof Coins || this instanceof Bottles) {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';
@@ -38,5 +38,5 @@ class DrawableObject {
             ctx.stroke();
     
         }
-    } */
+    } 
 }

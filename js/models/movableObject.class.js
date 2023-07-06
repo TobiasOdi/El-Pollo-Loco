@@ -51,10 +51,10 @@ class MovableObject extends DrawableObject {
 
     //character.isColliding(chicken, coins, bottles);
     isColliding (mo) {
-    return this.x + this.width > mo.x &&
-        this.y + this.height > mo.y &&
-        this.x < mo.x + mo.width &&
-        this.y < mo.y + mo.height
+        return this.x + this.width > mo.x &&
+            this.y + this.height > mo.y &&
+            this.x < mo.x + mo.width &&
+            this.y < mo.y + mo.height
     }
 
     isCollidingEnemy (mo) {
@@ -63,17 +63,9 @@ class MovableObject extends DrawableObject {
             this.x < mo.x + mo.width 
     }
 
-/*   isCollidingTop(mo) {
-        return this.y + this.height > mo.y
-
-                setInterval(() => {
-        if(this.isCollidingTop()) {
-            // Clear Interval moveLeft
-            // Clear Interval playAnimation Walking
-            this.playAnimation(this.imagesDead);
-            }
-        }, 50) 
-    } */
+    isCollidingTop (mo) {
+        return this.y < mo.y + mo.height
+    }
 
     hit() {
         this.energy -= 5;

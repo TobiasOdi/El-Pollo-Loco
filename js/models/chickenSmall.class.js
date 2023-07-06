@@ -1,15 +1,15 @@
-class Chicken extends MovableObject {
-    y = 360;
-    height = 60;
-    width = 60;
+class ChickenSmall extends MovableObject {
+    y = 380;
+    height = 40;
+    width = 40;
     imagesWalking = [
-        '../../img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
-        '../../img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
-        '../../img/3_enemies_chicken/chicken_normal/1_walk/3_w.png',
+        '../../img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
+        '../../img/3_enemies_chicken/chicken_small/1_walk/2_w.png',
+        '../../img/3_enemies_chicken/chicken_small/1_walk/3_w.png',
     ];
 
     imagesDead = [
-        '../../img/3_enemies_chicken/chicken_normal/2_dead/dead.png'
+        '../../img/3_enemies_chicken/chicken_small/2_dead/dead.png'
     ];
 
     offset =  {
@@ -21,11 +21,11 @@ class Chicken extends MovableObject {
 
     constructor() {
         // => super() gilt nur für Methoden!!
-        super().loadImage('../../img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
+        super().loadImage('../../img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
         this.loadImages(this.imagesWalking);
         this.loadImages(this.imagesDead);
         this.x = 400 + Math.random() * 2000;
-        this.speed = 0.8 + Math.random() * 0.25;
+        this.speed = 0.8 + Math.random() * 0.5;
         this.animate();    
     }
 

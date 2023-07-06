@@ -28,6 +28,7 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisionsEnemy();
+            this.checkCollisionsTop();
         }, 200);
 
         setInterval(() => {
@@ -54,13 +55,15 @@ class World {
                     this.statusbarCoins.setPercentage(this.character.coinsColected);
                 }
             }
+        });
+    }
 
-/*             if(this.character.isCollidingTop(enemy)){
-                enemy.x = 0;
-                enemy.y = -200;
-            } */
-
-
+    checkCollisionsTop() {
+        this.level.enemies.forEach((enemy) => {
+            if(this.character.isCollidingTop(enemy)){
+                //enemy.x = 0;
+                //enemy.y = -200;
+            }
         });
     }
 
@@ -144,7 +147,7 @@ class World {
         }
 
         mo.draw(this.ctx);
-        //mo.drawFrame(this.ctx);
+        mo.drawFrame(this.ctx);
 
         if(mo.otherDirection) {
             mo.flipImageBack(this.ctx);
