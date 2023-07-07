@@ -92,13 +92,17 @@ class Character extends MovableObject {
             if(this.world.keyboard.right && this.x < this.world.level.levelEndX) {
                 this.moveRight();
                 this.otherDirection = false;
-                this.walkingSound.play();
+                if(!this.isAboveGround()){
+                    this.walkingSound.play();
+                }
             }
 
             if(this.world.keyboard.left && this.x > 0) {
                 this.moveLeft();
                 this.otherDirection = true;
-                this.walkingSound.play();
+                if(!this.isAboveGround()){
+                    this.walkingSound.play();
+                }
             }
 
             if(this.world.keyboard.up && !this.isAboveGround()) {
@@ -106,6 +110,7 @@ class Character extends MovableObject {
             }
 
             this.world.cameraX = -this.x + 100;
+
         }, 1000 / 60)
 
         setInterval(() => {

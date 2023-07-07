@@ -29,7 +29,7 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisionsEnemy();
-            this.checkCollisionsTop();
+            //this.checkCollisionsTop();
         }, 200);
 
         setInterval(() => {
@@ -59,13 +59,13 @@ class World {
         });
     }
 
-    checkCollisionsTop() {
+/*     checkCollisionsTop() {
         this.level.enemies.forEach((enemy) => {
             if(this.character.isCollidingTop(enemy) && this.character.isAboveGround()){
                 this.movableObject.playAnimation();
             }
         });
-    }
+    } */
 
     checkCollisionsCoins() {
         this.level.coins.forEach((coin) => {
