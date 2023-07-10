@@ -18,10 +18,10 @@ class MovableObject extends DrawableObject {
         bottom: 0
     }
 
-    setStoppableInterval(fn, time) {
-        let id = setInterval(fn, time);
-        this.intervalIds.push(id);
-    }
+/*     constructor() {
+        super();
+        this.setStoppableInterval(this.moveLeft, 50)
+    } */
 
     applyGravity() {
         setInterval(() => {
@@ -143,4 +143,10 @@ class MovableObject extends DrawableObject {
     jump() {
         this.speedY = 30;
     }
+
+    setStoppableInterval(fn, time) {
+        let id = setInterval(fn, time);
+        this.intervalIds.push(id);
+    }
+
 }
