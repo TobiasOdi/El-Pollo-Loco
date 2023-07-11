@@ -8,9 +8,6 @@ class MovableObject extends DrawableObject {
     bottlesColected = 0;
     lastHit = 0;
 
-    intervalIds = [];
-    i = 1;
-
     offset =  {
         top: 0,
         left: 0,
@@ -21,6 +18,11 @@ class MovableObject extends DrawableObject {
 /*     constructor() {
         super();
         this.setStoppableInterval(this.moveLeft, 50)
+    } */
+
+/*     setStoppableInterval(fn, time) {
+        let id = setInterval(fn, time);
+        this.intervalIds.push(id);
     } */
 
     applyGravity() {
@@ -142,11 +144,6 @@ class MovableObject extends DrawableObject {
 
     jump() {
         this.speedY = 30;
-    }
-
-    setStoppableInterval(fn, time) {
-        let id = setInterval(fn, time);
-        this.intervalIds.push(id);
     }
 
 }

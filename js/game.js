@@ -3,7 +3,7 @@ let ctx;
 let world;
 let keyboard= new Keyboard();
 let fullSize = false;
-
+intervalIds = [];
 
 // AUFGABEN
 // 2. Sounds suchen 
@@ -21,7 +21,6 @@ let fullSize = false;
 // 14. Mobile Version > keine Tastatur möglich 
 //     Container mit der der id="hud" erstellen mit 2 div's darin. Wo Knöpfe zum drücken integriert sind.
 //     Neue Funktion bauen wie bei 
-
 
 function init() {
     canvas = document.getElementById('canvas');
@@ -188,3 +187,9 @@ function toMainMenue() {
     document.getElementById('startScreen').style.backgroundImage = "url('img/9_intro_outro_screens/start/startscreen_1.png')";
     document.getElementById('startGame').style.display = 'flex';
 }
+
+function setStoppableInterval(fn, time) {
+    let id = setInterval(fn, time);
+    intervalIds.push(id);
+}
+
