@@ -184,7 +184,7 @@ function toMainMenue() {
     init();
     // reset all game parameters > initialise
     document.getElementById('gameOverScreen').style.display = "none";
-    document.getElementById('startScreen').style.backgroundImage = "url('img/9_intro_outro_screens/start/startscreen_1.png')";
+    document.getElementById('startScreen').style.backgroundImage = "url('./img/9_intro_outro_screens/start/startscreen_1.png')";
     document.getElementById('startGame').style.display = 'flex';
 }
 

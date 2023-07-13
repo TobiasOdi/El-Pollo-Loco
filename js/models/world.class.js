@@ -59,13 +59,13 @@ class World {
         });
     }
 
-/*     checkCollisionsTop() {
+    killSmallEnemy() {
         this.level.enemies.forEach((enemy) => {
             if(this.character.isCollidingTop(enemy) && this.character.isAboveGround()){
-                this.movableObject.playAnimation();
+                enemy.die();
             }
         });
-    } */
+    }
 
     checkCollisionsCoins() {
         this.level.coins.forEach((coin) => {

@@ -120,7 +120,8 @@ class Character extends MovableObject {
                 //document.getElementById('gameSoundtrack').muted = true; // => prüfen mit mute Funktion
                 // mute walking sound / jump sound etc.
                 // Play death sound
-                this.intervalIds.forEach(clearInterval); // => Stop Game
+                // this.intervalIds.forEach(clearInterval); // => Stop Game
+                this.clearAllIntervals();
                 setTimeout(() => {
                     document.getElementById('gameOverScreen').style.display = "flex";
                 }, 1000);
@@ -141,3 +142,4 @@ class Character extends MovableObject {
         for (let i = 1; i < 9999; i++) window.clearInterval(i);
     };
 }
+

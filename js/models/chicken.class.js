@@ -30,15 +30,19 @@ class Chicken extends MovableObject {
     }
 
     animate() {
-        setStoppableInterval(this.moveLeft, 1000 / 60);
+        //setStoppableInterval(this.moveLeft, 1000 / 60);
         
-        //setInterval(()  => {
-        //    this.moveLeft();
-        //}, 1000 / 60);
+        setInterval(()  => {
+            this.moveLeft();
+        }, 1000 / 60);
 
-        setInterval(() => {
-            this.playAnimation(this.imagesWalking);
-        }, 200);
+        if(this.speed == 0) {
+            this.playAnimation(this.imagesDead);
+        } else{
+            setInterval(() => {
+                this.playAnimation(this.imagesWalking);
+            }, 200);
+        }
 
 /*         setInterval(() => {
             if(this.isCollidingTop()) {
@@ -48,4 +52,5 @@ class Chicken extends MovableObject {
                 }
             }, 50)  */
     }
+
 }

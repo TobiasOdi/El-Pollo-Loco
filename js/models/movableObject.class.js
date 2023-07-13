@@ -15,16 +15,6 @@ class MovableObject extends DrawableObject {
         bottom: 0
     }
 
-/*     constructor() {
-        super();
-        this.setStoppableInterval(this.moveLeft, 50)
-    } */
-
-/*     setStoppableInterval(fn, time) {
-        let id = setInterval(fn, time);
-        this.intervalIds.push(id);
-    } */
-
     applyGravity() {
         setInterval(() => {
             if(this.isAboveGround() || this.speedY > 0) {
@@ -101,6 +91,10 @@ class MovableObject extends DrawableObject {
 
     isDead() {
         return this.energy == 0;
+    }
+
+    die() {
+        this.speed = 0;
     }
 
     flipImage(ctx){
