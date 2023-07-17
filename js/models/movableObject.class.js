@@ -42,7 +42,7 @@ class MovableObject extends DrawableObject {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
-    //character.isColliding(chicken, coins, bottles);
+    //character.isColliding(coins, bottles);
     isColliding (mo) {
         return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
             this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
@@ -50,15 +50,17 @@ class MovableObject extends DrawableObject {
             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
     }
 
+    //character.isColliding(enemy);
     isCollidingEnemy (mo) {
         return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
-        this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
-        this.x + this.offset.left < mo.x + mo.width - mo.offset.right 
-        //this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
+        //this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+        this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
+        this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
     }
 
+    //character.isColliding(enemy top);
     isCollidingTop(mo) {
-        return this.y + this.height > mo.y + mo.offset.top;
+        return this.y + this.height >= mo.y + mo.offset.top;
     }
 
     hit() {

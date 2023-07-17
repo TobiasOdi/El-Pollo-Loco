@@ -28,7 +28,7 @@
     <script src="./js/game.js"></script>
     
 </head>
-<body>
+<body onload="bindBtsPressEvents()">
     <audio id="gameSoundtrack" src="./audio/la cucaracha.mp3" loop="loop"></audio>
 
     <div id="gameContainer" class="gameContainer">
@@ -49,18 +49,18 @@
     
             <div class="lowerScreen">
                 <div class="lowerScreenLeftSide">
-                    <div id="walkLeft">
-                        <img class="moveLeft" src="img/icons/arrow-left.svg" alt="">
+                    <div id="walkLeft" style="background-color: orange;">
+                        <img class="moveLeft" src="img/icons/arrow-left.svg" >
                     </div>
-                    <div id="walkRight">
-                        <img class="moveRight" src="img/icons/arrow-right.svg" alt="">
+                    <div id="walkRight" style="background-color: orange;">
+                        <img class="moveRight" src="img/icons/arrow-right.svg">
                     </div>
                 </div>
                 <div class="lowerScreenRightSide">
-                    <div id="jump">
+                    <div id="jump" style="background-color: orange;">
                         <img src="img/icons/trampoline.svg" alt="">
                     </div>
-                    <div id="throwBottle">
+                    <div id="throwBottle" style="background-color: orange;">
                         <img src="img/icons/bottle.svg" alt="">
                     </div>
                 </div>
@@ -83,7 +83,7 @@
             </div>
             <div class="icon">
                 <div>
-                    <img src="./img/icons/arrow-right (1).svg" alt="">                    
+                    <img src="./img/icons/arrow-right (1).svg" >                    
                     <div>/</div>
                     <img src="./img/icons/letter-d.svg" alt="">
                 </div>

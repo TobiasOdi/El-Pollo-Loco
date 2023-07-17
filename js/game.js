@@ -1,7 +1,7 @@
 let canvas;
 let ctx;
 let world;
-let keyboard= new Keyboard();
+let keyboard = new Keyboard();
 let fullSize = false;
 intervalIds = [];
 
@@ -22,12 +22,17 @@ intervalIds = [];
 //     Container mit der der id="hud" erstellen mit 2 div's darin. Wo Knöpfe zum drücken integriert sind.
 //     Neue Funktion bauen wie bei 
 
+/**
+ * This function initializes the game.
+ */
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-
 }
 
+/**
+ * It plays and mutes the game sound.
+ */
 function mute() {
     let soundIcon = document.getElementById('sound');
 
@@ -41,6 +46,9 @@ function mute() {
     }
 }
 
+/**
+ * This function starts and ends the fullscreen.
+ */
 function fullScreen() {
     let gameContainer = document.getElementById('gameContainer');
     let canvas = document.getElementById('canvas');
@@ -58,6 +66,10 @@ function fullScreen() {
     }
 }
 
+/**
+ * The game enters fullscreen.
+ * @param {element} gameContainer - Element/Container that enters fullscreen
+ */
 function enterFullscreen(gameContainer) {
     if(document.requestFullscreen) {
         gameContainer.requestFullscreen();
@@ -68,6 +80,9 @@ function enterFullscreen(gameContainer) {
     }
 }
 
+/**
+ * The game exits fullscreen.
+ */
 function exitFullscreen() {
     if (document.exitFullscreen) {
         document.exitFullscreen();
@@ -76,13 +91,19 @@ function exitFullscreen() {
     }
 }
 
+/**
+ * This function initializes the game and hides the startscreen.
+ */
 function startGame() {
     document.getElementById('startScreen').style.backgroundImage = 'none';
     document.getElementById('startGame').style.display = 'none';
-    bindBtsPressEvents();
     init();
 }
 
+/**
+ * Sets a value when pressing a certain key on your keyboard.
+ * => Controlling your character
+ */
 window.addEventListener('keydown', (event) => {
     if(event.keyCode == 37 || event.keyCode == 65) {
         keyboard.left = true;
@@ -105,6 +126,10 @@ window.addEventListener('keydown', (event) => {
     }
 });
 
+/**
+ * Sets a value when releasing a certain key on your keyboard.
+ * => Controlling your character
+ */
 window.addEventListener('keyup', (event) => {
     if(event.keyCode == 37 || event.keyCode == 65) {
         keyboard.left = false;
@@ -127,64 +152,83 @@ window.addEventListener('keyup', (event) => {
     }
 });
 
-
+/**
+ * Sets a value when touching a certain key on your keyboard.
+ * => Controlling your characte with a touch device
+ */
 function bindBtsPressEvents() {
-    document.getElementById('walkLeft').addEventListener('touchstart', (e) => {
+    let walkLeft = document.getElementById('walkLeft');
+    let walkRight = document.getElementById('walkRight');
+    let jump = document.getElementById('jump');
+    let throwBottle = document.getElementById('throwBottle');
+
+    walkLeft.addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.left = true;
     });
 
-    document.getElementById('walkLeft').addEventListener('touchend', (e) => {
+    walkLeft.addEventListener('touchend', (e) => {
         e.preventDefault();
         keyboard.left = false;
     });
 
-    document.getElementById('walkRight').addEventListener('touchstart', (e) => {
+    walkRight.addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.right = true;
     });
 
-    document.getElementById('walkRight').addEventListener('touchend', (e) => {
+    walkRight.addEventListener('touchend', (e) => {
         e.preventDefault();
         keyboard.right = false;
     });
 
-    document.getElementById('jump').addEventListener('touchstart', (e) => {
+    jump.addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.up = true;
     });
 
-    document.getElementById('jump').addEventListener('touchend', (e) => {
+    jump.addEventListener('touchend', (e) => {
         e.preventDefault();
         keyboard.up = false;
     });
 
-    document.getElementById('throwBottle').addEventListener('touchstart', (e) => {
+    throwBottle.addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.throw = true;
     });
 
-    document.getElementById('throwBottle').addEventListener('touchend', (e) => {
+    throwBottle.addEventListener('touchend', (e) => {
         e.preventDefault();
         keyboard.throw = false;
     });
 }
 
-
+/**
+ * Shows the controls, which key need to be pressed for a certain action.
+ */
 function showControls() {
     document.getElementById('controls').style.display = "flex";
 }
 
+/**
+ * Hides the controls.
+ */
 function closeControls() {
     document.getElementById('controls').style.display = "none";
 }
 
+/**
+ * Resetes all game parameters an starts the game anew.
+ */
 function restartGame() {
     init();
     // reset all game parameters > initialise
     document.getElementById('gameOverScreen').style.display = "none";
 }
 
+/**
+ * Resets all game parameters and brings you back to the main menue.
+ */
 function toMainMenue() {
     init();
     // reset all game parameters > initialise
@@ -193,6 +237,11 @@ function toMainMenue() {
     document.getElementById('startGame').style.display = 'flex';
 }
 
+/**
+ * A function to store every interval in an array in order to stop them if needed.
+ * @param {function} fn - specific interval function
+ * @param {number} time - Interval time, how often the function repeats
+ */
 function setStoppableInterval(fn, time) {
     let id = setInterval(fn, time);
     intervalIds.push(id);

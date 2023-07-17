@@ -55,13 +55,7 @@ class World {
                     this.character.coinsColected = 0;
                     this.statusbarCoins.setPercentage(this.character.coinsColected);
                 }
-            }
-        });
-    }
-
-    killSmallEnemy() {
-        this.level.enemies.forEach((enemy) => {
-            if(this.character.isCollidingTop(enemy) && this.character.isAboveGround()){
+            } else if(this.character.isCollidingTop(enemy)) {
                 enemy.die();
             }
         });
