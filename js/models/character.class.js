@@ -76,6 +76,9 @@ class Character extends MovableObject {
     world;
     walkingSound = new Audio('../audio/walkingCharacter.mp3');
 
+    /**
+     * Load character an the different animations and position on the canvas.
+     */
     constructor() {
         super().loadImage('../../img/2_character_pepe/2_walk/W-21.png');
         this.loadImages(this.imagesWalking);
@@ -86,6 +89,9 @@ class Character extends MovableObject {
         this.animate();    
     }
 
+    /**
+     * Play animations depending on different action.
+     */
     animate() {
         setInterval(() => {
             this.walkingSound.pause();

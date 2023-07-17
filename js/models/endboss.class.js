@@ -25,6 +25,9 @@ class Endboss extends MovableObject {
 
     firstContact = false;
 
+     /**
+     * Load endboss an the different animations and position on the canvas.
+     */
     constructor() {
         super().loadImage('../../img/4_enemie_boss_chicken/2_alert/G5.png');
         this.loadImages(this.imagesWalking);
@@ -32,9 +35,10 @@ class Endboss extends MovableObject {
         this.animate();    
     }
 
+    /**
+     * Play animations depending on different action.
+     */
     animate() {
-
-
         setInterval(() => {
 
             this.playAnimation(this.imagesWalking);

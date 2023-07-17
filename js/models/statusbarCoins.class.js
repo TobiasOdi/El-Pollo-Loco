@@ -11,6 +11,9 @@ class StatusbarCoins extends DrawableObject {
 
     percentage = 0;
 
+    /**
+     * Loads the statusbar and positions it on the canvas.
+     */
     constructor() {
         super();  // Methoden vom übergeordneten Objekt werden so initialisiert!
         this.loadImages(this.images);
@@ -21,12 +24,20 @@ class StatusbarCoins extends DrawableObject {
         this.setPercentage(0);
     }
 
+    /**
+     * Sets the path to the correct image an loads it to the image cache
+     * @param {number} percentage - number of collected coins
+     */
     setPercentage(percentage) {
         this.percentage = percentage; // => 0 .. 5
         let path = this.images[this.resolveImageIndex()];
         this.img = this.imageCache[path]; // jeweiliges Bild aus dem Bilder Cache laden
     }
 
+    /**
+     * Returns the the index for the path of the correct image.
+     * @returns 
+     */
     resolveImageIndex() {
         if(this.percentage == 0) {
             return 0;

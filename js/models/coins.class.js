@@ -14,6 +14,9 @@ class Coins extends DrawableObject {
         bottom: 50
     }
 
+    /**
+     * Load coins and position on the canvas.
+     */
     constructor() {
         // => super() gilt nur für Methoden!!
         super().loadImage('../../img/8_coin/coin_1.png');

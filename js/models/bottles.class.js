@@ -15,6 +15,10 @@ class Bottles extends DrawableObject {
         bottom: 10
     }
 
+    /**
+     * Load bottles to the canvas
+     * @param {string} imagePath - path to the corresponding image
+     */
     constructor(imagePath) {
          // => super() gilt nur für Methoden!!
         super().loadImage(imagePath);

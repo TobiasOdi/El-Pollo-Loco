@@ -19,6 +19,9 @@ class Chicken extends MovableObject {
         bottom: 0
     }
 
+    /**
+     * Load enemy  an the different animations and position on the canvas.
+     */
     constructor() {
         // => super() gilt nur für Methoden!!
         super().loadImage('../../img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
@@ -29,6 +32,9 @@ class Chicken extends MovableObject {
         this.animate();
     }
 
+    /**
+     * Play animations depending on different action.
+     */
     animate() {
         //setStoppableInterval(this.moveLeft, 1000 / 60);
         

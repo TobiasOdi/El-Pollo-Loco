@@ -16,6 +16,9 @@ class MovableObject extends DrawableObject {
         bottom: 0
     }
 
+    /**
+     * Sets the gravity, how fast the objects fall
+     */
     applyGravity() {
         setInterval(() => {
             if(this.isAboveGround() || this.speedY > 0) {
@@ -25,8 +28,12 @@ class MovableObject extends DrawableObject {
         }, 1000 / 20);
     }
 
+    /**
+     * Checks if an object ist above ground > Throwable objects should alwasys fall
+     * @returns 
+     */
     isAboveGround() {
-        if(this instanceof ThrowableObject) { // Throwable object should always fall
+        if(this instanceof ThrowableObject) {l
             return true;
         } else {
             return this.y < 175;
@@ -113,8 +120,8 @@ class MovableObject extends DrawableObject {
     }
 
     /**
-     * 
-     * @param {Array} arr - ['img/image1.png', 'img/image2.png', ...] => Loading images into the imageCache array
+     * Loading images into the imageCache array
+     * @param {Array} arr - ['img/image1.png', 'img/image2.png', ...]
      */
     loadImages(arr) {
         arr.forEach((path) => {
