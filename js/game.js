@@ -42,32 +42,37 @@ function mute() {
 }
 
 function fullScreen() {
-    let gameSize = document.getElementById('gameContainer');
+    let gameContainer = document.getElementById('gameContainer');
     let canvas = document.getElementById('canvas');
 
-    if (fullSize == false) {
-        gameSize.style.position = 'absolute';
-        gameSize.style.width = '100%';
-        gameSize.style.height = '100%';
-        gameSize.style.top = "0";
-
-
+    if(fullSize == false) {
         canvas.style.width = '100%';
         canvas.style.height = '100%';
-
+        enterFullscreen(gameContainer);
         fullSize = true;
     } else {
-        gameSize.style.position = 'relative';
-        gameSize.style.width = '720px';
-        gameSize.style.height = '480px';
-        gameSize.style.top = "calc((100vh - 480px) / 2)";
-
-
         canvas.style.width = '720px';
         canvas.style.height = '480px';
-
-
+        exitFullscreen();
         fullSize = false;
+    }
+}
+
+function enterFullscreen(gameContainer) {
+    if(document.requestFullscreen) {
+        gameContainer.requestFullscreen();
+    } else if (gameContainer.msRequestFullscreen) {       // for IE11
+        gameContainer.msRequestFullscreen();
+    } else if (gameContainer.webkitRequestFullscreen) {   //  IOS Safari
+        gameContainer.webkitRequestFullscreen();
+    }
+}
+
+function exitFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitRequestFullscreen) {
+        document.webkitRequestFullscreen();
     }
 }
 
