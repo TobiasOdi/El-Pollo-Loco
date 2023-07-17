@@ -49,7 +49,11 @@ class MovableObject extends DrawableObject {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
-    //character.isColliding(coins, bottles);
+    /**
+     * Checks the collisions with the coins and bottles
+     * @param {element} mo - coin or bottle
+     * @returns 
+     */
     isColliding (mo) {
         return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
             this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
@@ -57,7 +61,11 @@ class MovableObject extends DrawableObject {
             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
     }
 
-    //character.isColliding(enemy);
+    /**
+     * Checks the collision with enemies
+     * @param {element} mo - chicken, small chicken and endboss
+     * @returns 
+     */
     isCollidingEnemy (mo) {
         return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
         //this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
@@ -65,11 +73,18 @@ class MovableObject extends DrawableObject {
         this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
     }
 
-    //character.isColliding(enemy top);
+    /**
+     * Checks the collision on top of the small enemies
+     * @param {element} mo - chicken, small chicken
+     * @returns 
+     */
     isCollidingTop(mo) {
         return this.y + this.height >= mo.y + mo.offset.top;
     }
 
+    /**
+     * Subtracts character energy
+     */
     hit() {
         this.energy -= 5;
         if(this.energy < 0) {
@@ -79,6 +94,9 @@ class MovableObject extends DrawableObject {
         }
     }
 
+    /**
+     * Adds a coin to coinsColected
+     */
     colectCoins() {
         this.coinsColected += 1;
         if(this.coinsColected >= 10) {
@@ -86,6 +104,9 @@ class MovableObject extends DrawableObject {
         }
     }
 
+    /**
+     * Adds a bottle to  bottlesColected
+     */
     colectBottles() {
         this.bottlesColected += 1;
         if(this.bottlesColected >= 10) {
@@ -93,20 +114,35 @@ class MovableObject extends DrawableObject {
         }
     }
 
+    /**
+     * 
+     * @returns 
+     */
     isHurt(){
         let timePassed = new Date().getTime() - this.lastHit; // Differenz in Milisekunden
         timePassed = timePassed / 1000; // Differenz in Sekunden
         return timePassed < 0.5;
     }
 
+    /**
+     * The function returns the value 0 for the character energy
+     * @returns 
+     */
     isDead() {
         return this.energy == 0;
     }
 
+    /**
+     * Sets the speed of an enemy to 0.
+     */
     die() {
         this.speed = 0;
     }
 
+    /**
+     * 
+     * @param {*} ctx - 
+     */
     flipImage(ctx){
         ctx.save();
         ctx.translate(this.width, 0);
@@ -114,6 +150,10 @@ class MovableObject extends DrawableObject {
         this.x = this.x * -1;
     }
 
+    /**
+     * 
+     * @param {*} ctx 
+     */
     flipImageBack(ctx){
         this.x = this.x * -1;
         ctx.restore();
@@ -123,6 +163,10 @@ class MovableObject extends DrawableObject {
      * Loading images into the imageCache array
      * @param {Array} arr - ['img/image1.png', 'img/image2.png', ...]
      */
+
+    /**
+     * 
+     */
     loadImages(arr) {
         arr.forEach((path) => {
             let img = new Image();
@@ -131,6 +175,10 @@ class MovableObject extends DrawableObject {
         });
     }
 
+    /**
+     * 
+     * @param {*} images 
+     */
     playAnimation(images) {
         let i = this.currentImage % images.length; // let i = 0 % 6
         let path = images[i];
@@ -138,14 +186,23 @@ class MovableObject extends DrawableObject {
         this.currentImage++;
     }
 
+    /**
+     * Makes the character move right.
+     */
     moveRight() {
         this.x += this.speed;
     }
 
+    /**
+     * Makes the character move left.
+     */
     moveLeft() {
         this.x -= this.speed;
     }
 
+    /**
+     * Makes the character jump.
+     */
     jump() {
         this.speedY = 30;
     }

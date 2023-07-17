@@ -42,6 +42,9 @@ class World {
         }, 120);
     }
 
+    /**
+     * Checks the collision with enemies and performes the necesary action.
+     */
     checkCollisionsEnemy() {
         this.level.enemies.forEach((enemy) => {
             if(this.character.isCollidingEnemy(enemy)){
@@ -130,11 +133,14 @@ class World {
         });
     };
 
+    
     addObjectsToMap(objects) {
         objects.forEach(o => {
             this.addToMap(o);
         });
     }
+
+    
     addToMap(mo) {
         if(mo.otherDirection) {
             mo.flipImage(this.ctx);

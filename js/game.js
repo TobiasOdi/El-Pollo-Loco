@@ -239,8 +239,8 @@ function toMainMenue() {
 
 /**
  * A function to store every interval in an array in order to stop them if needed.
- * @param {function} fn - specific interval function
- * @param {number} time - Interval time, how often the function repeats
+ * @param {function} fn - specific function
+ * @param {number} time - Interval time, how often the function is beeing run
  */
 function setStoppableInterval(fn, time) {
     let id = setInterval(fn, time);
