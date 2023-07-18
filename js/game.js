@@ -17,12 +17,10 @@ let intervalIds = [];
 // 4. Endgegner besiegen => Endgegner Healthbar
 // 5. Game-Over Screen + Restart
 // 6. Responsiveness => bei Smartphones muss ab einer gewissen Breite das Bild gedreht werden und die anderern Elemente neben dem Canvas ausgeblendet werden. 
-// 7. Google Translate deaktivieren
 // 8. Code bereinigen:
 //      - Funktionen kürzen und übersichtlich gestalten
 //      - Funktionen mit return erstellen bei welchen man genau weiss was diese machen. z.B. in einer if abfrage
 //          - z.B. canMoveRight() => als Frage formulieren
-// 9. Desktop hintergrundbidl + El Pollo Loco Schriftzug
 
 /**
  * This function initializes the game.

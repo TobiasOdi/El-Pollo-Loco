@@ -7,11 +7,14 @@ body {
     align-items: center;
     margin: 0;
     font-size: 16px;
+    background-image: url('./img/5_background/second_half_background.png');
+    background-position: center;
 }
 
 canvas {
     background-color: black;
     display: block;
+    box-shadow: 0 0 0 10px orange;
 }
 
 .gameContainer {
