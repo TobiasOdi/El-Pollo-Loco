@@ -8,6 +8,8 @@ class MovableObject extends DrawableObject {
     coinsColected = 0;
     bottlesColected = 0;
     lastHit = 0;
+    //intervalIds = [];
+
 
     offset =  {
         top: 0,
@@ -15,6 +17,16 @@ class MovableObject extends DrawableObject {
         right: 0, 
         bottom: 0
     }
+
+    /**
+ * A function to store every interval in an array in order to stop them if needed.
+ * @param {function} fn - specific function
+ * @param {number} time - Interval time, how often the function is beeing run
+ */
+/*     setStoppableInterval(fn, time) {
+    let id = setInterval(fn, time);
+    this.intervalIds.push(id);
+    } */
 
     /**
      * Sets the gravity, how fast the objects fall
@@ -33,7 +45,7 @@ class MovableObject extends DrawableObject {
      * @returns 
      */
     isAboveGround() {
-        if(this instanceof ThrowableObject) {l
+        if(this instanceof ThrowableObject) {
             return true;
         } else {
             return this.y < 175;

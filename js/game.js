@@ -3,24 +3,26 @@ let ctx;
 let world;
 let keyboard = new Keyboard();
 let fullSize = false;
-intervalIds = [];
+let intervalIds = [];
 
 // AUFGABEN
-// 2. Sounds suchen 
+// 1. Sounds suchen 
 //      - Springen
 //      - Flasche werfen
 //      - impact, zerbrechen, spritzer
 //      - Geräusche Hühner, kleiner Hühner, Boss
 //      - Todesschrei??
-// 6. Falschen kollision mit gegnern
-// 5. Kleine Gegner mit Sprung besiegen
-// 7. Endgegner besiegen => Endgegner Healthbar
-// 8. Game-Over Screen + Restart
-// 9. Fullscreen Modus => Vollbildmodus mitder Methode requestfullscreen() => genau anschauen
-// 13. Responsiveness => bei Smartphones muss ab einer gewissen Breite das Bild gedreht werden und die anderern Elemente neben dem Canvas ausgeblendet werden. 
-// 14. Mobile Version > keine Tastatur möglich 
-//     Container mit der der id="hud" erstellen mit 2 div's darin. Wo Knöpfe zum drücken integriert sind.
-//     Neue Funktion bauen wie bei 
+// 2. Falschen kollision mit Gegnern > kleine und Endboss
+// 3. Kleine Gegner mit Sprung besiegen
+// 4. Endgegner besiegen => Endgegner Healthbar
+// 5. Game-Over Screen + Restart
+// 6. Responsiveness => bei Smartphones muss ab einer gewissen Breite das Bild gedreht werden und die anderern Elemente neben dem Canvas ausgeblendet werden. 
+// 7. Google Translate deaktivieren
+// 8. Code bereinigen:
+//      - Funktionen kürzen und übersichtlich gestalten
+//      - Funktionen mit return erstellen bei welchen man genau weiss was diese machen. z.B. in einer if abfrage
+//          - z.B. canMoveRight() => als Frage formulieren
+// 9. Desktop hintergrundbidl + El Pollo Loco Schriftzug
 
 /**
  * This function initializes the game.
