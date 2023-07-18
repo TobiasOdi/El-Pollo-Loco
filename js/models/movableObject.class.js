@@ -40,11 +40,19 @@ class MovableObject extends DrawableObject {
         }
     }
     
+    /**
+     * Creates a new image
+     * @param {string} path - image path
+     */
     loadImage(path) {
         this.img = new Image();    // ist das gleiche wie this.img = document.getElementById('image') <img id="image">
         this.img.src = path;
     }
 
+    /**
+     * Draws the image to the canvas.
+     * @param {*} ctx 
+     */
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }

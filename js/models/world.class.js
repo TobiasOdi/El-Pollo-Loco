@@ -13,6 +13,11 @@ class World {
     throwableObject = [];
     movableObject = new MovableObject();
 
+    /**
+     * 
+     * @param {element} canvas 
+     * @param {class} keyboard 
+     */
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -22,10 +27,16 @@ class World {
         this.run();
     };
 
+    /**
+     * 
+     */
     setWorld(){
         this.character.world = this;
     }
 
+    /**
+     * Runs the characters function collision and throw bottle
+     */
     run() {
         setInterval(() => {
             this.checkCollisionsEnemy();
@@ -64,6 +75,9 @@ class World {
         });
     }
 
+    /**
+     * Lets the character colect a coin and updates the statusbar.
+     */
     checkCollisionsCoins() {
         this.level.coins.forEach((coin) => {
             if(this.character.isColliding(coin)){
@@ -75,6 +89,9 @@ class World {
         });
     }
 
+    /**
+     * Lets the character colect a bottle and updates the statusbar.
+     */
     checkCollisionsBottles() {
         this.level.bottles.forEach((bottle) => {
             if(this.character.isColliding(bottle)){
@@ -86,6 +103,9 @@ class World {
         });
     }
 
+    /**
+     * Lets the character throw a bottle and updates the statusbar.
+     */
     checkThrowObject() {
         if(this.keyboard.throw) {
             if(this.character.bottlesColected > 0) {
@@ -102,6 +122,9 @@ class World {
         }
     }
 
+    /**
+     * The function draws all the elemnts on the canvas.
+     */
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
@@ -133,14 +156,20 @@ class World {
         });
     };
 
-    
+    /**
+     * Adds the objects
+     * @param {object} objects 
+     */
     addObjectsToMap(objects) {
         objects.forEach(o => {
             this.addToMap(o);
         });
     }
 
-    
+    /**
+     * Flips the image of the character according in which direction it walks
+     * @param {*} mo 
+     */
     addToMap(mo) {
         if(mo.otherDirection) {
             mo.flipImage(this.ctx);
