@@ -6,6 +6,7 @@ class World {
     keyboard;
     cameraX = 0;
     statusbarHealth = new StatusbarHealth();
+    statusbarHealthEndboss = new StatusbarHealthEndboss();
     statusbarCoins = new StatusbarCoins();
     statusbarBottles = new StatusbarBottles();
     coins = new Coins();
@@ -139,6 +140,8 @@ class World {
         this.addToMap(this.statusbarHealth);
         this.addToMap(this.statusbarCoins);
         this.addToMap(this.statusbarBottles);
+        this.addToMap(this.statusbarHealthEndboss);
+        
         // ----------------------------------------------------
 
         this.ctx.translate(this.cameraX, 0); // Kamera bzw. Koordinatensystem nach vorne verschieben
