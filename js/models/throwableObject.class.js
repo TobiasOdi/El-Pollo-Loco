@@ -1,6 +1,8 @@
 class ThrowableObject extends MovableObject {
     speedY = 30;
     speedX = 30;
+    level = level1;
+
 
     imagesRotate = [
         '../../img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
@@ -31,27 +33,26 @@ class ThrowableObject extends MovableObject {
     }
 
     animate() {
+        this.throw();
+        setInterval(() => {
+            this.playAnimation(this.imagesRotate);
+        }, 80);
 
-        if(this.isAboveGround() && !this.isCollidingEnemy()) {
-            this.throw();
-
-            setInterval(() => {
-                this.playAnimation(this.imagesRotate);
-            }, 80);
-      
-        } else {
-            setInterval(() => {
-                this.playAnimation(this.imagesImpact);
-            }, 80);
-        }
+        this.level.enemies.forEach((enemy) => {
+            if(this.isColliding(enemy)) {
+                setInterval(() => {
+                    this.playAnimation(this.imagesImpact);
+                }, 80);
+            }
+        });
     }
-
+   
     throw() {
             this.speedY = 30;
             this.applyGravity();
 
             setInterval(() => {
-                this.x += 10;
+                this.x += 7;
             }, 25);       
     }   
 
