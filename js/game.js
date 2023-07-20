@@ -15,9 +15,8 @@ let intervalIds = [];
 // 2. Falschen kollision mit Gegnern > kleine und Endboss
 // 3. Kleine Gegner mit Sprung besiegen
 // 4. Endgegner besiegen => Endgegner Healthbar
-// 5. Game-Over Screen + Restart
-// 6. Responsiveness => bei Smartphones muss ab einer gewissen Breite das Bild gedreht werden und die anderern Elemente neben dem Canvas ausgeblendet werden. 
-// 8. Code bereinigen:
+// 5. Responsiveness => bei Smartphones muss ab einer gewissen Breite das Bild gedreht werden und die anderern Elemente neben dem Canvas ausgeblendet werden. 
+// 6. Code bereinigen:
 //      - Funktionen kürzen und übersichtlich gestalten
 //      - Funktionen mit return erstellen bei welchen man genau weiss was diese machen. z.B. in einer if abfrage
 //          - z.B. canMoveRight() => als Frage formulieren
