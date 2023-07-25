@@ -36,28 +36,23 @@ class Chicken extends MovableObject {
      * Play animations depending on different action.
      */
     animate() {
-        setStoppableInterval(() => this.moveLeft, 1000 / 60);
-        
-
-        /* setInterval(()  => {
+        //setStoppableInterval(() => this.moveLeft, 1000 / 60);
+/*         setInterval(()  => {
             this.moveLeft();
-        }, 1000 / 60); */
-
-        if(this.speed == 0) {
+        }, 1000 / 60);
+ */
+        if(this.die()) {
             this.playAnimation(this.imagesDead);
         } else{
             setInterval(() => {
                 this.playAnimation(this.imagesWalking);
             }, 200);
-        }
 
-/*         setInterval(() => {
-            if(this.isCollidingTop()) {
-                // Clear Interval moveLeft
-                // Clear Interval playAnimation Walking
-                this.playAnimation(this.imagesDead);
-                }
-            }, 50)  */
+            setInterval(()  => {
+                this.moveLeft();
+            }, 1000 / 60);
+    
+        }
     }
 
 }
