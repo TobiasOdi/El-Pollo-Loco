@@ -11,7 +11,6 @@ let intervalIds = [];
 //      - Flasche werfen
 //      - impact, zerbrechen, spritzer
 //      - Geräusche Hühner, kleiner Hühner, Boss
-//      - Todesschrei??
 // 2. Falschen kollision mit Gegnern > kleine und Endboss
 // 3. Kleine Gegner mit Sprung besiegen
 // 4. Endgegner besiegen => Endgegner Healthbar
