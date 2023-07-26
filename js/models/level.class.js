@@ -1,5 +1,6 @@
 class Level {
     enemies;
+    endboss;
     clouds;
     backgroundObjects;
     coins;
@@ -14,8 +15,9 @@ class Level {
      * @param {array} coins - number of coins
      * @param {array} bottles - number of bottles
      */
-    constructor(enemies, clouds, backgroundObjects, coins, bottles) {
+    constructor(enemies, endboss, clouds, backgroundObjects, coins, bottles) {
         this.enemies = enemies;
+        this.endboss = endboss;
         this.clouds = clouds;
         this.backgroundObjects = backgroundObjects;
         this.coins = coins;

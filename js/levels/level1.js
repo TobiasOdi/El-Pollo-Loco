@@ -13,8 +13,12 @@ let level1 = new Level(
         new ChickenSmall(),
         new ChickenSmall(),
         new Chicken(),
+    ],
+
+    [
         new Endboss()     
     ],
+
 
     [
         new Cloud()

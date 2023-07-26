@@ -40,9 +40,14 @@ class Chicken extends MovableObject {
 /*         setInterval(()  => {
             this.moveLeft();
         }, 1000 / 60);
- */
+ */    
         if(this.die()) {
             this.playAnimation(this.imagesDead);
+            setTimeout(() => {
+                this.x = 0;
+                this.y = -100;
+            }, 1000);
+
         } else{
             setInterval(() => {
                 this.playAnimation(this.imagesWalking);
@@ -51,7 +56,6 @@ class Chicken extends MovableObject {
             setInterval(()  => {
                 this.moveLeft();
             }, 1000 / 60);
-    
         }
     }
 

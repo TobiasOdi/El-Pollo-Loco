@@ -42,17 +42,16 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisionsEnemy();
-            //this.checkCollisionsTop();
         }, 200);
 
         setInterval(() => {
             this.checkCollisionsCoins();
             this.checkCollisionsBottles();
-        }, 1000 / 60);
+        }, 20);
 
         setInterval(() => {
             this.checkThrowObject();
-        }, 120);
+        }, 100);
     }
 
     /**
@@ -60,21 +59,22 @@ class World {
      */
     checkCollisionsEnemy() {
         this.level.enemies.forEach((enemy) => {
-            if(this.character.isColliding(enemy)){
-                this.character.hit();
-                this.statusbarHealth.setPercentage(this.character.energy);
-
-                if(this.character.coinsColected > 0) {
-                    this.character.coinsColected--;
-                    this.statusbarCoins.setPercentage(this.character.coinsColected);
+            if(enemy.speed > 0 && this.character.isColliding(enemy)){
+                if(this.character.isAboveGround() && !this.character.isHurt()) {
+                    enemy.die();
                 } else {
-                    this.character.coinsColected = 0;
-                    this.statusbarCoins.setPercentage(this.character.coinsColected);
+                    this.character.hit();
+                    this.statusbarHealth.setPercentage(this.character.energy);
+
+                    if(this.character.coinsColected > 0) {
+                        this.character.coinsColected--;
+                        this.statusbarCoins.setPercentage(this.character.coinsColected);
+                    } else {
+                        this.character.coinsColected = 0;
+                        this.statusbarCoins.setPercentage(this.character.coinsColected);
+                    }
                 }
-            } else if(this.character.isColliding(enemy) && this.character.isAboveGround()) {
-                enemy.die(0);
-            }
-        });
+            }});
     }
 
     /**
@@ -149,6 +149,7 @@ class World {
 
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.endboss);
         this.addObjectsToMap(this.throwableObject);
 
 
@@ -178,7 +179,7 @@ class World {
         if(mo.otherDirection) {
             mo.flipImage(this.ctx);
         }
-
+        
         mo.draw(this.ctx);
         mo.drawFrame(this.ctx);
 
