@@ -60,7 +60,7 @@ class World {
      */
     checkCollisionsEnemy() {
         this.level.enemies.forEach((enemy) => {
-            if(this.character.isCollidingEnemy(enemy)){
+            if(this.character.isColliding(enemy)){
                 this.character.hit();
                 this.statusbarHealth.setPercentage(this.character.energy);
 
@@ -71,8 +71,8 @@ class World {
                     this.character.coinsColected = 0;
                     this.statusbarCoins.setPercentage(this.character.coinsColected);
                 }
-            } else if(this.character.isCollidingTop(enemy)) {
-                enemy.die();
+            } else if(this.character.isColliding(enemy) && this.character.isAboveGround()) {
+                enemy.die(0);
             }
         });
     }

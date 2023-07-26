@@ -82,27 +82,6 @@ class MovableObject extends DrawableObject {
     }
 
     /**
-     * Checks the collision with enemies
-     * @param {element} mo - chicken, small chicken and endboss
-     * @returns 
-     */
-    isCollidingEnemy (mo) {
-        return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
-        //this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
-        this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
-        this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
-    }
-
-    /**
-     * Checks the collision on top of the small enemies
-     * @param {element} mo - chicken, small chicken
-     * @returns 
-     */
-    isCollidingTop(mo) {
-        return this.y + this.height >= mo.y + mo.offset.top;
-    }
-
-    /**
      * Subtracts character energy
      */
     hit() {
@@ -156,7 +135,7 @@ class MovableObject extends DrawableObject {
      * Sets the speed of an enemy to 0.
      */
     die() {
-        this.speed = 0;
+        return this.speed == 0;
     }
 
     /**
