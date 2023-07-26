@@ -15,6 +15,7 @@ class World {
     throwableObject = [];
     movableObject = new MovableObject();
 
+
     /**
      * 
      * @param {element} canvas 
@@ -60,9 +61,11 @@ class World {
     checkCollisionsEnemy() {
         this.level.enemies.forEach((enemy) => {
             if(enemy.speed > 0 && this.character.isColliding(enemy)){
+
                 if(this.character.isAboveGround() && !this.character.isHurt()) {
-                    enemy.die();
+                    enemy.speed = 0;
                 } else {
+
                     this.character.hit();
                     this.statusbarHealth.setPercentage(this.character.energy);
 
