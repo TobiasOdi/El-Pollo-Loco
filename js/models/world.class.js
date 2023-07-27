@@ -1,6 +1,6 @@
 class World {
     character = new Character();
-    bottle = new Bottles();
+    bottle = new ThrowableObject();
     level = level1;
     canvas;
     ctx;
@@ -44,7 +44,7 @@ class World {
         setInterval(() => {
             this.checkCollisionsEnemy();
             this.checkCollisionsEndboss();
-
+            this.checkBottleHitEnemy();
         }, 50);
 
         setInterval(() => {
@@ -102,6 +102,42 @@ class World {
         })
         )
     }
+
+    checkBottleHitEnemy() {
+        this.throwableObject.forEach((bottle) => {
+
+            this.level.enemies.forEach((enemy) => {
+                if(bottle.isColliding(enemy)){
+                    enemy.speed = 0;
+                    // Paramter für bottle etzen 
+                }
+            })
+        })
+    };
+    
+
+    checkBottleHitEndboss() {
+        this.level.enemies.forEach((enemy) => {
+            if(enemy.speed > 0 && this.bottle.isColliding(enemy)){
+
+                if(this.character.isAboveGround() && !this.character.isHurt()) {
+                    enemy.speed = 0;
+                } else {
+
+                    this.character.hit();
+                    this.statusbarHealth.setPercentage(this.character.energy);
+
+                    if(this.character.coinsColected > 0) {
+                        this.character.coinsColected--;
+                        this.statusbarCoins.setPercentage(this.character.coinsColected);
+                    } else {
+                        this.character.coinsColected = 0;
+                        this.statusbarCoins.setPercentage(this.character.coinsColected);
+                    }
+                }
+            }});
+    }
+
 
     /**
      * Lets the character colect a coin and updates the statusbar.

@@ -33,6 +33,8 @@ class ThrowableObject extends MovableObject {
     }
 
     animate() {
+
+
         this.throw();
         setInterval(() => {
             this.playAnimation(this.imagesRotate);

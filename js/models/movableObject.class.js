@@ -9,6 +9,7 @@ class MovableObject extends DrawableObject {
     bottlesColected = 0;
     lastHit = 0;
     smallEnemyHealth = 1;
+
     //intervalIds = [];
 
 
