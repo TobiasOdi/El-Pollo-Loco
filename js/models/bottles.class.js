@@ -22,7 +22,7 @@ class Bottles extends DrawableObject {
     constructor(imagePath) {
          // => super() gilt nur für Methoden!!
         super().loadImage(imagePath);
-        this.x = 300 + Math.random() * 2000;
+        this.x = 300 + Math.random() * 4000;
         this.y = 335;
     }
 

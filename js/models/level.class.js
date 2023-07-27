@@ -5,11 +5,12 @@ class Level {
     backgroundObjects;
     coins;
     bottles;
-    levelEndX = 2200;
+    levelEndX = 4300;
 
     /**
      * Defines all the necessary objects/variables for the different levels.
      * @param {array} enemies - number of enemies
+     * @param {array} endboss - big enemy
      * @param {array} clouds - clouds
      * @param {array} backgroundObjects - all background objects
      * @param {array} coins - number of coins

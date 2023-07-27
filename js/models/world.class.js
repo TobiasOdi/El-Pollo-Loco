@@ -43,7 +43,9 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisionsEnemy();
-        }, 200);
+            this.checkCollisionsEndboss();
+
+        }, 50);
 
         setInterval(() => {
             this.checkCollisionsCoins();
@@ -78,6 +80,27 @@ class World {
                     }
                 }
             }});
+    }
+
+    /**
+     * Checks the collision with the endboss and performes the necessary action.
+     */
+    checkCollisionsEndboss() {
+        this.level.endboss.forEach((endboss => {
+            if(this.character.isColliding(endboss)){
+                this.character.hitByEndboss();
+                this.statusbarHealth.setPercentage(this.character.energy);
+    
+                if(this.character.coinsColected > 0) {
+                    this.character.coinsColected--;
+                    this.statusbarCoins.setPercentage(this.character.coinsColected);
+                } else {
+                    this.character.coinsColected = 0;
+                    this.statusbarCoins.setPercentage(this.character.coinsColected);
+                }
+            }
+        })
+        )
     }
 
     /**
