@@ -33,7 +33,7 @@ class Character extends MovableObject {
         '../../img/2_character_pepe/1_idle/long_idle/I-17.png',
         '../../img/2_character_pepe/1_idle/long_idle/I-18.png',
         '../../img/2_character_pepe/1_idle/long_idle/I-19.png',
-        '../../img/2_character_pepe/1_idle/long_idle/I-20.png',
+        '../../img/2_character_pepe/1_idle/long_idle/I-20.png'
     ];
 
     imagesWalking = [
@@ -81,6 +81,8 @@ class Character extends MovableObject {
      */
     constructor() {
         super().loadImage('../../img/2_character_pepe/2_walk/W-21.png');
+        this.loadImages(this.imagesIdle);
+        this.loadImages(this.imagesLongIdle);
         this.loadImages(this.imagesWalking);
         this.loadImages(this.imagesJumping);
         this.loadImages(this.imagesHurt);
@@ -93,6 +95,11 @@ class Character extends MovableObject {
      * Play animations depending on different action.
      */
     animate() {
+
+        setInterval(() => {
+            this.checkForAction();
+        }, 1000);
+
         setInterval(() => {
             this.walkingSound.pause();
             if(this.world.keyboard.right && this.x < this.world.level.levelEndX) {
@@ -147,5 +154,15 @@ class Character extends MovableObject {
     clearAllIntervals() {
         for (let i = 1; i < 9999; i++) window.clearInterval(i);
     };
+
+    checkForAction() {
+        let currentTime = new Date().getTime();
+        if((currentTime - keyboard.lastKeyPress) > 3000 && (currentTime - keyboard.lastKeyPress) < 10000) {
+            this.playAnimation(this.imagesIdle);
+        } else if((currentTime - keyboard.lastKeyPress) > 10000) {
+            this.playAnimation(this.imagesLongIdle);
+        }
+    };
+
 }
 

@@ -6,6 +6,13 @@ class Endboss extends MovableObject {
 // => Spawn function??
 
     imagesWalking = [
+        '../../img/4_enemie_boss_chicken/1_walk/G1.png',
+        '../../img/4_enemie_boss_chicken/1_walk/G2.png',
+        '../../img/4_enemie_boss_chicken/1_walk/G3.png',
+        '../../img/4_enemie_boss_chicken/1_walk/G4.png'
+    ];
+
+    imagesAlert = [
         '../../img/4_enemie_boss_chicken/2_alert/G5.png',
         '../../img/4_enemie_boss_chicken/2_alert/G6.png',
         '../../img/4_enemie_boss_chicken/2_alert/G7.png',
@@ -13,7 +20,35 @@ class Endboss extends MovableObject {
         '../../img/4_enemie_boss_chicken/2_alert/G9.png',
         '../../img/4_enemie_boss_chicken/2_alert/G10.png',
         '../../img/4_enemie_boss_chicken/2_alert/G11.png',
-        '../../img/4_enemie_boss_chicken/2_alert/G12.png',
+        '../../img/4_enemie_boss_chicken/2_alert/G12.png'
+
+    ];
+
+    imagesAttack = [
+        '../../img/4_enemie_boss_chicken/3_attack/G13.png',
+        '../../img/4_enemie_boss_chicken/3_attack/G14.png',
+        '../../img/4_enemie_boss_chicken/3_attack/G15.png',
+        '../../img/4_enemie_boss_chicken/3_attack/G16.png',
+        '../../img/4_enemie_boss_chicken/3_attack/G17.png',
+        '../../img/4_enemie_boss_chicken/3_attack/G18.png',
+        '../../img/4_enemie_boss_chicken/3_attack/G19.png',
+        '../../img/4_enemie_boss_chicken/3_attack/G20.png'
+    ];
+
+    imagesHurt = [
+        '../../img/4_enemie_boss_chicken/4_hurt/G21.png',
+        '../../img/4_enemie_boss_chicken/4_hurt/G22.png',
+        '../../img/4_enemie_boss_chicken/4_hurt/G23.png'
+    ];
+
+    imagesDead = [
+        '../../img/4_enemie_boss_chicken/4_hurt/G21.png',
+        '../../img/4_enemie_boss_chicken/4_hurt/G22.png',
+        '../../img/4_enemie_boss_chicken/4_hurt/G23.png',
+
+        '../../img/4_enemie_boss_chicken/4_hurt/G24.png',
+        '../../img/4_enemie_boss_chicken/4_hurt/G25.png',
+        '../../img/4_enemie_boss_chicken/4_hurt/G26.png'
     ];
 
     offset =  {
@@ -40,27 +75,23 @@ class Endboss extends MovableObject {
      */
     animate() {
         setInterval(() => {
+            if(this.enbossIsDead()) {
+                this.playAnimation(this.imagesDead);
+                //document.getElementById('gameSoundtrack').muted = true; // => prüfen mit mute Funktion
+                // mute walking sound / jump sound etc.
+                // Play death sound
+                // this.intervalIds.forEach(clearInterval); // => Stop Game
+                this.clearAllIntervals();
+                setTimeout(() => {
+                    document.getElementById('gameOverScreen').style.display = "flex";
+                }, 1000);
 
-            this.playAnimation(this.imagesWalking);
-
-        // Animation des Endbosses erst ausführen wenn Charakter eine gewisse Nähe zum Enboss hat 
-
-//          let i = 0;
-
-/*          if(i < 10) {
-                this.playAnimation(this.imagesSpawning); // Bilder noch nicht vorhanden bzw. integriert
+            } else if(this.isHurt()) {
+                this.playAnimation(this.imagesHurt);
             } else {
                 this.playAnimation(this.imagesWalking);
             }
 
-            i++;
-
-            if(world.character.x > 2800 && !firstContact) {
-                i = 0;
-                firstContact = true;
-            }
- */
-
-        }, 200)
+        }, 50)
     }
 }

@@ -4,6 +4,7 @@ class Keyboard {
     up = false; // code 87, 38
     down = false; // code 83, 40
     throw = false; // code 32, 69
+    lastKeyPress;
 
 
 /*      constructor() {

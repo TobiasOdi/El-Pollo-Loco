@@ -2,7 +2,7 @@ class ThrowableObject extends MovableObject {
     speedY = 30;
     speedX = 30;
     level = level1;
-
+    character = new Character();
 
     imagesRotate = [
         '../../img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
@@ -29,24 +29,26 @@ class ThrowableObject extends MovableObject {
         this.y = y;
         this.height = 80;
         this.width = 60;
+        this.bottleHit = false;
         this.animate();
     }
 
     animate() {
-
-
         this.throw();
         setInterval(() => {
             this.playAnimation(this.imagesRotate);
         }, 80);
 
-        this.level.enemies.forEach((enemy) => {
-            if(this.isColliding(enemy)) {
-                setInterval(() => {
-                    this.playAnimation(this.imagesImpact);
-                }, 80);
-            }
-        });
+/*         if(this.bottleHit == true) {
+            setInterval(() => {
+                this.playAnimation(this.imagesImpact);
+            }, 80);
+        } else {
+            this.throw();
+            setInterval(() => {
+                this.playAnimation(this.imagesRotate);
+            }, 80);
+        } */
     }
    
     throw() {
@@ -54,7 +56,11 @@ class ThrowableObject extends MovableObject {
             this.applyGravity();
 
             setInterval(() => {
-                this.x += 7;
+                if(this.character.otherDirection == true) {
+                    this.x -= 7;
+                } else {
+                    this.x += 7;
+                }
             }, 25);       
     }   
 

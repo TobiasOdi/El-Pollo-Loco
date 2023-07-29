@@ -103,40 +103,35 @@ class World {
         )
     }
 
+    /**
+     * Checks the collision for each throwableObject (bottle) with an enemy.
+     */
     checkBottleHitEnemy() {
         this.throwableObject.forEach((bottle) => {
-
             this.level.enemies.forEach((enemy) => {
                 if(bottle.isColliding(enemy)){
                     enemy.speed = 0;
-                    // Paramter für bottle etzen 
+                    //bottle.bottleHit = true;
                 }
             })
         })
     };
     
 
-    checkBottleHitEndboss() {
-        this.level.enemies.forEach((enemy) => {
-            if(enemy.speed > 0 && this.bottle.isColliding(enemy)){
+    /**
+     * Checks the collision for each throwableObject (bottle) with the endboss.
+     */
+    checkBottleHitEnemy() {
+        this.throwableObject.forEach((bottle) => {
 
-                if(this.character.isAboveGround() && !this.character.isHurt()) {
-                    enemy.speed = 0;
-                } else {
-
-                    this.character.hit();
-                    this.statusbarHealth.setPercentage(this.character.energy);
-
-                    if(this.character.coinsColected > 0) {
-                        this.character.coinsColected--;
-                        this.statusbarCoins.setPercentage(this.character.coinsColected);
-                    } else {
-                        this.character.coinsColected = 0;
-                        this.statusbarCoins.setPercentage(this.character.coinsColected);
-                    }
+            this.level.endboss.forEach((endboss) => {
+                if(bottle.isColliding(endboss)){
+                    //endboss.speed = 0;
+                    //bottle.bottleHit = true;
                 }
-            }});
-    }
+            })
+        })
+    };
 
 
     /**
@@ -173,10 +168,17 @@ class World {
     checkThrowObject() {
         if(this.keyboard.throw) {
             if(this.character.bottlesColected > 0) {
-                let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
-                this.throwableObject.push(bottle);
-                this.character.bottlesColected--;
-                this.statusbarBottles.setPercentage(this.character.bottlesColected);
+                if(this.character.otherDirection == true) {
+                    let bottle = new ThrowableObject(this.character.x - 100, this.character.y + 100);
+                    this.throwableObject.push(bottle);
+                    this.character.bottlesColected--;
+                    this.statusbarBottles.setPercentage(this.character.bottlesColected);
+                } else {
+                    let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+                    this.throwableObject.push(bottle);
+                    this.character.bottlesColected--;
+                    this.statusbarBottles.setPercentage(this.character.bottlesColected);
+                }
 
             } else {
                 this.character.bottlesColected = 0;

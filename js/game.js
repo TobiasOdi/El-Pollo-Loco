@@ -26,6 +26,7 @@ let intervalIds = [];
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+    keyboard.lastKeyPress = new Date().getTime();
 }
 
 /**
@@ -131,22 +132,27 @@ window.addEventListener('keydown', (event) => {
 window.addEventListener('keyup', (event) => {
     if(event.keyCode == 37 || event.keyCode == 65) {
         keyboard.left = false;
+        keyboard.lastKeyPress = new Date().getTime();
     }
 
     if(event.keyCode == 39 || event.keyCode == 68) {
         keyboard.right = false;
+        keyboard.lastKeyPress = new Date().getTime();
     }
 
     if(event.keyCode == 38 || event.keyCode == 87) {
         keyboard.up = false;
+        keyboard.lastKeyPress = new Date().getTime();
     }
 
     if(event.keyCode == 40 || event.keyCode == 83) {
         keyboard.down = false;
+        keyboard.lastKeyPress = new Date().getTime();
     }
 
     if(event.keyCode == 32 || event.keyCode == 69) {
         keyboard.throw = false;
+        keyboard.lastKeyPress = new Date().getTime();
     }
 });
 
@@ -168,6 +174,7 @@ function bindBtsPressEvents() {
     walkLeft.addEventListener('touchend', (e) => {
         e.preventDefault();
         keyboard.left = false;
+        keyboard.lastKeyPress = new Date().getTime();
     });
 
     walkRight.addEventListener('touchstart', (e) => {
@@ -178,6 +185,7 @@ function bindBtsPressEvents() {
     walkRight.addEventListener('touchend', (e) => {
         e.preventDefault();
         keyboard.right = false;
+        keyboard.lastKeyPress = new Date().getTime();
     });
 
     jump.addEventListener('touchstart', (e) => {
@@ -188,6 +196,7 @@ function bindBtsPressEvents() {
     jump.addEventListener('touchend', (e) => {
         e.preventDefault();
         keyboard.up = false;
+        keyboard.lastKeyPress = new Date().getTime();
     });
 
     throwBottle.addEventListener('touchstart', (e) => {
@@ -198,6 +207,7 @@ function bindBtsPressEvents() {
     throwBottle.addEventListener('touchend', (e) => {
         e.preventDefault();
         keyboard.throw = false;
+        keyboard.lastKeyPress = new Date().getTime();
     });
 }
 

@@ -8,8 +8,9 @@ class MovableObject extends DrawableObject {
     coinsColected = 0;
     bottlesColected = 0;
     lastHit = 0;
+    lastHitEndboss = 0;
     smallEnemyHealth = 1;
-
+    bottleHit;
     //intervalIds = [];
 
 
@@ -95,19 +96,7 @@ class MovableObject extends DrawableObject {
         }
     }
 
-    /**
-     * Subtracts character energy
-     */
-    hitByEndboss() {
-        this.energy -= 10;
-        if(this.energy < 0) {
-            this.energy = 0;
-        } else  {
-            this.lastHit = new Date().getTime();
-        }
-    }
-
-    /**
+       /**
      * Adds a coin to coinsColected
      */
     colectCoins() {
@@ -143,6 +132,10 @@ class MovableObject extends DrawableObject {
      */
     isDead() {
         return this.energy == 0;
+    }
+
+    enbossIsDead() {
+        return this.energyEndboss == 0;
     }
 
     /**
@@ -204,6 +197,7 @@ class MovableObject extends DrawableObject {
      */
     moveRight() {
         this.x += this.speed;
+        
     }
 
     /**
