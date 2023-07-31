@@ -75,7 +75,7 @@ class Endboss extends MovableObject {
      */
     animate() {
         setInterval(() => {
-            if(this.enbossIsDead()) {
+            if(this.endbossIsDead()) {
                 this.playAnimation(this.imagesDead);
                 //document.getElementById('gameSoundtrack').muted = true; // => prüfen mit mute Funktion
                 // mute walking sound / jump sound etc.

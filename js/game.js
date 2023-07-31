@@ -12,7 +12,6 @@ let intervalIds = [];
 //      - impact, zerbrechen, spritzer
 //      - Geräusche Hühner, kleiner Hühner, Boss
 // 2. Falschen kollision mit Gegnern > kleine und Endboss
-// 3. Kleine Gegner mit Sprung besiegen
 // 4. Endgegner besiegen => Endgegner Healthbar
 // 5. Responsiveness => bei Smartphones muss ab einer gewissen Breite das Bild gedreht werden und die anderern Elemente neben dem Canvas ausgeblendet werden. 
 // 6. Code bereinigen:
@@ -23,7 +22,7 @@ let intervalIds = [];
 /**
  * This function initializes the game.
  */
-function init() {
+async function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     keyboard.lastKeyPress = new Date().getTime();

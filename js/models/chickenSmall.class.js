@@ -46,18 +46,18 @@ class ChickenSmall extends MovableObject {
                 }
             }, 50)  */
 
-
             setInterval(() => {
                 if(this.speed == 0) {
-                    this.playAnimation(this.imagesDead);
+    
                     setTimeout(() => {
-                        this.x = 0;
-                        this.y = -100;
-                    }, 1000);
-        
-                } else{
-                    this.playAnimation(this.imagesWalking);
+                    this.x = 0;
+                    this.y = -100;
+                    }, 1500);
+                    this.playAnimation(this.imagesDead);
+    
+                } else {
                     this.moveLeft();
+                    this.playAnimation(this.imagesWalking);
                 }
             }, 50);
 

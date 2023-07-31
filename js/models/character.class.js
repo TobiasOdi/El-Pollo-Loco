@@ -2,13 +2,15 @@ class Character extends MovableObject {
     height = 250;
     y = 175;
     speed = 10;
+    world;
+    walkingSound = new Audio('../audio/walkingCharacter.mp3');
 
     offset =  {
         top: 100,
         left: 10,
         right: 10, 
         bottom: 10
-    }
+    };
 
     imagesIdle = [
         '../../img/2_character_pepe/1_idle/idle/I-1.png',
@@ -73,9 +75,6 @@ class Character extends MovableObject {
         '../../img/2_character_pepe/5_dead/D-57.png'
     ];
 
-    world;
-    walkingSound = new Audio('../audio/walkingCharacter.mp3');
-
     /**
      * Load character an the different animations and position on the canvas.
      */
@@ -95,10 +94,6 @@ class Character extends MovableObject {
      * Play animations depending on different action.
      */
     animate() {
-
-        setInterval(() => {
-            this.checkForAction();
-        }, 1000);
 
         setInterval(() => {
             this.walkingSound.pause();
@@ -124,7 +119,11 @@ class Character extends MovableObject {
 
             this.world.cameraX = -this.x + 100;
 
-        }, 1000 / 60)
+        }, 40);
+
+        setInterval(() => {
+            this.checkForAction();
+        }, 1000);
 
         setInterval(() => {
             if(this.isDead()) {
@@ -148,7 +147,7 @@ class Character extends MovableObject {
                     this.playAnimation(this.imagesWalking);
                 }
             }
-        }, 50)
+        }, 50);
     }
 
     clearAllIntervals() {
@@ -157,9 +156,9 @@ class Character extends MovableObject {
 
     checkForAction() {
         let currentTime = new Date().getTime();
-        if((currentTime - keyboard.lastKeyPress) > 3000 && (currentTime - keyboard.lastKeyPress) < 10000) {
+        if((currentTime - this.world.keyboard.lastKeyPress) > 4000 && (currentTime - this.world.keyboard.lastKeyPress) < 10000) {
             this.playAnimation(this.imagesIdle);
-        } else if((currentTime - keyboard.lastKeyPress) > 10000) {
+        } else if((currentTime - this.world.keyboard.lastKeyPress) > 10000) {
             this.playAnimation(this.imagesLongIdle);
         }
     };

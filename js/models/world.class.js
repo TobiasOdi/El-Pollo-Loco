@@ -66,6 +66,7 @@ class World {
 
                 if(this.character.isAboveGround() && !this.character.isHurt()) {
                     enemy.speed = 0;
+
                 } else {
 
                     this.character.hit();
@@ -111,7 +112,6 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if(bottle.isColliding(enemy)){
                     enemy.speed = 0;
-                    //bottle.bottleHit = true;
                 }
             })
         })
@@ -179,7 +179,6 @@ class World {
                     this.character.bottlesColected--;
                     this.statusbarBottles.setPercentage(this.character.bottlesColected);
                 }
-
             } else {
                 this.character.bottlesColected = 0;
                 this.statusbarBottles.setPercentage(this.character.bottlesColected);
@@ -215,7 +214,6 @@ class World {
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.endboss);
         this.addObjectsToMap(this.throwableObject);
-
 
         this.ctx.translate(-this.cameraX, 0);
 

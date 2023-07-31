@@ -134,7 +134,11 @@ class MovableObject extends DrawableObject {
         return this.energy == 0;
     }
 
-    enbossIsDead() {
+    /**
+     * The function returns the value 0 for the endbosses energy
+     * @returns 
+     */
+    endbossIsDead() {
         return this.energyEndboss == 0;
     }
 

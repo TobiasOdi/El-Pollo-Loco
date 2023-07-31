@@ -28,7 +28,7 @@ class Chicken extends MovableObject {
         this.loadImages(this.imagesWalking);
         this.loadImages(this.imagesDead);
         this.x = 400 + Math.random() * 4000;
-        this.speed = 0.8 + Math.random() * 0.25;
+        this.speed = 0.8 + Math.random() * 1.5;
         this.animate();
     }
 
@@ -40,18 +40,19 @@ class Chicken extends MovableObject {
 /*         setInterval(()  => {
             this.moveLeft();
         }, 1000 / 60);
- */    
+ */                
         setInterval(() => {
             if(this.speed == 0) {
-                this.playAnimation(this.imagesDead);
+
                 setTimeout(() => {
-                    this.x = 0;
-                    this.y = -100;
-                }, 1000);
-    
-            } else{
-                this.playAnimation(this.imagesWalking);
+                this.x = 0;
+                this.y = -100;
+                }, 1500);
+                this.playAnimation(this.imagesDead);
+
+            } else {
                 this.moveLeft();
+                this.playAnimation(this.imagesWalking);
             }
         }, 50);
     }
