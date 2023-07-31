@@ -92,10 +92,10 @@ function exitFullscreen() {
 /**
  * This function initializes the game and hides the startscreen.
  */
-function startGame() {
+async function startGame() {
     document.getElementById('startScreen').style.backgroundImage = 'none';
     document.getElementById('startGame').style.display = 'none';
-    init();
+    await init();
 }
 
 /**

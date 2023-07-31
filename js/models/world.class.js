@@ -121,13 +121,11 @@ class World {
     /**
      * Checks the collision for each throwableObject (bottle) with the endboss.
      */
-    checkBottleHitEnemy() {
+    checkBottleHitEndboss() {
         this.throwableObject.forEach((bottle) => {
-
             this.level.endboss.forEach((endboss) => {
                 if(bottle.isColliding(endboss)){
-                    //endboss.speed = 0;
-                    //bottle.bottleHit = true;
+                    endboss.energyEndboss - 20;
                 }
             })
         })

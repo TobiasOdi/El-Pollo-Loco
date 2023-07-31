@@ -4,7 +4,7 @@ class MovableObject extends DrawableObject {
     speedY = 0;
     acceleration = 2.5;
     energy = 100;
-    energyEndboss = 100;
+    energyEndboss;
     coinsColected = 0;
     bottlesColected = 0;
     lastHit = 0;
@@ -96,6 +96,15 @@ class MovableObject extends DrawableObject {
         }
     }
 
+    hitEndboss() {
+        this.energyEndboss -= 20;
+        if(this.energyEndboss < 0) {
+            this.energyEndboss = 0;
+        } else  {
+            this.lastHitEndboss = new Date().getTime();
+        }
+    }
+
        /**
      * Adds a coin to coinsColected
      */
@@ -126,6 +135,12 @@ class MovableObject extends DrawableObject {
         return timePassed < 0.5;
     }
 
+    isHurtEndboss(){
+        let timePassed = new Date().getTime() - this.lastHitEndboss; // Differenz in Milisekunden
+        timePassed = timePassed / 1000; // Differenz in Sekunden
+        return timePassed < 0.5;
+    }
+
     /**
      * The function returns the value 0 for the character energy
      * @returns 
@@ -138,7 +153,7 @@ class MovableObject extends DrawableObject {
      * The function returns the value 0 for the endbosses energy
      * @returns 
      */
-    endbossIsDead() {
+    isDeadEndboss() {
         return this.energyEndboss == 0;
     }
 
