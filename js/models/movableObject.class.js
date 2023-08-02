@@ -4,12 +4,11 @@ class MovableObject extends DrawableObject {
     speedY = 0;
     acceleration = 2.5;
     energy = 100;
-    energyEndboss;
+    energyEndboss = 100;
     coinsColected = 0;
     bottlesColected = 0;
     lastHit = 0;
     lastHitEndboss = 0;
-    smallEnemyHealth = 1;
     bottleHit;
     //intervalIds = [];
 
@@ -138,7 +137,7 @@ class MovableObject extends DrawableObject {
     isHurtEndboss(){
         let timePassed = new Date().getTime() - this.lastHitEndboss; // Differenz in Milisekunden
         timePassed = timePassed / 1000; // Differenz in Sekunden
-        return timePassed < 0.5;
+        return timePassed < 0.2;
     }
 
     /**
@@ -232,5 +231,4 @@ class MovableObject extends DrawableObject {
     jump() {
         this.speedY = 30;
     }
-
 }

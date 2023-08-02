@@ -36,11 +36,7 @@ class Chicken extends MovableObject {
      * Play animations depending on different action.
      */
     animate() {
-        //setStoppableInterval(() => this.moveLeft, 1000 / 60);
-/*         setInterval(()  => {
-            this.moveLeft();
-        }, 1000 / 60);
- */                
+               
         setInterval(() => {
             if(this.speed == 0) {
 
@@ -56,5 +52,5 @@ class Chicken extends MovableObject {
             }
         }, 50);
     }
-
+    
 }

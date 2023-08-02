@@ -1,6 +1,7 @@
 class World {
     character = new Character();
     bottle = new ThrowableObject();
+    endboss = new Endboss();
     level = level1;
     canvas;
     ctx;
@@ -89,7 +90,7 @@ class World {
     checkCollisionsEndboss() {
         this.level.endboss.forEach((endboss => {
             if(this.character.isColliding(endboss)){
-                this.character.hitByEndboss();
+                this.character.hitEndboss();
                 this.statusbarHealth.setPercentage(this.character.energy);
     
                 if(this.character.coinsColected > 0) {
@@ -125,7 +126,7 @@ class World {
         this.throwableObject.forEach((bottle) => {
             this.level.endboss.forEach((endboss) => {
                 if(bottle.isColliding(endboss)){
-                    endboss.energyEndboss - 20;
+                    this.endboss.hitEndboss();
                 }
             })
         })
@@ -167,12 +168,12 @@ class World {
         if(this.keyboard.throw) {
             if(this.character.bottlesColected > 0) {
                 if(this.character.otherDirection == true) {
-                    let bottle = new ThrowableObject(this.character.x - 100, this.character.y + 100);
+                    let bottle = new ThrowableObject(this.character.x - 100, this.character.y + 100, this.otherDirection = true);
                     this.throwableObject.push(bottle);
                     this.character.bottlesColected--;
                     this.statusbarBottles.setPercentage(this.character.bottlesColected);
                 } else {
-                    let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+                    let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100,this.otherDirection = false);
                     this.throwableObject.push(bottle);
                     this.character.bottlesColected--;
                     this.statusbarBottles.setPercentage(this.character.bottlesColected);

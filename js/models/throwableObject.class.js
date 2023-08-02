@@ -2,7 +2,7 @@ class ThrowableObject extends MovableObject {
     speedY = 30;
     speedX = 30;
     level = level1;
-    character = new Character();
+    otherDirection;
 
     imagesRotate = [
         '../../img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
@@ -21,12 +21,13 @@ class ThrowableObject extends MovableObject {
     ];
 
 
-    constructor(x, y) {
+    constructor(x, y, direction) {
         super().loadImage('../../img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
         this.loadImages(this.imagesRotate);
         this.loadImages(this.imagesImpact);
         this.x = x;
         this.y = y;
+        this.otherDirection = direction;
         this.height = 80;
         this.width = 60;
         this.bottleHit = false;
@@ -56,7 +57,7 @@ class ThrowableObject extends MovableObject {
             this.applyGravity();
 
             setInterval(() => {
-                if(this.character.otherDirection == true) {
+                if(this.otherDirection == true) {
                     this.x -= 7;
                 } else {
                     this.x += 7;
