@@ -94,33 +94,9 @@ class Character extends MovableObject {
      * Play animations depending on different action.
      */
     animate() {
-
-        setInterval(() => {
-            this.walkingSound.pause();
-            if(this.world.keyboard.right && this.x < this.world.level.levelEndX) {
-                this.moveRight();
-                this.otherDirection = false;
-                if(!this.isAboveGround()){
-                    this.walkingSound.play();
-                }
-            }
-
-            if(this.world.keyboard.left && this.x > 0) {
-                this.moveLeft();
-                this.otherDirection = true;
-                if(!this.isAboveGround()){
-                    this.walkingSound.play();
-                }
-            }
-
-            if(this.world.keyboard.up && !this.isAboveGround()) {
-                this.jump();
-            }
-
-            this.world.cameraX = -this.x + 100;
-
-        }, 40);
-
+        this.walkingSound.pause();
+        setStoppableInterval(this.movement, 40)
+        
         setInterval(() => {
             this.checkForAction();
         }, 1000);
@@ -148,6 +124,31 @@ class Character extends MovableObject {
                 }
             }
         }, 50);
+    }
+
+    movement() {
+        if(this.world.keyboard.right && this.x < this.world.level.levelEndX) {
+            this.moveRight();
+            this.otherDirection = false;
+            if(!this.isAboveGround()){
+                this.walkingSound.play();
+            }
+        }
+
+        if(this.world.keyboard.left && this.x > 0) {
+            this.moveLeft();
+            this.otherDirection = true;
+            if(!this.isAboveGround()){
+                this.walkingSound.play();
+            }
+        }
+
+        if(this.world.keyboard.up && !this.isAboveGround()) {
+            this.jump();
+        }
+
+        this.world.cameraX = -this.x + 100;
+
     }
 
     clearAllIntervals() {

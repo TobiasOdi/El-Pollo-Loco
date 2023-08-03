@@ -113,6 +113,7 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if(bottle.isColliding(enemy)){
                     enemy.speed = 0;
+                    bottle.bottleHit
                 }
             })
         })
