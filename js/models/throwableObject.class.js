@@ -36,33 +36,29 @@ class ThrowableObject extends MovableObject {
 
     animate() {
         this.throw();
+
+        setInterval(() => {
+            if(this.bottleHit == true) {
+                this.playAnimation(this.imagesImpact);
+            }
+        }, 80);
+    }
+   
+    throw() {
+        this.speedY = 30;
+        this.applyGravity();
+
         setInterval(() => {
             this.playAnimation(this.imagesRotate);
         }, 80);
 
-/*         if(this.bottleHit == true) {
-            setInterval(() => {
-                this.playAnimation(this.imagesImpact);
-            }, 80);
-        } else {
-            this.throw();
-            setInterval(() => {
-                this.playAnimation(this.imagesRotate);
-            }, 80);
-        } */
-    }
-   
-    throw() {
-            this.speedY = 30;
-            this.applyGravity();
-
-            setInterval(() => {
-                if(this.otherDirection == true) {
-                    this.x -= 7;
-                } else {
-                    this.x += 7;
-                }
-            }, 25);       
+        setInterval(() => {
+            if(this.otherDirection == true) {
+                this.x -= 7;
+            } else {
+                this.x += 7;
+            }
+        }, 40);
     }   
 
     // World braucht ein Array für throwableObjects

@@ -46,6 +46,7 @@ class World {
             this.checkCollisionsEnemy();
             this.checkCollisionsEndboss();
             this.checkBottleHitEnemy();
+            this.checkBottleHitEndboss();
         }, 50);
 
         setInterval(() => {
@@ -64,7 +65,6 @@ class World {
     checkCollisionsEnemy() {
         this.level.enemies.forEach((enemy) => {
             if(enemy.speed > 0 && this.character.isColliding(enemy)){
-
                 if(this.character.isAboveGround() && !this.character.isHurt()) {
                     enemy.speed = 0;
 
@@ -90,7 +90,7 @@ class World {
     checkCollisionsEndboss() {
         this.level.endboss.forEach((endboss => {
             if(this.character.isColliding(endboss)){
-                this.character.hitEndboss();
+                this.character.hitByEndboss();
                 this.statusbarHealth.setPercentage(this.character.energy);
     
                 if(this.character.coinsColected > 0) {
@@ -113,26 +113,34 @@ class World {
             this.level.enemies.forEach((enemy) => {
                 if(bottle.isColliding(enemy)){
                     enemy.speed = 0;
-                    bottle.bottleHit
+                    bottle.bottleHit = true;
                 }
             })
         })
     };
-    
 
     /**
      * Checks the collision for each throwableObject (bottle) with the endboss.
      */
     checkBottleHitEndboss() {
         this.throwableObject.forEach((bottle) => {
+            if(this.endboss.isColliding(bottle)){
+                this.endboss.endbossIsHit();
+                bottle.bottleHit = true;
+            }
+        })
+    };
+
+/*     checkBottleHitEndboss() {
+        this.throwableObject.forEach((bottle) => {
             this.level.endboss.forEach((endboss) => {
-                if(bottle.isColliding(endboss)){
+                if(bottle.isColliding(this.endboss)){
                     this.endboss.hitEndboss();
                 }
             })
         })
     };
-
+ */
 
     /**
      * Lets the character colect a coin and updates the statusbar.

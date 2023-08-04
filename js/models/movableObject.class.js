@@ -72,7 +72,7 @@ class MovableObject extends DrawableObject {
     }
 
     /**
-     * Subtracts character energy
+     * Subtracts the characters energy if hit by small enemy
      */
     hit() {
         this.energy -= 5;
@@ -83,7 +83,22 @@ class MovableObject extends DrawableObject {
         }
     }
 
-    hitEndboss() {
+    /**
+     * Subtracts the characters energy if hit by endboss
+     */
+    hitByEndboss() {
+        this.energy -= 20;
+        if(this.energy < 0) {
+            this.energy = 0;
+        } else  {
+            this.lastHit = new Date().getTime();
+        }
+    }
+
+    /**
+     * Subtracts the endbosses energy
+     */
+    endbossIsHit() {
         this.energyEndboss -= 20;
         if(this.energyEndboss < 0) {
             this.energyEndboss = 0;
@@ -125,7 +140,7 @@ class MovableObject extends DrawableObject {
     isHurtEndboss(){
         let timePassed = new Date().getTime() - this.lastHitEndboss; // Differenz in Milisekunden
         timePassed = timePassed / 1000; // Differenz in Sekunden
-        return timePassed < 0.2;
+        return timePassed < 1;
     }
 
     /**

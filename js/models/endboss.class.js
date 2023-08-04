@@ -81,7 +81,7 @@ class Endboss extends MovableObject {
                 // mute walking sound / jump sound etc.
                 // Play death sound
                 // this.intervalIds.forEach(clearInterval); // => Stop Game
-                this.clearAllIntervals();
+                //this.clearAllIntervals();
                 setTimeout(() => {
                     document.getElementById('gameOverScreen').style.display = "flex";
                 }, 1000);
