@@ -94,14 +94,19 @@ class Character extends MovableObject {
      * Play animations depending on different action.
      */
     animate() {
-        this.walkingSound.pause();
-        setStoppableInterval(this.movement, 40)
-        
+        //setStoppableInterval(this.movement(), 40)
+        //setStoppableInterval(this.checkForAction(), 1000)
+
+        setInterval(() => {
+            this.movement();
+        }, 40);
+
         setInterval(() => {
             this.checkForAction();
         }, 1000);
-
+        
         setInterval(() => {
+            this.walkingSound.pause();
             if(this.isDead()) {
                 window.removeEventListener('keydown', event);
                 this.playAnimation(this.imagesDead);

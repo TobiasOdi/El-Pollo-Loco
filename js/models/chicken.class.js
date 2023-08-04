@@ -36,21 +36,25 @@ class Chicken extends MovableObject {
      * Play animations depending on different action.
      */
     animate() {
-               
+        //setStoppableInterval(this.movement(), 40);
+
         setInterval(() => {
-            if(this.speed == 0) {
+            this.movement()
+        }, 40);
+    }
 
-                setTimeout(() => {
-                this.x = 0;
-                this.y = -100;
-                }, 1500);
-                this.playAnimation(this.imagesDead);
+    movement() {
+        if(this.speed == 0) {
 
-            } else {
-                this.moveLeft();
-                this.playAnimation(this.imagesWalking);
-            }
-        }, 50);
+            setTimeout(() => {
+            this.x = 0;
+            this.y = -100;
+            }, 1500);
+            this.playAnimation(this.imagesDead);
+        } else {
+            this.moveLeft();
+            this.playAnimation(this.imagesWalking);
+        }
     }
     
 }
