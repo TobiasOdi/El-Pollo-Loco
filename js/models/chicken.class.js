@@ -45,12 +45,11 @@ class Chicken extends MovableObject {
 
     movement() {
         if(this.speed == 0) {
-
-            setTimeout(() => {
-            this.x = 0;
-            this.y = -100;
-            }, 1500);
             this.playAnimation(this.imagesDead);
+            setTimeout(() => {
+                this.x = 0;
+                this.y = -100;
+                }, 1500);
         } else {
             this.moveLeft();
             this.playAnimation(this.imagesWalking);

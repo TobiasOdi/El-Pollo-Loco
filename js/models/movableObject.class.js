@@ -107,9 +107,9 @@ class MovableObject extends DrawableObject {
         }
     }
 
-       /**
-     * Adds a coin to coinsColected
-     */
+    /**
+    * Adds a coin to coinsColected
+    */
     colectCoins() {
         this.coinsColected += 1;
         if(this.coinsColected >= 10) {
@@ -128,7 +128,7 @@ class MovableObject extends DrawableObject {
     }
 
     /**
-     * 
+     * Checkes the time passed since the character has last been hit
      * @returns 
      */
     isHurt(){
@@ -137,10 +137,14 @@ class MovableObject extends DrawableObject {
         return timePassed < 0.5;
     }
 
+    /**
+     * Checkes the time passed since the endboss has last been hit
+     * @returns 
+     */
     isHurtEndboss(){
         let timePassed = new Date().getTime() - this.lastHitEndboss; // Differenz in Milisekunden
         timePassed = timePassed / 1000; // Differenz in Sekunden
-        return timePassed < 1;
+        return timePassed < 0.5;
     }
 
     /**

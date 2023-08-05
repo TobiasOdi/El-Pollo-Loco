@@ -139,7 +139,6 @@ class Character extends MovableObject {
                 this.walkingSound.play();
             }
         }
-
         if(this.world.keyboard.left && this.x > 0) {
             this.moveLeft();
             this.otherDirection = true;
@@ -147,13 +146,10 @@ class Character extends MovableObject {
                 this.walkingSound.play();
             }
         }
-
         if(this.world.keyboard.up && !this.isAboveGround()) {
             this.jump();
         }
-
         this.world.cameraX = -this.x + 100;
-
     }
 
     clearAllIntervals() {
@@ -168,6 +164,5 @@ class Character extends MovableObject {
             this.playAnimation(this.imagesLongIdle);
         }
     };
-
 }
 

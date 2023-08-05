@@ -47,12 +47,9 @@ class World {
             this.checkCollisionsEndboss();
             this.checkBottleHitEnemy();
             this.checkBottleHitEndboss();
-        }, 50);
-
-        setInterval(() => {
             this.checkCollisionsCoins();
             this.checkCollisionsBottles();
-        }, 20);
+        }, 40);
 
         setInterval(() => {
             this.checkThrowObject();
@@ -131,16 +128,14 @@ class World {
         })
     };
 
-/*     checkBottleHitEndboss() {
+    checkBottleHitEndboss() {
         this.throwableObject.forEach((bottle) => {
-            this.level.endboss.forEach((endboss) => {
-                if(bottle.isColliding(this.endboss)){
-                    this.endboss.hitEndboss();
-                }
-            })
+            if(bottle.isColliding(this.endboss)){
+                this.endboss.hitEndboss();
+            }
         })
     };
- */
+
 
     /**
      * Lets the character colect a coin and updates the statusbar.
