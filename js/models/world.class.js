@@ -45,11 +45,14 @@ class World {
         setInterval(() => {
             this.checkCollisionsEnemy();
             this.checkCollisionsEndboss();
-            this.checkBottleHitEnemy();
             this.checkBottleHitEndboss();
+        }, 50);
+
+        setInterval(() => {
+            this.checkBottleHitEnemy();
             this.checkCollisionsCoins();
             this.checkCollisionsBottles();
-        }, 40);
+        }, 1000 / 60);
 
         setInterval(() => {
             this.checkThrowObject();
@@ -64,9 +67,7 @@ class World {
             if(enemy.speed > 0 && this.character.isColliding(enemy)){
                 if(this.character.isAboveGround() && !this.character.isHurt()) {
                     enemy.speed = 0;
-
                 } else {
-
                     this.character.hit();
                     this.statusbarHealth.setPercentage(this.character.energy);
 
@@ -127,15 +128,6 @@ class World {
             }
         })
     };
-
-    checkBottleHitEndboss() {
-        this.throwableObject.forEach((bottle) => {
-            if(bottle.isColliding(this.endboss)){
-                this.endboss.hitEndboss();
-            }
-        })
-    };
-
 
     /**
      * Lets the character colect a coin and updates the statusbar.

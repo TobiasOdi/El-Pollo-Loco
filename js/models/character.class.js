@@ -99,7 +99,7 @@ class Character extends MovableObject {
 
         setInterval(() => {
             this.movement();
-        }, 40);
+        }, 50);
 
         setInterval(() => {
             this.checkForAction();
@@ -108,16 +108,12 @@ class Character extends MovableObject {
         setInterval(() => {
             this.walkingSound.pause();
             if(this.isDead()) {
-                window.removeEventListener('keydown', event);
+                this.walkingSound.pause();
                 this.playAnimation(this.imagesDead);
-                //document.getElementById('gameSoundtrack').muted = true; // => prüfen mit mute Funktion
-                // mute walking sound / jump sound etc.
-                // Play death sound
-                // this.intervalIds.forEach(clearInterval); // => Stop Game
-                this.clearAllIntervals();
+                stopGame();
                 setTimeout(() => {
                     document.getElementById('gameOverScreen').style.display = "flex";
-                }, 1000);
+                }, 1500);
 
             } else if(this.isHurt()) {
                 this.playAnimation(this.imagesHurt);
@@ -128,7 +124,7 @@ class Character extends MovableObject {
                     this.playAnimation(this.imagesWalking);
                 }
             }
-        }, 50);
+        }, 100);
     }
 
     movement() {
@@ -152,11 +148,7 @@ class Character extends MovableObject {
         this.world.cameraX = -this.x + 100;
     }
 
-    clearAllIntervals() {
-        for (let i = 1; i < 9999; i++) window.clearInterval(i);
-    };
-
-    checkForAction() {
+        checkForAction() {
         let currentTime = new Date().getTime();
         if((currentTime - this.world.keyboard.lastKeyPress) > 4000 && (currentTime - this.world.keyboard.lastKeyPress) < 10000) {
             this.playAnimation(this.imagesIdle);

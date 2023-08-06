@@ -3,7 +3,7 @@ let ctx;
 let world;
 let keyboard = new Keyboard();
 let fullSize = false;
-let intervalIds = [];
+//let intervalIds = [];
 
 // AUFGABEN
 // 1. Sounds suchen 
@@ -23,6 +23,7 @@ let intervalIds = [];
  * This function initializes the game.
  */
 async function init() {
+    await startLevel();
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
     keyboard.lastKeyPress = new Date().getTime();
@@ -228,8 +229,8 @@ function closeControls() {
  * Resetes all game parameters an starts the game anew.
  */
 function restartGame() {
+    world.ctx.clearRect(0, 0, canvas.width, canvas.height);
     init();
-    // reset all game parameters > initialise
     document.getElementById('gameOverScreen').style.display = "none";
 }
 
@@ -237,13 +238,20 @@ function restartGame() {
  * Resets all game parameters and brings you back to the main menue.
  */
 function toMainMenue() {
-    init();
-    // reset all game parameters > initialise
+    world.ctx.clearRect(0, 0, canvas.width, canvas.height);
     document.getElementById('gameOverScreen').style.display = "none";
     document.getElementById('startScreen').style.backgroundImage = "url('./img/9_intro_outro_screens/start/startscreen_1.png')";
     document.getElementById('startGame').style.display = 'flex';
 }
 
+function stopGame() {
+    clearAllIntervals();
+    document.getElementById('gameSoundtrack').muted = true;
+}
+
+function clearAllIntervals() {
+    for (let i = 1; i < 9999; i++) window.clearInterval(i);
+};
 
 /**
  * A function to store every interval in an array in order to stop them if needed.
@@ -251,8 +259,8 @@ function toMainMenue() {
  * @param {number} time - Interval time, how often the function is beeing run
  */
 
-function setStoppableInterval(fn, time) {
+/* function setStoppableInterval(fn, time) {
     let id = setInterval(fn, time);
     intervalIds.push(id);
-}
+} */
 

@@ -65,6 +65,10 @@ class Endboss extends MovableObject {
     constructor() {
         super().loadImage('../../img/4_enemie_boss_chicken/2_alert/G5.png');
         this.loadImages(this.imagesWalking);
+        this.loadImages(this.imagesAlert);
+        this.loadImages(this.imagesAttack);
+        this.loadImages(this.imagesHurt);
+        this.loadImages(this.imagesDead);
         this.x = 4200;
         this.animate();    
     }
@@ -76,21 +80,15 @@ class Endboss extends MovableObject {
         setInterval(() => {
             if(this.isDeadEndboss()) {
                 this.playAnimation(this.imagesDead);
-                //document.getElementById('gameSoundtrack').muted = true; // => prüfen mit mute Funktion
-                // mute walking sound / jump sound etc.
-                // Play death sound
-                // this.intervalIds.forEach(clearInterval); // => Stop Game
-                //this.clearAllIntervals();
+                stopGame();
                 setTimeout(() => {
                     document.getElementById('gameOverScreen').style.display = "flex";
-                }, 1000);
-
+                }, 1500);
             } else if(this.isHurtEndboss()) {
                 this.playAnimation(this.imagesHurt);
             } else {
                 this.playAnimation(this.imagesAlert);
             }
-
         }, 50)
     }
 }

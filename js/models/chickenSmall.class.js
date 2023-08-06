@@ -37,29 +37,21 @@ class ChickenSmall extends MovableObject {
      * Play animations depending on different action.
      */
     animate() {
+        setInterval(() => {
+            this.movement()
+        }, 40);
+    }
 
-/*         setInterval(() => {
-            if(this.isCollidingTop()) {
-                // Clear Interval moveLeft
-                // Clear Interval playAnimation Walking
-                this.playAnimation(this.imagesDead);
-                }
-            }, 50)  */
-
-            setInterval(() => {
-                if(this.speed == 0) {
-    
-                    setTimeout(() => {
-                    this.x = 0;
-                    this.y = -100;
-                    }, 1500);
-                    this.playAnimation(this.imagesDead);
-    
-                } else {
-                    this.moveLeft();
-                    this.playAnimation(this.imagesWalking);
-                }
-            }, 50);
-
+    movement() {
+        if(this.speed == 0) {
+            this.playAnimation(this.imagesDead);
+            setTimeout(() => {
+                this.x = 0;
+                this.y = -100;
+                }, 1500);
+        } else {
+            this.moveLeft();
+            this.playAnimation(this.imagesWalking);
+        }
     }
 }

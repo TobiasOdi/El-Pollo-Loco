@@ -3,6 +3,8 @@ class ThrowableObject extends MovableObject {
     speedX = 30;
     level = level1;
     otherDirection;
+    intervalIds = [];
+
 
     imagesRotate = [
         '../../img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
@@ -40,6 +42,11 @@ class ThrowableObject extends MovableObject {
         setInterval(() => {
             if(this.bottleHit == true) {
                 this.playAnimation(this.imagesImpact);
+                this.speedY = 0;
+                this.acceleration = 0;
+                this.intervalIds.forEach(clearInterval);
+            } else {
+                this.playAnimation(this.imagesRotate);
             }
         }, 80);
     }
@@ -48,18 +55,25 @@ class ThrowableObject extends MovableObject {
         this.speedY = 30;
         this.applyGravity();
 
-        setInterval(() => {
+        /* setInterval(() => {
             this.playAnimation(this.imagesRotate);
-        }, 80);
+        }, 80); */
 
-        setInterval(() => {
-            if(this.otherDirection == true) {
-                this.x -= 7;
-            } else {
-                this.x += 7;
-            }
-        }, 40);
+        this.setStoppableInterval(this.bottleMovement(), 40);
     }   
+
+    bottleMovement() {
+        if(this.otherDirection == true) {
+            this.x -= 7;
+        } else {
+            this.x += 7;
+        }
+    }
+
+    setStoppableInterval(fn, time) {
+        let id = setInterval(fn, time);
+        this.intervalIds.push(id);
+    }
 
     // World braucht ein Array für throwableObjects
 }
