@@ -108,6 +108,7 @@ class Character extends MovableObject {
         setInterval(() => {
             this.walkingSound.pause();
             if(this.isDead()) {
+                debugger;
                 this.walkingSound.pause();
                 this.playAnimation(this.imagesDead);
                 stopGame();

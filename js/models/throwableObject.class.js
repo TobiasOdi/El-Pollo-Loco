@@ -44,11 +44,10 @@ class ThrowableObject extends MovableObject {
                 this.playAnimation(this.imagesImpact);
                 this.speedY = 0;
                 this.acceleration = 0;
-                this.intervalIds.forEach(clearInterval);
                 setTimeout(() => {
                     this.x = 0;
                     this.y = -100;
-                }, 300);
+                }, 250);
             } else {
                 this.playAnimation(this.imagesRotate);
             }
@@ -56,23 +55,18 @@ class ThrowableObject extends MovableObject {
     }
    
     throw() {
-        this.speedY = 30;
-        this.applyGravity();
+        this.speedY = 27;
+        this.acceleration = 3.5;
+        this.applyGravity();    
 
-        /* setInterval(() => {
-            this.playAnimation(this.imagesRotate);
-        }, 80); */
-
-        this.setStoppableInterval(this.bottleMovement(), 40);
+        setInterval(() => {
+            if(this.otherDirection == true) {
+                this.x -= 12;
+            } else {
+                this.x += 12;
+            }
+        }, 40);
     }   
-
-    bottleMovement() {
-        if(this.otherDirection == true) {
-            this.x -= 7;
-        } else {
-            this.x += 7;
-        }
-    }
 
     setStoppableInterval(fn, time) {
         let id = setInterval(fn, time);

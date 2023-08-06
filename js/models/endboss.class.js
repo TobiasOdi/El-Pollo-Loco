@@ -41,13 +41,9 @@ class Endboss extends MovableObject {
     ];
 
     imagesDead = [
-        '../../img/4_enemie_boss_chicken/4_hurt/G21.png',
-        '../../img/4_enemie_boss_chicken/4_hurt/G22.png',
-        '../../img/4_enemie_boss_chicken/4_hurt/G23.png',
-
-        '../../img/4_enemie_boss_chicken/4_hurt/G24.png',
-        '../../img/4_enemie_boss_chicken/4_hurt/G25.png',
-        '../../img/4_enemie_boss_chicken/4_hurt/G26.png'
+        '../../img/4_enemie_boss_chicken/5_dead/G24.png',
+        '../../img/4_enemie_boss_chicken/5_dead/G25.png',
+        '../../img/4_enemie_boss_chicken/5_dead/G26.png'
     ];
 
     offset =  {
@@ -79,6 +75,7 @@ class Endboss extends MovableObject {
     animate() {
         setInterval(() => {
             if(this.isDeadEndboss()) {
+                debugger;
                 this.playAnimation(this.imagesDead);
                 stopGame();
                 setTimeout(() => {

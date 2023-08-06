@@ -87,7 +87,6 @@ class World {
                 }
             }});
     }
-    
 
     /**
      * Checks the collision with the endboss and performes the necessary action.
@@ -171,12 +170,12 @@ class World {
         if(this.keyboard.throw) {
             if(this.character.bottlesColected > 0) {
                 if(this.character.otherDirection == true) {
-                    let bottle = new ThrowableObject(this.character.x - 100, this.character.y + 100, this.otherDirection = true);
+                    let bottle = new ThrowableObject(this.character.x - 60, this.character.y + 100, this.otherDirection = true);
                     this.throwableObject.push(bottle);
                     this.character.bottlesColected--;
                     this.statusbarBottles.setPercentage(this.character.bottlesColected);
                 } else {
-                    let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100,this.otherDirection = false);
+                    let bottle = new ThrowableObject(this.character.x + 60, this.character.y + 100,this.otherDirection = false);
                     this.throwableObject.push(bottle);
                     this.character.bottlesColected--;
                     this.statusbarBottles.setPercentage(this.character.bottlesColected);
