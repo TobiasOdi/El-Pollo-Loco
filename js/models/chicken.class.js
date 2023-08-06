@@ -38,7 +38,7 @@ class Chicken extends MovableObject {
     animate() {
         setInterval(() => {
             this.movement()
-        }, 40);
+        }, 200);
     }
 
     movement() {
@@ -47,7 +47,7 @@ class Chicken extends MovableObject {
             setTimeout(() => {
                 this.x = 0;
                 this.y = -100;
-                }, 1500);
+            }, 1500);
         } else {
             this.moveLeft();
             this.playAnimation(this.imagesWalking);

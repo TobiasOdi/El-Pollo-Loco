@@ -40,11 +40,15 @@ class ThrowableObject extends MovableObject {
         this.throw();
 
         setInterval(() => {
-            if(this.bottleHit == true) {
+            if(this.bottleHit == true || this.y > 345) {
                 this.playAnimation(this.imagesImpact);
                 this.speedY = 0;
                 this.acceleration = 0;
                 this.intervalIds.forEach(clearInterval);
+                setTimeout(() => {
+                    this.x = 0;
+                    this.y = -100;
+                }, 300);
             } else {
                 this.playAnimation(this.imagesRotate);
             }

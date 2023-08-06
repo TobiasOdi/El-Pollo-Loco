@@ -157,7 +157,7 @@ window.addEventListener('keyup', (event) => {
 });
 
 /**
- * Sets a value when touching a certain key on your keyboard.
+ * Sets a value when touching a certain button on your mobile device (touchscreen).
  * => Controlling your characte with a touch device
  */
 function bindBtsPressEvents() {
@@ -244,11 +244,17 @@ function toMainMenue() {
     document.getElementById('startGame').style.display = 'flex';
 }
 
+/**
+ * Stops all intervals and mutes the soundtrack.
+ */
 function stopGame() {
     clearAllIntervals();
     document.getElementById('gameSoundtrack').muted = true;
 }
 
+/**
+ * Clears all intervals.
+ */
 function clearAllIntervals() {
     for (let i = 1; i < 9999; i++) window.clearInterval(i);
 };

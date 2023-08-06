@@ -46,9 +46,10 @@ class World {
             this.checkCollisionsEnemy();
             this.checkCollisionsEndboss();
             this.checkBottleHitEndboss();
-        }, 50);
+        }, 200);
 
         setInterval(() => {
+            this.checkCollisionsEnemyTop();
             this.checkBottleHitEnemy();
             this.checkCollisionsCoins();
             this.checkCollisionsBottles();
@@ -64,23 +65,29 @@ class World {
      */
     checkCollisionsEnemy() {
         this.level.enemies.forEach((enemy) => {
-            if(enemy.speed > 0 && this.character.isColliding(enemy)){
-                if(this.character.isAboveGround() && !this.character.isHurt()) {
-                    enemy.speed = 0;
-                } else {
-                    this.character.hit();
-                    this.statusbarHealth.setPercentage(this.character.energy);
+            if(enemy.speed > 0 && this.character.isColliding(enemy) && !this.character.isAboveGround()){
+                this.character.hit();
+                this.statusbarHealth.setPercentage(this.character.energy);
 
-                    if(this.character.coinsColected > 0) {
-                        this.character.coinsColected--;
-                        this.statusbarCoins.setPercentage(this.character.coinsColected);
-                    } else {
-                        this.character.coinsColected = 0;
-                        this.statusbarCoins.setPercentage(this.character.coinsColected);
-                    }
+                if(this.character.coinsColected > 0) {
+                    this.character.coinsColected--;
+                    this.statusbarCoins.setPercentage(this.character.coinsColected);
+                } else {
+                    this.character.coinsColected = 0;
+                    this.statusbarCoins.setPercentage(this.character.coinsColected);
                 }
             }});
     }
+
+    checkCollisionsEnemyTop() {
+        this.level.enemies.forEach((enemy) => {
+            if(enemy.speed > 0 && this.character.isColliding(enemy)){
+                if(this.character.isAboveGround() && !this.character.isHurt()) {
+                    enemy.speed = 0;
+                }
+            }});
+    }
+    
 
     /**
      * Checks the collision with the endboss and performes the necessary action.
@@ -100,7 +107,7 @@ class World {
                 }
             }
         })
-        )
+        );
     }
 
     /**
@@ -238,7 +245,7 @@ class World {
         }
         
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
+        //mo.drawFrame(this.ctx);
 
         if(mo.otherDirection) {
             mo.flipImageBack(this.ctx);

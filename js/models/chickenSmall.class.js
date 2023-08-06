@@ -39,7 +39,7 @@ class ChickenSmall extends MovableObject {
     animate() {
         setInterval(() => {
             this.movement()
-        }, 40);
+        }, 200);
     }
 
     movement() {
