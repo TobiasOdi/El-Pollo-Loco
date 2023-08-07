@@ -1,7 +1,12 @@
 class StatusbarHealthEndboss extends DrawableObject {
 
     images = [
-        './img/7_statusbars/2_statusbar_endboss/blue.png'
+        '../../img/7_statusbars/1_statusbar/2_statusbar_health/orange/0.png',
+        '../../img/7_statusbars/1_statusbar/2_statusbar_health/orange/20.png',
+        '../../img/7_statusbars/1_statusbar/2_statusbar_health/orange/40.png',
+        '../../img/7_statusbars/1_statusbar/2_statusbar_health/orange/60.png',
+        '../../img/7_statusbars/1_statusbar/2_statusbar_health/orange/80.png',
+        '../../img/7_statusbars/1_statusbar/2_statusbar_health/orange/100.png',
     ];
 
     percentage = 100;
@@ -10,30 +15,30 @@ class StatusbarHealthEndboss extends DrawableObject {
      * Loads the statusbar and positions it on the canvas.
      */
     constructor() {
-        super().loadImage('./img/7_statusbars/2_statusbar_endboss/blue.png');;  // Methoden vom übergeordneten Objekt werden so initialisiert!
-        //this.loadImages(this.images);
+        super().loadImage('../../img/7_statusbars/1_statusbar/2_statusbar_health/orange/0.png');  // Methoden vom übergeordneten Objekt werden so initialisiert!
+        this.loadImages(this.images);
         this.x = 500;
         this.y = 60;
         this.height = 60;
         this.width = 200;
-        //this.setPercentage(100);
+        this.setPercentage(100);
     }
 
     /**
      * Sets the path to the correct image an loads it to the image cache
      * @param {number} percentage - health of the character
      */
-    /* setPercentage(percentage) {
+    setPercentage(percentage) {
         this.percentage = percentage; // => 0 .. 5
         let path = this.images[this.resolveImageIndex()];
         this.img = this.imageCache[path]; // jeweiliges Bild aus dem Bilder Cache laden
-    } */
+    }
 
     /**
      * Returns the the index for the path of the correct image.
      * @returns 
      */
-    /* resolveImageIndex() {
+    resolveImageIndex() {
         if(this.percentage == 100) {
             return 5;
         } else if(this.percentage > 80) {
@@ -47,5 +52,5 @@ class StatusbarHealthEndboss extends DrawableObject {
         } else {
             return 0;
         }
-    } */
+    }
 }

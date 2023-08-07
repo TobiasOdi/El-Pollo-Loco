@@ -128,8 +128,9 @@ class World {
      */
     checkBottleHitEndboss() {
         this.throwableObject.forEach((bottle) => {
-            if(this.endboss.isColliding(bottle)){
+            if(bottle.isColliding(this.endboss)){
                 this.endboss.endbossIsHit();
+                this.statusbarHealthEndboss.setPercentage(this.endboss.energyEndboss);
                 bottle.bottleHit = true;
             }
         })
@@ -201,12 +202,13 @@ class World {
         this.addObjectsToMap(this.level.bottles);
 
         this.ctx.translate(-this.cameraX, 0); // Kamera bzw. Koordinatensystem nach hinten verschieben
+
         // ------------- Space for fixed objects --------------
         this.addToMap(this.statusbarHealth);
         this.addToMap(this.statusbarCoins);
         this.addToMap(this.statusbarBottles);
         this.addToMap(this.statusbarHealthEndboss);
-        
+        this.addToMap(this.statusbarHealthEndbossLogo);
         // ----------------------------------------------------
 
         this.ctx.translate(this.cameraX, 0); // Kamera bzw. Koordinatensystem nach vorne verschieben
