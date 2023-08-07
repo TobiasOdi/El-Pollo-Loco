@@ -1,7 +1,7 @@
 class Character extends MovableObject {
     height = 250;
     y = 175;
-    speed = 10;
+    speed = 15;
     world;
     walkingSound = new Audio('../audio/walkingCharacter.mp3');
 
@@ -108,7 +108,6 @@ class Character extends MovableObject {
         setInterval(() => {
             this.walkingSound.pause();
             if(this.isDead()) {
-                debugger;
                 this.walkingSound.pause();
                 this.playAnimation(this.imagesDead);
                 stopGame();

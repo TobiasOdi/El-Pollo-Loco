@@ -9,6 +9,7 @@ class World {
     cameraX = 0;
     statusbarHealth = new StatusbarHealth();
     statusbarHealthEndboss = new StatusbarHealthEndboss();
+    statusbarHealthEndbossLogo = new StatusbarHealthEndbossLogo();
     statusbarCoins = new StatusbarCoins();
     statusbarBottles = new StatusbarBottles();
     coins = new Coins();
@@ -57,7 +58,7 @@ class World {
 
         setInterval(() => {
             this.checkThrowObject();
-        }, 100);
+        }, 80);
     }
 
     /**
@@ -128,11 +129,13 @@ class World {
      */
     checkBottleHitEndboss() {
         this.throwableObject.forEach((bottle) => {
-            if(bottle.isColliding(this.endboss)){
-                this.endboss.endbossIsHit();
-                this.statusbarHealthEndboss.setPercentage(this.endboss.energyEndboss);
-                bottle.bottleHit = true;
-            }
+            this.level.endboss.forEach((endboss) => {
+                if(bottle.isColliding(endboss)){
+                    endboss.endbossIsHit();
+                    this.statusbarHealthEndboss.setPercentage(this.endboss.energyEndboss);
+                    bottle.bottleHit = true;
+                }
+            })
         })
     };
 
@@ -196,6 +199,7 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.ctx.translate(this.cameraX, 0);
+
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.coins);

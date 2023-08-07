@@ -87,4 +87,13 @@ class Endboss extends MovableObject {
             }
         }, 200)
     }
+
+    /**
+     * The function returns the value 0 for the endbosses energy
+     * @returns 
+     */
+    isDeadEndboss() {
+        return this.energyEndboss == 0;
+    }
+
 }

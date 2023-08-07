@@ -155,15 +155,7 @@ class MovableObject extends DrawableObject {
         return this.energy == 0;
     }
 
-    /**
-     * The function returns the value 0 for the endbosses energy
-     * @returns 
-     */
-    isDeadEndboss() {
-        return this.energyEndboss == 0;
-    }
-
-    /**
+        /**
      * Sets the speed of an enemy to 0.
      */
     die() {
