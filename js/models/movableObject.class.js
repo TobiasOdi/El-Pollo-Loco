@@ -18,8 +18,10 @@ class MovableObject extends DrawableObject {
         bottom: 0
     }
 
+//======================================================== WORLD FUNCTIONS =====================================================================
+
     /**
-     * Sets the gravity, how fast the objects fall
+     * Sets the gravity (how fast the objects fall)
      */
     applyGravity() {
         setInterval(() => {
@@ -31,7 +33,7 @@ class MovableObject extends DrawableObject {
     }
 
     /**
-     * Checks if an object ist above ground > Throwable objects should alwasys fall
+     * Checks if an object is above ground > Throwable objects should always fall
      * @returns 
      */
     isAboveGround() {
@@ -41,27 +43,10 @@ class MovableObject extends DrawableObject {
             return this.y < 175;
         }
     }
-    
-    /**
-     * Creates a new image
-     * @param {string} path - image path
-     */
-    loadImage(path) {
-        this.img = new Image();    // ist das gleiche wie this.img = document.getElementById('image') <img id="image">
-        this.img.src = path;
-    }
 
     /**
-     * Draws the image to the canvas.
-     * @param {*} ctx 
-     */
-    draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-    }
-
-    /**
-     * Checks the collisions with the coins and bottles
-     * @param {element} mo - coin or bottle
+     * Checks the collisions between any object
+     * @param {element} mo - character, coin, bottle, chicken etc.
      * @returns 
      */
     isColliding (mo) {
@@ -70,6 +55,8 @@ class MovableObject extends DrawableObject {
             this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
             this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
     }
+
+//======================================================== CHARACTER FUNCTIONS =====================================================================
 
     /**
      * Subtracts the characters energy if hit by small enemy
@@ -96,11 +83,72 @@ class MovableObject extends DrawableObject {
     }
 
     /**
-     * Character gets pushed back
+     * Checkes the time passed since the character has last been hit
+     * @returns 
+     */
+    isHurt(){
+        let timePassed = new Date().getTime() - this.lastHit; // Differenz in Milisekunden
+        timePassed = timePassed / 1000; // Differenz in Sekunden
+        return timePassed < 0.5;
+    }
+
+    /**
+     * The function returns the value 0 for the character energy
+     * @returns 
+     */
+    isDead() {
+        return this.energy == 0;
+    }
+
+    /**
+     * Character gets pushed back a distance
      */
     pushedBack() {
         this.x -= 250;
     }
+
+    /**
+    * Adds a coin to coinsColected
+    */
+    colectCoins() {
+        this.coinsColected += 1;
+        if(this.coinsColected >= 10) {
+            this.coinsColected = 10;
+        }
+    }
+    
+    /**
+     * Adds a bottle to  bottlesColected
+     */
+    colectBottles() {
+        this.bottlesColected += 1;
+        if(this.bottlesColected >= 10) {
+            this.bottlesColected = 10;
+        }
+    }
+
+    /**
+     * Makes the character move right.
+     */
+    moveRight() {
+        this.x += this.speed;
+    }
+    
+    /**
+     * Makes the character move left.
+     */
+    moveLeft() {
+        this.x -= this.speed;
+    }
+    
+    /**
+     * Makes the character jump.
+     */
+    jump() {
+        this.speedY = 30;
+    }
+
+//======================================================== ENDBOSS FUNCTIONS =====================================================================
 
     /**
      * Subtracts the endbosses energy
@@ -114,35 +162,6 @@ class MovableObject extends DrawableObject {
         }
     }
 
-    /**
-    * Adds a coin to coinsColected
-    */
-    colectCoins() {
-        this.coinsColected += 1;
-        if(this.coinsColected >= 10) {
-            this.coinsColected = 10;
-        }
-    }
-
-    /**
-     * Adds a bottle to  bottlesColected
-     */
-    colectBottles() {
-        this.bottlesColected += 1;
-        if(this.bottlesColected >= 10) {
-            this.bottlesColected = 10;
-        }
-    }
-
-    /**
-     * Checkes the time passed since the character has last been hit
-     * @returns 
-     */
-    isHurt(){
-        let timePassed = new Date().getTime() - this.lastHit; // Differenz in Milisekunden
-        timePassed = timePassed / 1000; // Differenz in Sekunden
-        return timePassed < 0.5;
-    }
 
     /**
      * Checkes the time passed since the endboss has last been hit
@@ -154,24 +173,37 @@ class MovableObject extends DrawableObject {
         return timePassed < 0.5;
     }
 
-    /**
-     * The function returns the value 0 for the character energy
-     * @returns 
-     */
-    isDead() {
-        return this.energy == 0;
-    }
+//======================================================== CHICKEN FUNCTION =====================================================================
 
-        /**
-     * Sets the speed of an enemy to 0.
+    /**
+     * The function returns the speed 0 of an enemy
      */
     die() {
         return this.speed == 0;
     }
 
+//======================================================== BASE FUNCTIONS =====================================================================
+
     /**
-     * 
-     * @param {*} ctx - 
+     * Creates a new image
+     * @param {string} path - image path
+     */
+    loadImage(path) {
+        this.img = new Image();    // ist das gleiche wie this.img = document.getElementById('image') <img id="image">
+        this.img.src = path;
+    }
+
+    /**
+     * Draws the image to the canvas.
+     * @param {element} ctx - canvas element
+     */
+    draw(ctx) {
+        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+    }
+
+    /**
+     * Flips the image to the other direction
+     * @param {element} ctx - canvas element
      */
     flipImage(ctx){
         ctx.save();
@@ -181,8 +213,8 @@ class MovableObject extends DrawableObject {
     }
 
     /**
-     * 
-     * @param {*} ctx 
+     * Flips the image back to the initial direction
+     * @param {element} ctx - canvas element
      */
     flipImageBack(ctx){
         this.x = this.x * -1;
@@ -193,10 +225,6 @@ class MovableObject extends DrawableObject {
      * Loading images into the imageCache array
      * @param {Array} arr - ['img/image1.png', 'img/image2.png', ...]
      */
-
-    /**
-     * 
-     */
     loadImages(arr) {
         arr.forEach((path) => {
             let img = new Image();
@@ -206,8 +234,8 @@ class MovableObject extends DrawableObject {
     }
 
     /**
-     * 
-     * @param {*} images 
+     * Displays all images in an array one after another
+     * @param {Array} images - image array of the current animation
      */
     playAnimation(images) {
         let i = this.currentImage % images.length; // let i = 0 % 6
@@ -216,25 +244,4 @@ class MovableObject extends DrawableObject {
         this.currentImage++;
     }
 
-    /**
-     * Makes the character move right.
-     */
-    moveRight() {
-        this.x += this.speed;
-        
-    }
-
-    /**
-     * Makes the character move left.
-     */
-    moveLeft() {
-        this.x -= this.speed;
-    }
-
-    /**
-     * Makes the character jump.
-     */
-    jump() {
-        this.speedY = 30;
-    }
 }

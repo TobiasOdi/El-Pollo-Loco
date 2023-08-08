@@ -25,5 +25,4 @@ class Bottles extends DrawableObject {
         this.x = 300 + Math.random() * 4000;
         this.y = 335;
     }
-
 }

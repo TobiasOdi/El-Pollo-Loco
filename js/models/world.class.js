@@ -18,10 +18,12 @@ class World {
     movableObject = new MovableObject();
 
 
+//=========================================================== BASE FUNCTIONS ======================================================
+
     /**
-     * 
-     * @param {element} canvas 
-     * @param {class} keyboard 
+     * Creates the canvas and executes alle the functions (draw(), run())
+     * @param {element} canvas - element where the objects can be drawn to
+     * @param {class} keyboard - contains the controls for the character
      */
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -40,7 +42,7 @@ class World {
     }
 
     /**
-     * Runs the characters function collision and throw bottle
+     * Runs all de check funtctions
      */
     run() {
         setInterval(() => {
@@ -61,6 +63,8 @@ class World {
             this.checkThrowObject();
         }, 80);
     }
+
+//=========================================================== COLLISION CHECKS ======================================================
 
     /**
      * Checks the collision with enemies and performes the necesary action.
@@ -169,8 +173,10 @@ class World {
         });
     }
 
+//=========================================================== CHECK CHARACTER PRIXIMITY ======================================================
+
     /**
-     * 
+     * Cheks if character is near endboss
      */
     checkNearEndboss() {
         this.level.endboss.forEach((endboss) => {
@@ -180,6 +186,7 @@ class World {
         });
     }
 
+//=========================================================== CHECK FOR THROWABLE OBJECT ======================================================
     /**
      * Lets the character throw a bottle and updates the statusbar.
      */
@@ -204,6 +211,8 @@ class World {
             }
         }
     }
+
+//=========================================================== CANVAS FUNCTIONS ======================================================
 
     /**
      * The function draws all the elemnts on the canvas.
@@ -245,7 +254,7 @@ class World {
     };
 
     /**
-     * Adds the objects
+     * Adds the objects to the canvas
      * @param {object} objects 
      */
     addObjectsToMap(objects) {

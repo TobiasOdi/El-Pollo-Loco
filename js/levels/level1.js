@@ -1,8 +1,10 @@
 let level1;
 
+/**
+ * Function to draw objects afert game start.
+ */
 function startLevel() {
     level1 = new Level(
-
         [
             new Chicken(),
             new Chicken(),
@@ -21,7 +23,6 @@ function startLevel() {
         [
             new Endboss()     
         ],
-    
     
         [
             new Cloud()

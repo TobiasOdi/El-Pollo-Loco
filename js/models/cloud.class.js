@@ -4,12 +4,11 @@ class Cloud extends MovableObject {
     width = 500;
 
     /**
-     * Load clouds, play animation and position on the canvas.
+     * Loads clouds, play animation and position on the canvas.
      */
     constructor() {
         // => super() gild nur für Methoden!!
         super().loadImage('../../img/5_background/layers/4_clouds/1.png');
-
         this.x = 0 + Math.random() * 500;
         this.animate();
     }

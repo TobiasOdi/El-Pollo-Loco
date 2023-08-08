@@ -3,7 +3,6 @@ let ctx;
 let world;
 let keyboard = new Keyboard();
 let fullSize = false;
-//let intervalIds = [];
 
 // AUFGABEN
 // 1. Sounds suchen 
@@ -19,6 +18,7 @@ let fullSize = false;
 //      - Funktionen mit return erstellen bei welchen man genau weiss was diese machen. z.B. in einer if abfrage
 //          - z.B. canMoveRight() => als Frage formulieren
 
+//=============================================================== START GAME ==================================================================
 /**
  * This function initializes the game.
  */
@@ -29,6 +29,16 @@ async function init() {
     keyboard.lastKeyPress = new Date().getTime();
 }
 
+/**
+ * This function starts the game and hides the startscreen.
+ */
+async function startGame() {
+    document.getElementById('startScreen').style.backgroundImage = 'none';
+    document.getElementById('startGame').style.display = 'none';
+    await init();
+}
+
+//=============================================================== GAME FEATURES ==================================================================
 /**
  * It plays and mutes the game sound.
  */
@@ -91,16 +101,22 @@ function exitFullscreen() {
 }
 
 /**
- * This function initializes the game and hides the startscreen.
+ * Shows the controls, which key need to be pressed for a certain action.
  */
-async function startGame() {
-    document.getElementById('startScreen').style.backgroundImage = 'none';
-    document.getElementById('startGame').style.display = 'none';
-    await init();
+function showControls() {
+    document.getElementById('controls').style.display = "flex";
 }
 
 /**
- * Sets a value when pressing a certain key on your keyboard.
+ * Hides the controls.
+ */
+function closeControls() {
+    document.getElementById('controls').style.display = "none";
+}
+
+//=============================================================== CONTROLLS KEYBOARD ==================================================================
+/**
+ * Sets a value when pressing a certain key down on your keyboard.
  * => Controlling your character
  */
 window.addEventListener('keydown', (event) => {
@@ -156,6 +172,7 @@ window.addEventListener('keyup', (event) => {
     }
 });
 
+//=============================================================== CONTROLLS TOUCHDEVICE ==================================================================
 /**
  * Sets a value when touching a certain button on your mobile device (touchscreen).
  * => Controlling your characte with a touch device
@@ -211,20 +228,7 @@ function bindBtsPressEvents() {
     });
 }
 
-/**
- * Shows the controls, which key need to be pressed for a certain action.
- */
-function showControls() {
-    document.getElementById('controls').style.display = "flex";
-}
-
-/**
- * Hides the controls.
- */
-function closeControls() {
-    document.getElementById('controls').style.display = "none";
-}
-
+//=============================================================== END GAME ==================================================================
 /**
  * Resetes all game parameters an starts the game anew.
  */
@@ -259,14 +263,4 @@ function clearAllIntervals() {
     for (let i = 1; i < 9999; i++) window.clearInterval(i);
 };
 
-/**
- * A function to store every interval in an array in order to stop them if needed.
- * @param {function} fn - specific function
- * @param {number} time - Interval time, how often the function is beeing run
- */
-
-/* function setStoppableInterval(fn, time) {
-    let id = setInterval(fn, time);
-    intervalIds.push(id);
-} */
 

@@ -76,7 +76,7 @@ class Character extends MovableObject {
     ];
 
     /**
-     * Load character an the different animations and position on the canvas.
+     * Loads character an the different animations and positions on the canvas.
      */
     constructor() {
         super().loadImage('../../img/2_character_pepe/2_walk/W-21.png');
@@ -127,6 +127,9 @@ class Character extends MovableObject {
         }, 100);
     }
 
+    /**
+     * Moves character depending on the pressed keys
+     */
     movement() {
         if(this.world.keyboard.right && this.x < this.world.level.levelEndX) {
             this.moveRight();
@@ -148,7 +151,10 @@ class Character extends MovableObject {
         this.world.cameraX = -this.x + 100;
     }
 
-        checkForAction() {
+    /**
+     * Checks if idle or long idle animations should be playd depending on the time passed
+     */
+    checkForAction() {
         let currentTime = new Date().getTime();
         if((currentTime - this.world.keyboard.lastKeyPress) > 4000 && (currentTime - this.world.keyboard.lastKeyPress) < 10000) {
             this.playAnimation(this.imagesIdle);

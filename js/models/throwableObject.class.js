@@ -22,7 +22,12 @@ class ThrowableObject extends MovableObject {
         '../../img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png'
     ];
 
-
+    /**
+     * Loads, positions and animates the bottle that can be thrown
+     * @param {*} x 
+     * @param {*} y 
+     * @param {*} direction 
+     */
     constructor(x, y, direction) {
         super().loadImage('../../img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
         this.loadImages(this.imagesRotate);
@@ -39,6 +44,9 @@ class ThrowableObject extends MovableObject {
         this.throw();
     }
 
+    /**
+     * Play animations depending on different action.
+     */
     animate() {
         this.throw
 
@@ -58,6 +66,9 @@ class ThrowableObject extends MovableObject {
         }, 80);
     }
    
+    /**
+     * Runs the throw animation and apllies the gravity.
+     */
     throw() {
         this.applyGravity(); 
         setInterval(() => {

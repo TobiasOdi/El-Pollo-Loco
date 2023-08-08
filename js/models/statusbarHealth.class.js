@@ -12,7 +12,7 @@ class StatusbarHealth extends DrawableObject {
     percentage = 100;
 
     /**
-     * Loads the statusbar and positions it on the canvas.
+     * Loads and positions the statusbar for the characters health on the canvas.
      */
     constructor() {
         super();  // Methoden vom übergeordneten Objekt werden so initialisiert!

@@ -12,7 +12,7 @@ class StatusbarCoins extends DrawableObject {
     percentage = 0;
 
     /**
-     * Loads the statusbar and positions it on the canvas.
+     * Loads and positions the statusbar for the collected coins on the canvas.
      */
     constructor() {
         super();  // Methoden vom übergeordneten Objekt werden so initialisiert!
