@@ -47,6 +47,7 @@ class World {
             this.checkCollisionsEnemy();
             this.checkCollisionsEndboss();
             this.checkBottleHitEndboss();
+            this.checkNearEndboss();
         }, 200);
 
         setInterval(() => {
@@ -97,6 +98,7 @@ class World {
             if(this.character.isColliding(endboss)){
                 this.character.hitByEndboss();
                 this.statusbarHealth.setPercentage(this.character.energy);
+                this.character.pushedBack();
     
                 if(this.character.coinsColected > 0) {
                     this.character.coinsColected--;
@@ -132,7 +134,7 @@ class World {
             this.level.endboss.forEach((endboss) => {
                 if(bottle.isColliding(endboss)){
                     endboss.endbossIsHit();
-                    this.statusbarHealthEndboss.setPercentage(this.endboss.energyEndboss);
+                    this.statusbarHealthEndboss.setPercentage(endboss.energyEndboss);
                     bottle.bottleHit = true;
                 }
             })
@@ -163,6 +165,17 @@ class World {
                 this.statusbarBottles.setPercentage(this.character.bottlesColected);
                 bottle.x = 0;
                 bottle.y = -100;
+            }
+        });
+    }
+
+    /**
+     * 
+     */
+    checkNearEndboss() {
+        this.level.endboss.forEach((endboss) => {
+            if(this.character.x > 3700) {
+                endboss.nearEndboss = true;
             }
         });
     }
@@ -213,6 +226,7 @@ class World {
         this.addToMap(this.statusbarBottles);
         this.addToMap(this.statusbarHealthEndboss);
         this.addToMap(this.statusbarHealthEndbossLogo);
+
         // ----------------------------------------------------
 
         this.ctx.translate(this.cameraX, 0); // Kamera bzw. Koordinatensystem nach vorne verschieben

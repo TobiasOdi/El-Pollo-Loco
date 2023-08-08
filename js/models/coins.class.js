@@ -1,10 +1,12 @@
-class Coins extends DrawableObject {
+class Coins extends MovableObject {
     x = 50;
     y = 50;
     height = 100;
     width = 100;
-    images = [
+
+    imagesCoin = [
         '../../img/8_coin/coin_1.png',
+        '../../img/8_coin/coin_2.png'
     ];
 
     offset =  {
@@ -20,9 +22,15 @@ class Coins extends DrawableObject {
     constructor() {
         // => super() gilt nur für Methoden!!
         super().loadImage('../../img/8_coin/coin_1.png');
-        this.loadImages(this.images);
-
+        this.loadImages(this.imagesCoin);
         this.x = 300 + Math.random() * 4000;
-        this.y = 120 + Math.random() * 230;
+        this.y = 200 + Math.random() * 160;
+        this.animate();
+    }
+
+    animate() {
+        setInterval(() => {
+            this.playAnimation(this.imagesCoin);
+        }, 200);
     }
 }

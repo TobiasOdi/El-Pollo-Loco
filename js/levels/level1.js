@@ -88,11 +88,6 @@ function startLevel() {
             new Coins('../../img/8_coin/coin_1.png'),
             new Coins('../../img/8_coin/coin_1.png'),
             new Coins('../../img/8_coin/coin_1.png'),
-            new Coins('../../img/8_coin/coin_1.png'),
-            new Coins('../../img/8_coin/coin_1.png'),
-            new Coins('../../img/8_coin/coin_1.png'),
-            new Coins('../../img/8_coin/coin_1.png'),
-            new Coins('../../img/8_coin/coin_1.png'),
             new Coins('../../img/8_coin/coin_1.png')
         ],
     

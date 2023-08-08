@@ -17,8 +17,9 @@ class StatusbarHealthEndboss extends DrawableObject {
     constructor() {
         super().loadImage('../../img/7_statusbars/1_statusbar/2_statusbar_health/orange/0.png');  // Methoden vom übergeordneten Objekt werden so initialisiert!
         this.loadImages(this.images);
+        //this.x = 4200;        
         this.x = 500;
-        this.y = 60;
+        this.y = 40;
         this.height = 60;
         this.width = 200;
         this.setPercentage(100);

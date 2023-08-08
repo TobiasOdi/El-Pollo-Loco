@@ -96,6 +96,13 @@ class MovableObject extends DrawableObject {
     }
 
     /**
+     * Character gets pushed back
+     */
+    pushedBack() {
+        this.x -= 250;
+    }
+
+    /**
      * Subtracts the endbosses energy
      */
     endbossIsHit() {

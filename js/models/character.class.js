@@ -108,12 +108,12 @@ class Character extends MovableObject {
         setInterval(() => {
             this.walkingSound.pause();
             if(this.isDead()) {
-                this.walkingSound.pause();
                 this.playAnimation(this.imagesDead);
-                stopGame();
                 setTimeout(() => {
+                    this.walkingSound.pause();
+                    stopGame();
                     document.getElementById('gameOverScreen').style.display = "flex";
-                }, 1500);
+                }, 1000);
 
             } else if(this.isHurt()) {
                 this.playAnimation(this.imagesHurt);
