@@ -3,7 +3,7 @@ let level1;
 /**
  * Function to draw objects afert game start.
  */
-function startLevel() {
+async function startLevel() {
     level1 = new Level(
         [
             new Chicken(),
@@ -100,16 +100,16 @@ function startLevel() {
             new Bottles('../../img/6_salsa_bottle/2_salsa_bottle_on_ground.png'),
             new Bottles('../../img/6_salsa_bottle/2_salsa_bottle_on_ground.png'),
             new Bottles('../../img/6_salsa_bottle/2_salsa_bottle_on_ground.png'),
+            new Bottles('../../img/6_salsa_bottle/1_salsa_bottle_on_ground.png'),
+            new Bottles('../../img/6_salsa_bottle/1_salsa_bottle_on_ground.png'),
             new Bottles('../../img/6_salsa_bottle/2_salsa_bottle_on_ground.png'),
             new Bottles('../../img/6_salsa_bottle/2_salsa_bottle_on_ground.png'),
+            new Bottles('../../img/6_salsa_bottle/1_salsa_bottle_on_ground.png'),
             new Bottles('../../img/6_salsa_bottle/2_salsa_bottle_on_ground.png'),
             new Bottles('../../img/6_salsa_bottle/2_salsa_bottle_on_ground.png'),
+            new Bottles('../../img/6_salsa_bottle/1_salsa_bottle_on_ground.png'),
             new Bottles('../../img/6_salsa_bottle/2_salsa_bottle_on_ground.png'),
-            new Bottles('../../img/6_salsa_bottle/2_salsa_bottle_on_ground.png'),
-            new Bottles('../../img/6_salsa_bottle/2_salsa_bottle_on_ground.png'),
-            new Bottles('../../img/6_salsa_bottle/2_salsa_bottle_on_ground.png'),
-            new Bottles('../../img/6_salsa_bottle/2_salsa_bottle_on_ground.png'),
-            new Bottles('../../img/6_salsa_bottle/2_salsa_bottle_on_ground.png'),
+            new Bottles('../../img/6_salsa_bottle/1_salsa_bottle_on_ground.png'),
             new Bottles('../../img/6_salsa_bottle/2_salsa_bottle_on_ground.png'),
             new Bottles('../../img/6_salsa_bottle/1_salsa_bottle_on_ground.png')
         ]

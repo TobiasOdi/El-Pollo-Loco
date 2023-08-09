@@ -4,6 +4,7 @@ let world;
 let keyboard = new Keyboard();
 let fullSize = false;
 let characterJump = new Audio('../audio/jump1.mp3');
+let loading = false;
 
 // AUFGABEN
 // 1. Sounds suchen 
@@ -25,18 +26,31 @@ let characterJump = new Audio('../audio/jump1.mp3');
  */
 async function init() {
     await startLevel();
-    canvas = document.getElementById('canvas');
-    world = new World(canvas, keyboard);
-    keyboard.lastKeyPress = new Date().getTime();
+    await setElements();
 }
 
 /**
  * This function starts the game and hides the startscreen.
  */
 async function startGame() {
-    document.getElementById('startScreen').style.backgroundImage = 'none';
+    document.getElementById('loader-wrapper').style.display = 'flex';
     document.getElementById('startGame').style.display = 'none';
-    await init();
+    if(!loading) {
+        loading = true;
+        await init();
+        loading = false;
+        setTimeout(() => {
+            document.getElementById('startScreen').style.backgroundImage = 'none';
+            document.getElementById('startGameContainer').style.display = 'none';
+            document.getElementById('loader-wrapper').style.display = 'none';
+        }, 1000);
+    }
+}
+
+async function setElements() {
+    canvas = document.getElementById('canvas');
+    world = new World(canvas, keyboard);
+    keyboard.lastKeyPress = new Date().getTime();
 }
 
 //=============================================================== GAME FEATURES ==================================================================
