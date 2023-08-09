@@ -3,6 +3,7 @@ let ctx;
 let world;
 let keyboard = new Keyboard();
 let fullSize = false;
+let characterJump = new Audio('../audio/jump1.mp3');
 
 // AUFGABEN
 // 1. Sounds suchen 
@@ -130,6 +131,7 @@ window.addEventListener('keydown', (event) => {
 
     if(event.keyCode == 38 || event.keyCode == 87) {
         keyboard.up = true;
+        characterJump.play();
     }
 
     if(event.keyCode == 40 || event.keyCode == 83) {
@@ -208,6 +210,7 @@ function bindBtsPressEvents() {
     jump.addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.up = true;
+        characterJump.play();
     });
 
     jump.addEventListener('touchend', (e) => {

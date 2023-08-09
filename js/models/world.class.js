@@ -16,8 +16,9 @@ class World {
     bottles = new Bottles();
     throwableObject = [];
     movableObject = new MovableObject();
-
-
+    collectCoinSound = new Audio('../audio/coins1.mp3');
+    loseCoins;
+    collectBottleSound;
 //=========================================================== BASE FUNCTIONS ======================================================
 
     /**
@@ -153,6 +154,7 @@ class World {
             if(this.character.isColliding(coin)){
                 this.character.colectCoins();
                 this.statusbarCoins.setPercentage(this.character.coinsColected);
+                
                 coin.x = 0;
                 coin.y = -100;
             }

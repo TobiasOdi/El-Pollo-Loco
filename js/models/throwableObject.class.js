@@ -3,8 +3,8 @@ class ThrowableObject extends MovableObject {
     speedX = 30;
     level = level1;
     otherDirection;
+    bottleBurst = new Audio('../audio/bottleBurst1.mp3');
     intervalIds = [];
-
 
     imagesRotate = [
         '../../img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
@@ -48,12 +48,14 @@ class ThrowableObject extends MovableObject {
      * Play animations depending on different action.
      */
     animate() {
-        this.throw
+        this.bottleBurst.pause();
+        this.throw();
 
         setInterval(() => {
             if(this.bottleHit == true || this.y > 345) {
-                this.intervalIds.forEach(clearInterval);
+                //this.bottleBurst.play();
                 this.playAnimation(this.imagesImpact);
+                this.intervalIds.forEach(clearInterval);
                 //this.speedY = 0;
                 //this.acceleration = 0;
                 setTimeout(() => {
@@ -70,14 +72,21 @@ class ThrowableObject extends MovableObject {
      * Runs the throw animation and apllies the gravity.
      */
     throw() {
-        this.applyGravity(); 
-        setInterval(() => {
-            if(this.otherDirection == true) {
-                this.x -= 12;
-            } else {
-                this.x += 12;
-            }
-        }, 40);
+        this.applyGravity();
+        this.setStoppableInterval(this.throwAcceleration, 40) 
     }   
     // World braucht ein Array für throwableObjects
+
+    throwAcceleration() {
+        if(this.otherDirection == true) {
+            this.x -= 12;
+        } else {
+            this.x += 12;
+        }
+    }
+
+    setStoppableInterval(fn, time) {
+        let id = setInterval(fn, time);
+        this.intervalIds.push(id);
+    }
 }

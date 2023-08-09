@@ -96,7 +96,6 @@ class Character extends MovableObject {
     animate() {
         //setStoppableInterval(this.movement(), 40)
         //setStoppableInterval(this.checkForAction(), 1000)
-
         setInterval(() => {
             this.movement();
         }, 50);
@@ -107,6 +106,7 @@ class Character extends MovableObject {
         
         setInterval(() => {
             this.walkingSound.pause();
+
             if(this.isDead()) {
                 this.playAnimation(this.imagesDead);
                 setTimeout(() => {
@@ -116,6 +116,7 @@ class Character extends MovableObject {
                 }, 1000);
 
             } else if(this.isHurt()) {
+                //this.characterHurt.play();
                 this.playAnimation(this.imagesHurt);
             } else if(this.isAboveGround()) {
                 this.playAnimation(this.imagesJumping);
