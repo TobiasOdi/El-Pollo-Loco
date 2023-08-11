@@ -2,7 +2,6 @@ class Endboss extends MovableObject {
     height = 350;
     width = 300;
     y = 80;
-    intervalIds = [];
     nearEndboss = false;
 
 // => Spawn function??
@@ -79,11 +78,10 @@ class Endboss extends MovableObject {
         setInterval(() => {
             if(this.isDeadEndboss()) {
                 this.playAnimation(this.imagesDead);
-                this.intervalIds.forEach(clearInterval);
                 setTimeout(() => {
                     stopGame();
-                    document.getElementById('gameOverScreen').style.display = "flex";
-                }, 1000);
+                    document.getElementById('gameWonScreen').style.display = "flex";
+                }, 500);
             } else if(this.isHurtEndboss()) {
                 this.playAnimation(this.imagesHurt);
             } else if(this.nearEndboss) {

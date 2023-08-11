@@ -255,7 +255,7 @@ canvas {
     font-family: 'Alfa Slab One';
 }
 
-.gameOverScreen {
+.gameOverScreen, .gameWonScreen {
     display: none;
     position: absolute;
     top: 0;
@@ -265,12 +265,16 @@ canvas {
     gap: 30px;
     width: 100%;
     height: 100%;  
-    background-image: url('img/9_intro_outro_screens/game_over/game over.png');
+    background-image: url('img/9_intro_outro_screens/game_over/you lost.png');
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
     padding: 50px;
     backdrop-filter: blur(10px);
+}
+
+.gameWonScreen {
+    background-image: url('img/9_intro_outro_screens/game_over/game over.png');
 }
 
  .gameOverScreenBtns {

@@ -125,13 +125,23 @@
         </div>
 
         <div id="gameOverScreen" class="gameOverScreen">
-            <div class="gameOverScreenBtns" onclick="restartGame()">
+            <div class="gameOverScreenBtns" onclick="restartGame('gameOverScreen')">
                 <div>Restart Game</div>
             </div>
-            <div class="gameOverScreenBtns" onclick="toMainMenue()">
+            <div class="gameOverScreenBtns" onclick="toMainMenue('gameOverScreen')">
                 <div>Main menue</div>
             </div>
         </div>
+
+        <div id="gameWonScreen" class="gameWonScreen">
+            <div class="gameOverScreenBtns" onclick="restartGame('gameWonScreen')">
+                <div>Restart Game</div>
+            </div>
+            <div class="gameOverScreenBtns" onclick="toMainMenue('gameWonScreen')">
+                <div>Main menue</div>
+            </div>
+        </div>
+
 
         <canvas id="canvas" width="720px" height="480px" id="canvas">
         </canvas>

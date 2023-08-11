@@ -145,7 +145,7 @@ window.addEventListener('keydown', (event) => {
 
     if(event.keyCode == 38 || event.keyCode == 87) {
         keyboard.up = true;
-        characterJump.play();
+        //characterJump.play();
     }
 
     if(event.keyCode == 40 || event.keyCode == 83) {
@@ -224,7 +224,7 @@ function bindBtsPressEvents() {
     jump.addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.up = true;
-        characterJump.play();
+        //characterJump.play();
     });
 
     jump.addEventListener('touchend', (e) => {
@@ -249,20 +249,20 @@ function bindBtsPressEvents() {
 /**
  * Resetes all game parameters an starts the game anew.
  */
-function restartGame() {
+function restartGame(id) {
     world.ctx.clearRect(0, 0, canvas.width, canvas.height);
     init();
-    document.getElementById('gameOverScreen').style.display = "none";
+    document.getElementById(id).style.display = "none";
 }
 
 /**
  * Resets all game parameters and brings you back to the main menue.
  */
-function toMainMenue() {
+function toMainMenue(id) {
     world.ctx.clearRect(0, 0, canvas.width, canvas.height);
-    document.getElementById('gameOverScreen').style.display = "none";
+    document.getElementById(id).style.display = "none";
     document.getElementById('startScreen').style.backgroundImage = "url('./img/9_intro_outro_screens/start/startscreen_1.png')";
-    document.getElementById('startGame').style.display = 'flex';
+    document.getElementById('startGameContainer').style.display = 'flex';
 }
 
 /**

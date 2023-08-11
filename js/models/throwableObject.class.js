@@ -53,11 +53,12 @@ class ThrowableObject extends MovableObject {
 
         setInterval(() => {
             if(this.bottleHit == true || this.y > 345) {
-                //this.bottleBurst.play();
+                this.bottleBurst.play();
                 this.playAnimation(this.imagesImpact);
-                this.intervalIds.forEach(clearInterval);
-                //this.speedY = 0;
-                //this.acceleration = 0;
+                this.intervalIds.forEach(id => {clearInterval(id)});
+                this.bottleBurst = false;
+                this.speedY = 0;
+                this.acceleration = 0;
                 setTimeout(() => {
                     this.x = 0;
                     this.y = -100;
@@ -73,16 +74,26 @@ class ThrowableObject extends MovableObject {
      */
     throw() {
         this.applyGravity();
-        this.setStoppableInterval(this.throwAcceleration, 40) 
+        this.setStoppableInterval(this.throwAcceleration, 40);
+        //this.throwAcceleration();
     }   
     // World braucht ein Array für throwableObjects
 
     throwAcceleration() {
-        if(this.otherDirection == true) {
-            this.x -= 12;
-        } else {
-            this.x += 12;
-        }
+            if(this.otherDirection == true) {
+                this.x -= 12;
+            } else {
+                this.x += 12;
+            }
+
+/*         setInterval(() => {
+            if(this.otherDirection == true) {
+                this.x -= 12;
+            } else {
+                this.x += 12;
+            }
+        }, 40); */
+
     }
 
     setStoppableInterval(fn, time) {
