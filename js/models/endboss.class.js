@@ -2,7 +2,10 @@ class Endboss extends MovableObject {
     height = 350;
     width = 300;
     y = 80;
+    animateEndboss;
     nearEndboss = false;
+    attackRangeEndboss = false;
+    dieEndbossSound = new Audio('../audio/dieCicken.mp3');
 
 // => Spawn function??
 
@@ -48,10 +51,10 @@ class Endboss extends MovableObject {
     ];
 
     offset =  {
-        top: 0,
-        left: 0,
+        top: 30,
+        left: 20,
         right: 0, 
-        bottom: 0
+        bottom: 20
     }
 
     firstContact = false;
@@ -67,32 +70,57 @@ class Endboss extends MovableObject {
         this.loadImages(this.imagesHurt);
         this.loadImages(this.imagesDead);
         this.x = 4200;
-        this.speed = 15;
-        this.animate();    
+        this.speed = 50;
+        this.animate();  
+        //this.stopInterval();  
     }
 
     /**
      * Play animations depending on different action.
      */
     animate() {
+        this.animateEndboss =
+            setInterval(() => {
+                this.animations()
+            }, 500);
+
+    /*     this.attackEndboss = 
+            setInterval(() => {
+                this.attackAnimation()
+            }, 500);  */
+    }
+
+    stopInterval() {
         setInterval(() => {
             if(this.isDeadEndboss()) {
-                this.playAnimation(this.imagesDead);
-                setTimeout(() => {
-                    stopGame();
-                    document.getElementById('gameWonScreen').style.display = "flex";
-                }, 500);
-            } else if(this.isHurtEndboss()) {
-                this.playAnimation(this.imagesHurt);
-            } else if(this.nearEndboss) {
-                this.moveLeft();
-                this.playAnimation(this.imagesWalking);
-                this.playAnimation(this.imagesAttack);
-            } else {
-                this.playAnimation(this.imagesAlert);
+                clearInterval(this.animateEndboss, this.attackEndboss);
             }
         }, 500);
     }
+
+    animations() {
+        if(this.isDeadEndboss()) {
+            this.dieEndbossSound.play();            
+            this.playAnimation(this.imagesDead);
+            setTimeout(() => {
+                stopGame();
+                document.getElementById('gameWonScreen').style.display = "flex";
+            }, 700);
+        } else if(this.isHurtEndboss()) {
+            this.playAnimation(this.imagesHurt);
+        } else if(this.nearEndboss && !this.isHurtEndboss()) {
+            this.moveLeft();
+            this.playAnimation(this.imagesWalking);
+        } else {
+            this.playAnimation(this.imagesAlert);
+        }
+    }
+
+   /*  attackAnimation() {
+        if(this.attackEndboss) {
+            this.playAnimation(this.imagesAttack);
+        } 
+    } */
 
     /**
      * The function returns the value 0 for the endbosses energy

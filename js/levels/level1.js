@@ -86,10 +86,6 @@ async function startLevel() {
             new Coins('../../img/8_coin/coin_1.png'),
             new Coins('../../img/8_coin/coin_1.png'),
             new Coins('../../img/8_coin/coin_1.png'),
-            new Coins('../../img/8_coin/coin_1.png'),
-            new Coins('../../img/8_coin/coin_1.png'),
-            new Coins('../../img/8_coin/coin_1.png'),
-            new Coins('../../img/8_coin/coin_1.png')
         ],
     
         [
@@ -108,10 +104,6 @@ async function startLevel() {
             new Bottles('../../img/6_salsa_bottle/2_salsa_bottle_on_ground.png'),
             new Bottles('../../img/6_salsa_bottle/2_salsa_bottle_on_ground.png'),
             new Bottles('../../img/6_salsa_bottle/1_salsa_bottle_on_ground.png'),
-            new Bottles('../../img/6_salsa_bottle/2_salsa_bottle_on_ground.png'),
-            new Bottles('../../img/6_salsa_bottle/1_salsa_bottle_on_ground.png'),
-            new Bottles('../../img/6_salsa_bottle/2_salsa_bottle_on_ground.png'),
-            new Bottles('../../img/6_salsa_bottle/1_salsa_bottle_on_ground.png')
         ]
     );
 }

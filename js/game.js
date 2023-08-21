@@ -263,6 +263,8 @@ function toMainMenue(id) {
     document.getElementById(id).style.display = "none";
     document.getElementById('startScreen').style.backgroundImage = "url('./img/9_intro_outro_screens/start/startscreen_1.png')";
     document.getElementById('startGameContainer').style.display = 'flex';
+    document.getElementById('startGame').style.display = 'block';
+
 }
 
 /**
@@ -270,7 +272,9 @@ function toMainMenue(id) {
  */
 function stopGame() {
     clearAllIntervals();
-    document.getElementById('gameSoundtrack').muted = true;
+    document.getElementById("gameSoundtrack").pause();
+    let soundIcon = document.getElementById('sound');
+    soundIcon.src = 'http://127.0.0.1:5500/img/icons/mute.svg'
 }
 
 /**

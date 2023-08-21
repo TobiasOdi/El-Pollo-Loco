@@ -4,6 +4,9 @@ class Character extends MovableObject {
     speed = 15;
     world;
     walkingSound = new Audio('../audio/walkingCharacter.mp3');
+    hurtSound = new Audio('../audio/hurt1.mp3');
+    deathSound = new Audio('../audio/characterDead.mp3');
+    movementAnimate;
 
     offset =  {
         top: 100,
@@ -87,7 +90,8 @@ class Character extends MovableObject {
         this.loadImages(this.imagesHurt);
         this.loadImages(this.imagesDead);
         this.applyGravity();
-        this.animate();    
+        this.animate();   
+        this.stopInterval(); 
     }
 
     /**
@@ -104,10 +108,11 @@ class Character extends MovableObject {
             this.checkForAction();
         }, 1000);
         
+        this.movementAnimate =
         setInterval(() => {
             this.walkingSound.pause();
-
             if(this.isDead()) {
+                this.deathSound.play();
                 this.playAnimation(this.imagesDead);
                 setTimeout(() => {
                     this.walkingSound.pause();
@@ -116,7 +121,7 @@ class Character extends MovableObject {
                 }, 1000);
 
             } else if(this.isHurt()) {
-                //this.characterHurt.play();
+                this.hurtSound.play();
                 this.playAnimation(this.imagesHurt);
             } else if(this.isAboveGround()) {
                 this.playAnimation(this.imagesJumping);
@@ -124,6 +129,14 @@ class Character extends MovableObject {
                 if(this.world.keyboard.right || this.world.keyboard.left) {
                     this.playAnimation(this.imagesWalking);
                 }
+            }
+        }, 100);
+    }
+
+    stopInterval() {
+        setInterval(() => {
+            if(this.isDead()) {
+                clearInterval(this.movementAnimate);
             }
         }, 100);
     }

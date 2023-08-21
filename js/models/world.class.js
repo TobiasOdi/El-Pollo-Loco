@@ -16,9 +16,9 @@ class World {
     bottles = new Bottles();
     throwableObject = [];
     movableObject = new MovableObject();
-    collectCoinSound = new Audio('../audio/coins1.mp3');
+    collectCoinSound = new Audio('../audio/coins2.mp3');
+    collectBottleSound = new Audio('../audio/collectBottle.mp3');
     loseCoins;
-    collectBottleSound;
 //=========================================================== BASE FUNCTIONS ======================================================
 
     /**
@@ -51,6 +51,7 @@ class World {
             this.checkCollisionsEndboss();
             this.checkBottleHitEndboss();
             this.checkNearEndboss();
+            this.checkAttackRangeEndboss();
         }, 200);
 
         setInterval(() => {
@@ -99,7 +100,7 @@ class World {
      * Checks the collision with the endboss and performes the necessary action.
      */
     checkCollisionsEndboss() {
-        this.level.endboss.forEach((endboss => {
+        this.level.endboss.forEach((endboss) => {
             if(this.character.isColliding(endboss)){
                 this.character.hitByEndboss();
                 this.statusbarHealth.setPercentage(this.character.energy);
@@ -113,8 +114,18 @@ class World {
                     this.statusbarCoins.setPercentage(this.character.coinsColected);
                 }
             }
-        })
-        );
+        });
+    }
+
+    checkAttackRangeEndboss() {
+        this.level.endboss.forEach((endboss) => {
+            if((this.character.x + this.character.width + 30) > endboss.x){
+                endboss.attackRangeEndboss = true;
+            } else {
+                endboss.attackRangeEndboss = false;
+
+            }
+        });
     }
 
     /**
@@ -154,7 +165,7 @@ class World {
             if(this.character.isColliding(coin)){
                 this.character.colectCoins();
                 this.statusbarCoins.setPercentage(this.character.coinsColected);
-                
+                this.collectCoinSound.play();
                 coin.x = 0;
                 coin.y = -100;
             }
@@ -169,6 +180,7 @@ class World {
             if(this.character.isColliding(bottle)){
                 this.character.colectBottles();
                 this.statusbarBottles.setPercentage(this.character.bottlesColected);
+                this.collectBottleSound.play();
                 bottle.x = 0;
                 bottle.y = -100;
             }

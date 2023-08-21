@@ -301,14 +301,15 @@ canvas {
 /* ======================================== RESPONSIVENESS ============================================ */
 /* ====== Smartphones ===== */
 @media only screen and (max-width: 720px){
-    canvas {
+    canvas, .gameContainer {
         width: 100%;
     }
 }
 
-@media only screen and (max-heigth: 480px){
-    canvas {
+@media only screen and (max-height: 480px){
+    canvas, .gameContainer {
         height: 100vh;
+        top: 0  ;
     }
 
 }

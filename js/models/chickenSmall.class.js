@@ -2,6 +2,8 @@ class ChickenSmall extends MovableObject {
     y = 380;
     height = 40;
     width = 40;
+    chickenDieSound = new Audio('../audio/dieChickenSmall2.mp3');
+    animationInterval;
 
     imagesWalking = [
         '../../img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
@@ -30,24 +32,40 @@ class ChickenSmall extends MovableObject {
         this.loadImages(this.imagesDead);
         this.x = 400 + Math.random() * 4000;
         this.speed = 3 + Math.random() * 0.5;
-        this.animate();    
+        this.animate();
+        this.checkDeadChicken();    
     }
 
     /**
      * Play animations depending on different action.
      */
     animate() {
+        this.animationInterval = 
+        setInterval(() => {
+            this.animations()
+        }, 100);
+    }
+
+    animations() {
+        if(this.speed == 0) {
+            this.playAnimation(this.imagesDead);
+            this.chickenDieSound.play();
+            setTimeout(() => {
+                this.x = 0;
+                this.y = -100;
+                }, 1500);
+        } else {
+            this.moveLeft();
+            this.playAnimation(this.imagesWalking);
+        }
+    }
+
+    checkDeadChicken() {
+
         setInterval(() => {
             if(this.speed == 0) {
-                this.playAnimation(this.imagesDead);
-                setTimeout(() => {
-                    this.x = 0;
-                    this.y = -100;
-                    }, 1500);
-            } else {
-                this.moveLeft();
-                this.playAnimation(this.imagesWalking);
-            }
+                clearInterval(this.animationInterval);
+            } 
         }, 100);
     }
 }
