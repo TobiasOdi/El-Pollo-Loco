@@ -51,7 +51,6 @@ class World {
             this.checkCollisionsEndboss();
             this.checkBottleHitEndboss();
             this.checkNearEndboss();
-            this.checkAttackRangeEndboss();
         }, 200);
 
         setInterval(() => {
@@ -115,20 +114,6 @@ class World {
                     this.character.coinsColected = 0;
                     this.statusbarCoins.setPercentage(this.character.coinsColected);
                 }
-            }
-        });
-    }
-
-    /**
-     * This function checks if the character is in attack range.
-     */
-    checkAttackRangeEndboss() {
-        this.level.endboss.forEach((endboss) => {
-            if((this.character.x + this.character.width + 30) > endboss.x){
-                endboss.attackRangeEndboss = true;
-            } else {
-                endboss.attackRangeEndboss = false;
-
             }
         });
     }
@@ -199,7 +184,7 @@ class World {
      */
     checkNearEndboss() {
         this.level.endboss.forEach((endboss) => {
-            if(this.character.x > 3700) {
+            if(this.character.x > 3850) {
                 endboss.nearEndboss = true;
             }
         });
@@ -272,8 +257,8 @@ class World {
     };
 
     /**
-     * 
-     * @param {object} objects 
+     * This function outsources the the forEach() Method to clean up the con in the draw() function.
+     * @param {object} mo - movable objects (chicken, character etc.)
      */
     addObjectsToMap(objects) {
         objects.forEach(o => {
@@ -282,8 +267,8 @@ class World {
     }
 
     /**
-     * This function checks the direction of an image an flips it if necessary.
-     * @param {*} mo 
+     * This function adds an object to the map in the desired direction.
+     * @param {object} mo - movable object (chicken, character etc.)
      */
     addToMap(mo) {
         if(mo.otherDirection) {

@@ -15,6 +15,13 @@ class Chicken extends MovableObject {
         '../../img/3_enemies_chicken/chicken_normal/2_dead/dead.png'
     ];
 
+    offset =  {
+        top: 0,
+        left: 0,
+        right: 0, 
+        bottom: 0
+    };
+
     /**
      * This function loads the "chicken" enemy and sets the coordinates for there placement on the canvas
      */

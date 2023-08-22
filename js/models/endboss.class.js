@@ -82,10 +82,6 @@ class Endboss extends MovableObject {
                 this.animations()
             }, 500);
 
-    /*     this.attackEndboss = 
-            setInterval(() => {
-                this.attackAnimation()
-            }, 500);  */
     }
 
     /**
@@ -95,15 +91,15 @@ class Endboss extends MovableObject {
         if(this.isDeadEndboss()) {
             this.dieEndbossSound.play();            
             this.playAnimation(this.imagesDead);
-            stopGame();
             setTimeout(() => {
+                stopGame();
                 document.getElementById('gameWonScreen').style.display = "flex";
-            }, 1000);
+            }, 1200);
         } else if(this.isHurtEndboss()) {
             this.playAnimation(this.imagesHurt);
         } else if(this.nearEndboss && !this.isHurtEndboss()) {
             this.moveLeft();
-            this.playAnimation(this.imagesWalking);
+            this.playAnimation(this.imagesAttack);
         } else {
             this.playAnimation(this.imagesAlert);
         }
@@ -119,12 +115,6 @@ class Endboss extends MovableObject {
             }
         }, 500);
     }
-
-   /*  attackAnimation() {
-        if(this.attackEndboss) {
-            this.playAnimation(this.imagesAttack);
-        } 
-    } */
 
     /**
      * The function returns the value 0 for the endbosses energy.

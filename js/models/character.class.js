@@ -1,7 +1,7 @@
 class Character extends MovableObject {
     height = 250;
     y = 175;
-    speed = 15;
+    speed = 20;
     world;
     walkingSound = new Audio('../audio/walkingCharacter.mp3');
     hurtSound = new Audio('../audio/hurt1.mp3');
@@ -128,7 +128,7 @@ class Character extends MovableObject {
                     this.playAnimation(this.imagesWalking);
                 }
             }
-        }, 100);
+        }, 80);
     }
 
      /**
@@ -139,7 +139,7 @@ class Character extends MovableObject {
             if(this.isDead()) {
                 clearInterval(this.movementAnimate);
             }
-        }, 100);
+        }, 80);
     }
 
     /**

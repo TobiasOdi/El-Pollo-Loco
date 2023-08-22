@@ -50,12 +50,12 @@ async function setElements() {
 function mute() {
     let soundIcon = document.getElementById('sound');
 
-    if(soundIcon.src == 'http://127.0.0.1:5500/img/icons/volume.svg') {
-        soundIcon.src = 'http://127.0.0.1:5500/img/icons/mute.svg';
+    if(soundIcon.src == './img/icons/volume.svg') {
+        soundIcon.src = './img/icons/mute.svg';
         document.getElementById("gameSoundtrack").pause();
 
     } else {
-        soundIcon.src = 'http://127.0.0.1:5500/img/icons/volume.svg';
+        soundIcon.src = './img/icons/volume.svg';
         document.getElementById("gameSoundtrack").play();
     }
 }
@@ -263,7 +263,7 @@ function stopGame() {
     clearAllIntervals();
     document.getElementById("gameSoundtrack").pause();
     let soundIcon = document.getElementById('sound');
-    soundIcon.src = 'http://127.0.0.1:5500/img/icons/mute.svg'
+    soundIcon.src = './img/icons/mute.svg'
 }
 
 /**

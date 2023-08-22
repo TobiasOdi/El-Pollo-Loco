@@ -6,6 +6,7 @@ class ThrowableObject extends MovableObject {
     bottleBurst = new Audio('../audio/bottleBurst1.mp3');
     intervalIds = [];
     checkForHitInterval;
+    throwInterval;
 
     imagesRotate = [
         '../../img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
@@ -23,6 +24,13 @@ class ThrowableObject extends MovableObject {
         '../../img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png'
     ];
 
+    offset =  {
+        top: 0,
+        left: 0,
+        right: 0, 
+        bottom: 0
+    };
+
     /**
      * This function loads the images for the throwable bottle, sets its size and other variables and runs all the necessary functions.
      * @param {*} x 
@@ -39,10 +47,9 @@ class ThrowableObject extends MovableObject {
         this.height = 80;
         this.width = 60;
         this.bottleHit = false;
-        this.speedY = 27;
-        this.acceleration = 2;
+        this.speedY = 28;
+        this.acceleration = 3;
         this.animate();
-        this.throw();
         this.stopInterval();
     }
 
@@ -58,15 +65,13 @@ class ThrowableObject extends MovableObject {
             if(this.bottleHit == true || this.y > 345) {
                 this.bottleBurst.play();
                 this.playAnimation(this.imagesImpact);
-                clearInterval(this.throwInterval);
-                //this.intervalIds.forEach(id => {clearInterval(id)});
                 this.bottleBurst = false;
                 this.speedY = 0;
                 this.acceleration = 0;
                 setTimeout(() => {
                     this.x = 0;
                     this.y = -100;
-                }, 100);
+                }, 300);
             } else {
                 this.playAnimation(this.imagesRotate);
             }
@@ -79,7 +84,9 @@ class ThrowableObject extends MovableObject {
      */
     throw() {
         this.applyGravity();
-        this.throwInterval = setInterval(() => {
+
+        this.throwInterval = 
+        setInterval(() => {
             this.throwAcceleration();
         }, 40);
     }   
@@ -89,9 +96,9 @@ class ThrowableObject extends MovableObject {
      */
     throwAcceleration() {
             if(this.otherDirection == true) {
-                this.x -= 8;
+                this.x -= 12;
             } else {
-                this.x += 8;
+                this.x += 12;
             }
     }
 
@@ -102,6 +109,7 @@ class ThrowableObject extends MovableObject {
         setInterval(() => {
             if(this.bottleHit == true || this.y > 345) {
                 clearInterval(this.checkForHitInterval)
+                clearInterval(this.throwInterval);
             };
         }, 80)
     }
