@@ -17,10 +17,9 @@ class Coins extends MovableObject {
     }
 
     /**
-     * Load coins and position on the canvas.
+     * This function loads the collectable coins and sets the coordinates for there placement on the canvas
      */
     constructor() {
-        // => super() gilt nur für Methoden!!
         super().loadImage('../../img/8_coin/coin_1.png');
         this.loadImages(this.imagesCoin);
         this.x = 300 + Math.random() * 4000;
@@ -29,7 +28,7 @@ class Coins extends MovableObject {
     }
 
     /**
-     * Animates the coins that can be collected
+     * This function animates the collectable coins
      */
     animate() {
         setInterval(() => {

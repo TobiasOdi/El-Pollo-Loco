@@ -5,7 +5,6 @@ class ThrowableObject extends MovableObject {
     otherDirection;
     bottleBurst = new Audio('../audio/bottleBurst1.mp3');
     intervalIds = [];
-    throwInterval;
     checkForHitInterval;
 
     imagesRotate = [
@@ -25,7 +24,7 @@ class ThrowableObject extends MovableObject {
     ];
 
     /**
-     * Loads, positions and animates the bottle that can be thrown
+     * This function loads the images for the throwable bottle, sets its size and other variables and runs all the necessary functions.
      * @param {*} x 
      * @param {*} y 
      * @param {*} direction 
@@ -48,7 +47,7 @@ class ThrowableObject extends MovableObject {
     }
 
     /**
-     * Play animations depending on different action.
+     * This function plays the animations depending on different values und assigns an interval to a variable.
      */
     animate() {
         this.bottleBurst.pause();
@@ -74,6 +73,31 @@ class ThrowableObject extends MovableObject {
         }, 80);
     }
 
+  
+    /**
+     * This function sets the gravity for the throwable bottle and assigns an interval to a variable.
+     */
+    throw() {
+        this.applyGravity();
+        this.throwInterval = setInterval(() => {
+            this.throwAcceleration();
+        }, 40);
+    }   
+
+    /**
+     * This function controlls the speed of the thrown bottle.
+     */
+    throwAcceleration() {
+            if(this.otherDirection == true) {
+                this.x -= 8;
+            } else {
+                this.x += 8;
+            }
+    }
+
+    /**
+     * This function stops the "checkForHitInterval" when the bottle hits an enemy or the ground.
+     */
     stopInterval() {
         setInterval(() => {
             if(this.bottleHit == true || this.y > 345) {
@@ -81,39 +105,5 @@ class ThrowableObject extends MovableObject {
             };
         }, 80)
     }
-   
-    /**
-     * Runs the throw animation and apllies the gravity.
-     */
-    throw() {
-        this.applyGravity();
-        //this.setStoppableInterval(this.throwAcceleration, 40);
-        this.throwInterval = setInterval(() => {
-            this.throwAcceleration();
-        }, 40);
-        //this.throwAcceleration();
-    }   
-    // World braucht ein Array für throwableObjects
-
-    throwAcceleration() {
-            if(this.otherDirection == true) {
-                this.x -= 8;
-            } else {
-                this.x += 8;
-            }
-
-/*         setInterval(() => {
-            if(this.otherDirection == true) {
-                this.x -= 12;
-            } else {
-                this.x += 12;
-            }
-        }, 40); */
-
-    }
-
-    setStoppableInterval(fn, time) {
-        let id = setInterval(fn, time);
-        this.intervalIds.push(id);
-    }
+    
 }

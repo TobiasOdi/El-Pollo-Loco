@@ -1,5 +1,4 @@
 class Keyboard {
-
     left = false;  // code 65, 37
     right = false; // code 68, 39
     up = false; // code 87, 38

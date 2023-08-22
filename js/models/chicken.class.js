@@ -3,6 +3,8 @@ class Chicken extends MovableObject {
     height = 60;
     width = 60;
     chickenDieSound = new Audio('../audio/dieChickenSmall2.mp3');
+    animationInterval;
+
     imagesWalking = [
         '../../img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
         '../../img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
@@ -13,18 +15,10 @@ class Chicken extends MovableObject {
         '../../img/3_enemies_chicken/chicken_normal/2_dead/dead.png'
     ];
 
-    offset =  {
-        top: 0,
-        left: 0,
-        right: 0, 
-        bottom: 0
-    }
-
     /**
-     * Load enemy  an the different animations and positions on the canvas.
+     * This function loads the "chicken" enemy and sets the coordinates for there placement on the canvas
      */
     constructor() {
-        // => super() gilt nur für Methoden!!
         super().loadImage('../../img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.imagesWalking);
         this.loadImages(this.imagesDead);
@@ -35,7 +29,7 @@ class Chicken extends MovableObject {
     }
 
     /**
-     * Play animations depending on different action.
+     * This function assigns an interval to predefined variable and runs the animations function
      */
     animate() {
         this.animationInterval = 
@@ -44,6 +38,9 @@ class Chicken extends MovableObject {
         }, 100);
     }
 
+    /**
+     * This function plays the animations depending on different values
+     */
     animations() {
         if(this.speed == 0) {
             this.playAnimation(this.imagesDead);
@@ -58,13 +55,14 @@ class Chicken extends MovableObject {
         }
     }
 
+    /**
+     * This function stopps the "animationInterval" interval when the chicken is dead.
+     */
     checkDeadChicken() {
-
         setInterval(() => {
             if(this.speed == 0) {
                 clearInterval(this.animationInterval);
             } 
         }, 100);
     }
-
 }

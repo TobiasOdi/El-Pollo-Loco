@@ -79,7 +79,7 @@ class Character extends MovableObject {
     ];
 
     /**
-     * Loads character an the different animations and positions on the canvas.
+     * This function loads the characters images for the animations.
      */
     constructor() {
         super().loadImage('../../img/2_character_pepe/2_walk/W-21.png');
@@ -95,11 +95,9 @@ class Character extends MovableObject {
     }
 
     /**
-     * Play animations depending on different action.
+     * This function plays the animations depending on different values/booleans and assigns intervals to variables.
      */
     animate() {
-        //setStoppableInterval(this.movement(), 40)
-        //setStoppableInterval(this.checkForAction(), 1000)
         setInterval(() => {
             this.movement();
         }, 50);
@@ -133,6 +131,9 @@ class Character extends MovableObject {
         }, 100);
     }
 
+     /**
+     * This function stopps the "movementAnimate" interval when the character is dead.
+     */
     stopInterval() {
         setInterval(() => {
             if(this.isDead()) {
@@ -142,7 +143,7 @@ class Character extends MovableObject {
     }
 
     /**
-     * Moves character depending on the pressed keys
+     * This function lets the character move, depending on the pressed keys.
      */
     movement() {
         if(this.world.keyboard.right && this.x < this.world.level.levelEndX) {
@@ -166,7 +167,7 @@ class Character extends MovableObject {
     }
 
     /**
-     * Checks if idle or long idle animations should be playd depending on the time passed
+     * This function checks if the character is idle or long idle and runs the animations depending on the time passed.
      */
     checkForAction() {
         let currentTime = new Date().getTime();

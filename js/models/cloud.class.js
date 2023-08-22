@@ -4,7 +4,7 @@ class Cloud extends MovableObject {
     width = 500;
 
     /**
-     * Loads clouds, play animation and position on the canvas.
+     * This function loads the "chicken small" enemy and sets the coordinates for there placement on the canvas
      */
     constructor() {
         // => super() gild nur für Methoden!!
@@ -14,7 +14,7 @@ class Cloud extends MovableObject {
     }
 
     /**
-     * Play moving animation
+     * This function plays the animation moving left
      */
     animate() {
         this.moveLeft();

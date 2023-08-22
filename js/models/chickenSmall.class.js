@@ -15,18 +15,10 @@ class ChickenSmall extends MovableObject {
         '../../img/3_enemies_chicken/chicken_small/2_dead/dead.png'
     ];
 
-    offset =  {
-        top: 0,
-        left: 0,
-        right: 0, 
-        bottom: 0
-    }
-
     /**
-     * Load enemy  an the different animations and position on the canvas.
+     * This function loads the "chicken small" enemy and sets the coordinates for there placement on the canvas.
      */
     constructor() {
-        // => super() gilt nur für Methoden!!
         super().loadImage('../../img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
         this.loadImages(this.imagesWalking);
         this.loadImages(this.imagesDead);
@@ -37,7 +29,7 @@ class ChickenSmall extends MovableObject {
     }
 
     /**
-     * Play animations depending on different action.
+     * This function assigns an interval to a variable and runs the animations function.
      */
     animate() {
         this.animationInterval = 
@@ -46,6 +38,9 @@ class ChickenSmall extends MovableObject {
         }, 100);
     }
 
+    /**
+     * This function plays the animations depending on different values.
+     */
     animations() {
         if(this.speed == 0) {
             this.playAnimation(this.imagesDead);
@@ -60,8 +55,10 @@ class ChickenSmall extends MovableObject {
         }
     }
 
+    /**
+     * This function stopps the "animationInterval" interval when the chicken is dead.
+     */
     checkDeadChicken() {
-
         setInterval(() => {
             if(this.speed == 0) {
                 clearInterval(this.animationInterval);

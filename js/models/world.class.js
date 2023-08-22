@@ -19,10 +19,10 @@ class World {
     collectCoinSound = new Audio('../audio/coins2.mp3');
     collectBottleSound = new Audio('../audio/collectBottle.mp3');
     loseCoins;
-//=========================================================== BASE FUNCTIONS ======================================================
 
+//=========================================================== BASE FUNCTIONS ======================================================
     /**
-     * Creates the canvas and executes alle the functions (draw(), run())
+     * Creates the canvas and runs all the functions (draw(), run(), etc.)
      * @param {element} canvas - element where the objects can be drawn to
      * @param {class} keyboard - contains the controls for the character
      */
@@ -43,7 +43,7 @@ class World {
     }
 
     /**
-     * Runs all de check funtctions
+     * This function runs all the the "check" functions.
      */
     run() {
         setInterval(() => {
@@ -67,9 +67,8 @@ class World {
     }
 
 //=========================================================== COLLISION CHECKS ======================================================
-
     /**
-     * Checks the collision with enemies and performes the necesary action.
+     * This function checks the collision between the character and the enemies.
      */
     checkCollisionsEnemy() {
         this.level.enemies.forEach((enemy) => {
@@ -87,6 +86,9 @@ class World {
             }});
     }
 
+    /**
+     * This function checks if the character collides on top of an enemy.
+     */
     checkCollisionsEnemyTop() {
         this.level.enemies.forEach((enemy) => {
             if(enemy.speed > 0 && this.character.isColliding(enemy)){
@@ -97,7 +99,7 @@ class World {
     }
 
     /**
-     * Checks the collision with the endboss and performes the necessary action.
+     * This function checks the collision between the character and the endboss.
      */
     checkCollisionsEndboss() {
         this.level.endboss.forEach((endboss) => {
@@ -117,6 +119,9 @@ class World {
         });
     }
 
+    /**
+     * This function checks if the character is in attack range.
+     */
     checkAttackRangeEndboss() {
         this.level.endboss.forEach((endboss) => {
             if((this.character.x + this.character.width + 30) > endboss.x){
@@ -129,7 +134,7 @@ class World {
     }
 
     /**
-     * Checks the collision for each throwableObject (bottle) with an enemy.
+     * This function checks the collision for each throwableObject (bottle) with an enemy.
      */
     checkBottleHitEnemy() {
         this.throwableObject.forEach((bottle) => {
@@ -143,7 +148,7 @@ class World {
     };
 
     /**
-     * Checks the collision for each throwableObject (bottle) with the endboss.
+     * This function checks the collision for each throwableObject (bottle) with the endboss.
      */
     checkBottleHitEndboss() {
         this.throwableObject.forEach((bottle) => {
@@ -158,7 +163,7 @@ class World {
     };
 
     /**
-     * Lets the character colect a coin and updates the statusbar.
+     * This function lets the character colect a coin and updates the statusbar.
      */
     checkCollisionsCoins() {
         this.level.coins.forEach((coin) => {
@@ -173,7 +178,7 @@ class World {
     }
 
     /**
-     * Lets the character colect a bottle and updates the statusbar.
+     * This function lets the character colect a coin and updates the statusbar.
      */
     checkCollisionsBottles() {
         this.level.bottles.forEach((bottle) => {
@@ -190,7 +195,7 @@ class World {
 //=========================================================== CHECK CHARACTER PRIXIMITY ======================================================
 
     /**
-     * Cheks if character is near endboss
+     * This function cheks if the character is near the endboss.
      */
     checkNearEndboss() {
         this.level.endboss.forEach((endboss) => {
@@ -202,7 +207,7 @@ class World {
 
 //=========================================================== CHECK FOR THROWABLE OBJECT ======================================================
     /**
-     * Lets the character throw a bottle and updates the statusbar.
+     * This function lets the character throw a bottle and updates the statusbar.
      */
     checkThrowObject() {
         if(this.keyboard.throw) {
@@ -227,9 +232,8 @@ class World {
     }
 
 //=========================================================== CANVAS FUNCTIONS ======================================================
-
     /**
-     * The function draws all the elemnts on the canvas.
+     * This function draws all the elemnts on the canvas.
      */
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -268,7 +272,7 @@ class World {
     };
 
     /**
-     * Adds the objects to the canvas
+     * 
      * @param {object} objects 
      */
     addObjectsToMap(objects) {
@@ -278,7 +282,7 @@ class World {
     }
 
     /**
-     * Flips the image of the character according in which direction it walks
+     * This function checks the direction of an image an flips it if necessary.
      * @param {*} mo 
      */
     addToMap(mo) {

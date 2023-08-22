@@ -8,7 +8,7 @@ class DrawableObject {
     width = 100;
 
     /**
-     * Create new image => it is the same as > this.img = document.getElementById('image') <img id="image">
+     * This function creates new image => it is the same as > this.img = document.getElementById('image') <img id="image">
      * @param {string} path - path to the corresponding image
      */
     loadImage(path) {
@@ -17,15 +17,15 @@ class DrawableObject {
     }
 
     /**
-     * Images are beeing drwan on the canvas.
-     * @param {element} ctx - canvas.getContext('2d')
+     * This function drwas the images on the canvas. It needs the variables for the position (x, y) and the with and height.
+     * @param {element} ctx - tool to draw on the canvas / canvas.getContext('2d')
      */
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
     /**
-     * Loading images into the imagCache array
+     * This function loads images into the imagCache array.
      * @param {Array} arr - ['img/image1.png', 'img/image2.png', ...]
      */
     loadImages(arr) {
@@ -36,10 +36,9 @@ class DrawableObject {
         });
     }
 
-
     /**
      * Drwas a blue frame around avery object/element
-     * @param {element} ctx - canvas.getContext('2d')
+     * @param {element} ctx - tool to draw on the canvas / canvas.getContext('2d')
      */
     drawFrame(ctx) {
         if(this instanceof Character || this instanceof Chicken || this instanceof ChickenSmall || this instanceof Endboss || this instanceof Coins || this instanceof Bottles) {
@@ -48,7 +47,6 @@ class DrawableObject {
             ctx.strokeStyle = 'blue';
             ctx.rect(this.x, this.y, this.width, this.height);
             ctx.stroke();
-    
         }
     } 
 }

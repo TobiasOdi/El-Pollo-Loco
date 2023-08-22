@@ -11,17 +11,9 @@ class MovableObject extends DrawableObject {
     lastHitEndboss = 0;
     bottleHit;
 
-    offset =  {
-        top: 0,
-        left: 0,
-        right: 0, 
-        bottom: 0
-    }
-
 //======================================================== WORLD FUNCTIONS =====================================================================
-
     /**
-     * Sets the gravity (how fast the objects fall)
+     * This function sets the gravity (how fast the objects fall).
      */
     applyGravity() {
         setInterval(() => {
@@ -33,7 +25,7 @@ class MovableObject extends DrawableObject {
     }
 
     /**
-     * Checks if an object is above ground > Throwable objects should always fall
+     * This function checks if an object is above ground > Throwable objects should always fall.
      * @returns 
      */
     isAboveGround() {
@@ -45,8 +37,8 @@ class MovableObject extends DrawableObject {
     }
 
     /**
-     * Checks the collisions between any object
-     * @param {element} mo - character, coin, bottle, chicken etc.
+     * This function checks the collisions between any object.
+     * @param {element} mo - movable object (character, coin, bottle, chicken etc.)
      * @returns 
      */
     isColliding (mo) {
@@ -57,9 +49,8 @@ class MovableObject extends DrawableObject {
     }
 
 //======================================================== CHARACTER FUNCTIONS =====================================================================
-
     /**
-     * Subtracts the characters energy if hit by small enemy
+     * This funciton subtracts the characters energy if hit by an enemy.
      */
     hit() {
         this.energy -= 5;
@@ -71,7 +62,7 @@ class MovableObject extends DrawableObject {
     }
 
     /**
-     * Subtracts the characters energy if hit by endboss
+     * This function subtracts the characters energy if hit by endboss.
      */
     hitByEndboss() {
         this.energy -= 20;
@@ -83,7 +74,7 @@ class MovableObject extends DrawableObject {
     }
 
     /**
-     * Checkes the time passed since the character has last been hit
+     * This function checkes the time passed since the character has last been hit.
      * @returns 
      */
     isHurt(){
@@ -93,7 +84,7 @@ class MovableObject extends DrawableObject {
     }
 
     /**
-     * The function returns the value 0 for the character energy
+     * This function returns the value 0 for the characters energy.
      * @returns 
      */
     isDead() {
@@ -101,14 +92,14 @@ class MovableObject extends DrawableObject {
     }
 
     /**
-     * Character gets pushed back a distance
+     * This function pushes the character back a certain distance.
      */
     pushedBack() {
         this.x -= 250;
     }
 
     /**
-    * Adds a coin to coinsColected
+    * This function adds a coin to coinsColected
     */
     colectCoins() {
         this.coinsColected += 1;
@@ -118,7 +109,7 @@ class MovableObject extends DrawableObject {
     }
     
     /**
-     * Adds a bottle to  bottlesColected
+     * This function adds a bottle to  bottlesColected
      */
     colectBottles() {
         this.bottlesColected += 1;
@@ -128,30 +119,29 @@ class MovableObject extends DrawableObject {
     }
 
     /**
-     * Makes the character move right.
+     * This function makes an object move right.
      */
     moveRight() {
         this.x += this.speed;
     }
     
     /**
-     * Makes the character move left.
+     * This function makes an object move left.
      */
     moveLeft() {
         this.x -= this.speed;
     }
     
     /**
-     * Makes the character jump.
+     * This funciton makes the character jump.
      */
     jump() {
         this.speedY = 30;
     }
 
 //======================================================== ENDBOSS FUNCTIONS =====================================================================
-
     /**
-     * Subtracts the endbosses energy
+     * This function subtracts the endbosses energy.
      */
     endbossIsHit() {
         this.energyEndboss -= 15;
@@ -164,7 +154,7 @@ class MovableObject extends DrawableObject {
 
 
     /**
-     * Checkes the time passed since the endboss has last been hit
+     * This function checkes the time passed since the endboss has last been hit.
      * @returns 
      */
     isHurtEndboss(){
@@ -174,36 +164,34 @@ class MovableObject extends DrawableObject {
     }
 
 //======================================================== CHICKEN FUNCTION =====================================================================
-
     /**
-     * The function returns the speed 0 of an enemy
+     * This function returns the speed 0 of an enemy.
      */
     die() {
         return this.speed == 0;
     }
 
 //======================================================== BASE FUNCTIONS =====================================================================
-
     /**
-     * Creates a new image
+     * This function creates a new image.
      * @param {string} path - image path
      */
     loadImage(path) {
-        this.img = new Image();    // ist das gleiche wie this.img = document.getElementById('image') <img id="image">
+        this.img = new Image();
         this.img.src = path;
     }
 
     /**
-     * Draws the image to the canvas.
-     * @param {element} ctx - canvas element
+     * This function draws the image to the canvas.
+     * @param {element} ctx - tool to draw on the canvas
      */
     draw(ctx) {
         ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
 
     /**
-     * Flips the image to the other direction
-     * @param {element} ctx - canvas element
+     * This function flips the characters image to the other direction.
+     * @param {element} ctx - tool to draw on the canvas
      */
     flipImage(ctx){
         ctx.save();
@@ -213,8 +201,8 @@ class MovableObject extends DrawableObject {
     }
 
     /**
-     * Flips the image back to the initial direction
-     * @param {element} ctx - canvas element
+     * This function flips the characters image back to the initial direction.
+     * @param {element} ctx - tool to draw on the canvas
      */
     flipImageBack(ctx){
         this.x = this.x * -1;
@@ -222,7 +210,7 @@ class MovableObject extends DrawableObject {
     }
 
     /**
-     * Loading images into the imageCache array
+     * This function loads images into the imageCache array.
      * @param {Array} arr - ['img/image1.png', 'img/image2.png', ...]
      */
     loadImages(arr) {
@@ -234,8 +222,8 @@ class MovableObject extends DrawableObject {
     }
 
     /**
-     * Displays all images in an array one after another
-     * @param {Array} images - image array of the current animation
+     * This functions plays an specific animaiton.
+     * @param {Array} images - array with the images of the current animation
      */
     playAnimation(images) {
         let i = this.currentImage % images.length; // let i = 0 % 6
@@ -243,5 +231,4 @@ class MovableObject extends DrawableObject {
         this.img = this.imageCache[path];
         this.currentImage++;
     }
-
 }

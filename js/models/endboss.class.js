@@ -7,8 +7,6 @@ class Endboss extends MovableObject {
     attackRangeEndboss = false;
     dieEndbossSound = new Audio('../audio/dieCicken.mp3');
 
-// => Spawn function??
-
     imagesWalking = [
         '../../img/4_enemie_boss_chicken/1_walk/G1.png',
         '../../img/4_enemie_boss_chicken/1_walk/G2.png',
@@ -60,7 +58,7 @@ class Endboss extends MovableObject {
     firstContact = false;
 
      /**
-     * Loads endboss and the different animations and position on the canvas.
+     * This function loads the endboss and sets the coordinates for there placement on the canvas.
      */
     constructor() {
         super().loadImage('../../img/4_enemie_boss_chicken/2_alert/G5.png');
@@ -71,12 +69,12 @@ class Endboss extends MovableObject {
         this.loadImages(this.imagesDead);
         this.x = 4200;
         this.speed = 50;
-        this.animate();  
-        //this.stopInterval();  
+        this.animate();
+        this.stopInterval();  
     }
 
     /**
-     * Play animations depending on different action.
+     * This function assigns an interval to a variable and runs the animations function.
      */
     animate() {
         this.animateEndboss =
@@ -90,14 +88,9 @@ class Endboss extends MovableObject {
             }, 500);  */
     }
 
-    stopInterval() {
-        setInterval(() => {
-            if(this.isDeadEndboss()) {
-                clearInterval(this.animateEndboss, this.attackEndboss);
-            }
-        }, 500);
-    }
-
+    /**
+     * This function plays the animations depending on different values.
+     */
     animations() {
         if(this.isDeadEndboss()) {
             this.dieEndbossSound.play();            
@@ -116,6 +109,17 @@ class Endboss extends MovableObject {
         }
     }
 
+     /**
+     * This function stopps the "animateEndboss" und "attackEndboss" intervals when the endboss is dead.
+     */
+    stopInterval() {
+        setInterval(() => {
+            if(this.isDeadEndboss()) {
+                clearInterval(this.animateEndboss, this.attackEndboss);
+            }
+        }, 500);
+    }
+
    /*  attackAnimation() {
         if(this.attackEndboss) {
             this.playAnimation(this.imagesAttack);
@@ -123,7 +127,7 @@ class Endboss extends MovableObject {
     } */
 
     /**
-     * The function returns the value 0 for the endbosses energy
+     * The function returns the value 0 for the endbosses energy.
      * @returns 
      */
     isDeadEndboss() {

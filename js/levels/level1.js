@@ -1,7 +1,7 @@
 let level1;
 
 /**
- * Function to draw objects afert game start.
+ * This function contains all elements for the first level on the world that need to be drawn.
  */
 async function startLevel() {
     level1 = new Level(

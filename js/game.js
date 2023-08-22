@@ -1,3 +1,4 @@
+//=============================================================== VARIABLES ==================================================================
 let canvas;
 let ctx;
 let world;
@@ -5,20 +6,6 @@ let keyboard = new Keyboard();
 let fullSize = false;
 let characterJump = new Audio('../audio/jump1.mp3');
 let loading = false;
-
-// AUFGABEN
-// 1. Sounds suchen 
-//      - Springen
-//      - Flasche werfen
-//      - impact, zerbrechen, spritzer
-//      - Geräusche Hühner, kleiner Hühner, Boss
-// 2. Falschen kollision mit Gegnern > kleine und Endboss
-// 4. Endgegner besiegen => Endgegner Healthbar
-// 5. Responsiveness => bei Smartphones muss ab einer gewissen Breite das Bild gedreht werden und die anderern Elemente neben dem Canvas ausgeblendet werden. 
-// 6. Code bereinigen:
-//      - Funktionen kürzen und übersichtlich gestalten
-//      - Funktionen mit return erstellen bei welchen man genau weiss was diese machen. z.B. in einer if abfrage
-//          - z.B. canMoveRight() => als Frage formulieren
 
 //=============================================================== START GAME ==================================================================
 /**
@@ -30,7 +17,7 @@ async function init() {
 }
 
 /**
- * This function starts the game and hides the startscreen.
+ * This function starts the game and hides the startscreen/startbutton.
  */
 async function startGame() {
     document.getElementById('loader-wrapper').style.display = 'flex';
@@ -47,6 +34,9 @@ async function startGame() {
     }
 }
 
+/**
+ * This function creates a new world and sets the "lastKeyPress" variable
+ */
 async function setElements() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
@@ -55,7 +45,7 @@ async function setElements() {
 
 //=============================================================== GAME FEATURES ==================================================================
 /**
- * It plays and mutes the game sound.
+ * This function plays and mutes the game sound.
  */
 function mute() {
     let soundIcon = document.getElementById('sound');
@@ -91,7 +81,7 @@ function fullScreen() {
 }
 
 /**
- * The game enters fullscreen.
+ * This function lets the game enter fullscreen.
  * @param {element} gameContainer - Element/Container that enters fullscreen
  */
 function enterFullscreen(gameContainer) {
@@ -105,7 +95,7 @@ function enterFullscreen(gameContainer) {
 }
 
 /**
- * The game exits fullscreen.
+ * The function lets the game exit fullscreen.
  */
 function exitFullscreen() {
     if (document.exitFullscreen) {
@@ -116,14 +106,14 @@ function exitFullscreen() {
 }
 
 /**
- * Shows the controls, which key need to be pressed for a certain action.
+ * This function shows the game controls
  */
 function showControls() {
     document.getElementById('controls').style.display = "flex";
 }
 
 /**
- * Hides the controls.
+ * This function hides the game controls
  */
 function closeControls() {
     document.getElementById('controls').style.display = "none";
@@ -131,7 +121,7 @@ function closeControls() {
 
 //=============================================================== CONTROLLS KEYBOARD ==================================================================
 /**
- * Sets a value when pressing a certain key down on your keyboard.
+ * This function sets a value when pressing a certain key down on your keyboard.
  * => Controlling your character
  */
 window.addEventListener('keydown', (event) => {
@@ -158,7 +148,7 @@ window.addEventListener('keydown', (event) => {
 });
 
 /**
- * Sets a value when releasing a certain key on your keyboard.
+ * This function sets a value when releasing a certain key on your keyboard.
  * => Controlling your character
  */
 window.addEventListener('keyup', (event) => {
@@ -190,7 +180,7 @@ window.addEventListener('keyup', (event) => {
 
 //=============================================================== CONTROLLS TOUCHDEVICE ==================================================================
 /**
- * Sets a value when touching a certain button on your mobile device (touchscreen).
+ * This function sets a value when touching a certain button on your mobile device (touchscreen).
  * => Controlling your characte with a touch device
  */
 function bindBtsPressEvents() {
@@ -247,7 +237,7 @@ function bindBtsPressEvents() {
 
 //=============================================================== END GAME ==================================================================
 /**
- * Resetes all game parameters an starts the game anew.
+ * This function resetes all game parameters and starts the game anew.
  */
 function restartGame(id) {
     world.ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -256,7 +246,7 @@ function restartGame(id) {
 }
 
 /**
- * Resets all game parameters and brings you back to the main menue.
+ * This function resets all game parameters and brings you back to the main menue.
  */
 function toMainMenue(id) {
     world.ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -264,11 +254,10 @@ function toMainMenue(id) {
     document.getElementById('startScreen').style.backgroundImage = "url('./img/9_intro_outro_screens/start/startscreen_1.png')";
     document.getElementById('startGameContainer').style.display = 'flex';
     document.getElementById('startGame').style.display = 'block';
-
 }
 
 /**
- * Stops all intervals and mutes the soundtrack.
+ * This function stops all intervals and mutes the soundtrack.
  */
 function stopGame() {
     clearAllIntervals();
@@ -278,7 +267,7 @@ function stopGame() {
 }
 
 /**
- * Clears all intervals.
+ * This function clears all intervals.
  */
 function clearAllIntervals() {
     for (let i = 1; i < 9999; i++) window.clearInterval(i);

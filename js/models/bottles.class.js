@@ -17,11 +17,10 @@ class Bottles extends DrawableObject {
     }
 
     /**
-     * Load bottles to the canvas
+     * This function loads the collectable bottles and sets the coordinates for there placement on the canvas
      * @param {string} imagePath - path to the corresponding image
      */
     constructor(imagePath) {
-         // => super() gilt nur für Methoden!!
         super().loadImage(imagePath);
         this.x = 300 + Math.random() * 4000;
         this.y = 335;

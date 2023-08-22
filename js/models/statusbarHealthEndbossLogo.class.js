@@ -5,10 +5,10 @@ class StatusbarHealthEndbossLogo extends DrawableObject {
     ];
 
     /**
-     * Loads and positions the statusbar logo for the endbosses health on the canvas.
+     * This function loads and positions the statusbar logo of the endbosses health on the canvas.
      */
     constructor() {
-        super().loadImage('../../img/7_statusbars/3_icons/icon_health_endboss.png');  // Methoden vom übergeordneten Objekt werden so initialisiert!
+        super().loadImage('../../img/7_statusbars/3_icons/icon_health_endboss.png');
         this.loadImages(this.images);
         //this.x = 4200;        
         this.x = 488;

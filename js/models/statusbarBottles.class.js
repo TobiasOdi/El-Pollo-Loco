@@ -12,7 +12,7 @@ class StatusbarBottles extends DrawableObject {
     percentage = 0;
 
     /**
-     * Loads and positions the statusbar for the collected bottles on the canvas.
+     * This function loads and positions the statusbar for the collectable bottles on the canvas.
      */
     constructor() {
         super();  // Methoden vom übergeordneten Objekt werden so initialisiert!

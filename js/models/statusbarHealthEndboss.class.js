@@ -12,10 +12,10 @@ class StatusbarHealthEndboss extends DrawableObject {
     percentage = 100;
 
     /**
-     * Loads and positions the statusbar for the endbosses health on the canvas.
+     * This function loads and positions the statusbar of the endbosses health on the canvas.
      */
     constructor() {
-        super().loadImage('../../img/7_statusbars/1_statusbar/2_statusbar_health/orange/0.png');  // Methoden vom übergeordneten Objekt werden so initialisiert!
+        super().loadImage('../../img/7_statusbars/1_statusbar/2_statusbar_health/orange/0.png');
         this.loadImages(this.images);
         //this.x = 4200;        
         this.x = 500;
@@ -26,7 +26,7 @@ class StatusbarHealthEndboss extends DrawableObject {
     }
 
     /**
-     * Sets the path to the correct image an loads it to the image cache
+     * Sets the path to the correct image an loads it to the image cache.
      * @param {number} percentage - health of the character
      */
     setPercentage(percentage) {
