@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
     <title>El Pollo Loco</title>
 
 <!-- ================================================= CSS FILES =================================================== -->
@@ -43,16 +44,26 @@
     <meta name="theme-color" content="#ffffff">
    
 </head>
-<body onload="bindBtsPressEvents()">
+<body onload="bindBtsPressEvents(), showToolTip()">
     <audio id="gameSoundtrack" src="./audio/la cucaracha.mp3" loop="loop"></audio>
 
-    <div id="gameContainer" class="gameContainer">
+    <div id="gameContainer" class="gameContainer" width="760" height="480">
         <div id="startScreen" class="startScreen">
+            <div class="toolTip" id="toolTip">
+                <div class="circle">
+                </div>
+                <div class="arrow">
+                    <img src="./img/icons/up-arrow.svg">
+                </div>
+                <div class="toolTipText">
+                    Klick here to show the controls!
+                </div>
+            </div>
             <div class="upperScreen">
                 <div class="icons">
                     <img id="fullScreen" src="./img/icons/expand.svg" alt="fullscreen" onclick="fullScreen()">
                     <img id="sound" src="./img/icons/mute.svg" onclick="mute()">
-                    <img src="./img/icons/joystick.svg" onclick="showControls()">
+                    <img src="./img/icons/joystick.svg" onclick="showControls()" id="controlsIcon" class="controlsIcon">
                 </div>
                 <div id="startGameContainer" class="startGameContainer">
                     <div id="startGame" class="startGame" onclick="startGame()">

@@ -100,7 +100,7 @@ class Character extends MovableObject {
     animate() {
         setInterval(() => {
             this.movement();
-        }, 50);
+        }, 40);
 
         setInterval(() => {
             this.checkForAction();

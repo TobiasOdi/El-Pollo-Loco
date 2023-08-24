@@ -8,6 +8,16 @@ let characterJump = new Audio('../audio/jump1.mp3');
 let loading = false;
 
 //=============================================================== START GAME ==================================================================
+function showToolTip() {
+    setTimeout(() => {
+        let toolTip = document.getElementById('toolTip');
+        toolTip.className = "show";
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function () { toolTip.className = toolTip.className.replace("show", ""); }, 5500);
+    }, 2000);
+}
+
+//=============================================================== START GAME ==================================================================
 /**
  * This function initializes the game.
  */
@@ -50,12 +60,11 @@ async function setElements() {
 function mute() {
     let soundIcon = document.getElementById('sound');
 
-    if(soundIcon.src == './img/icons/volume.svg') {
-        soundIcon.src = './img/icons/mute.svg';
+    if(soundIcon.src == 'http://127.0.0.1:5500/img/icons/volume.svg') {
+        soundIcon.src = 'http://127.0.0.1:5500/img/icons/mute.svg';
         document.getElementById("gameSoundtrack").pause();
-
     } else {
-        soundIcon.src = './img/icons/volume.svg';
+        soundIcon.src = 'http://127.0.0.1:5500/img/icons/volume.svg';
         document.getElementById("gameSoundtrack").play();
     }
 }
@@ -263,7 +272,7 @@ function stopGame() {
     clearAllIntervals();
     document.getElementById("gameSoundtrack").pause();
     let soundIcon = document.getElementById('sound');
-    soundIcon.src = './img/icons/mute.svg'
+    soundIcon.src = 'http://127.0.0.1:5500/img/icons/mute.svg'
 }
 
 /**

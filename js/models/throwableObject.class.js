@@ -25,10 +25,10 @@ class ThrowableObject extends MovableObject {
     ];
 
     offset =  {
-        top: 0,
-        left: 0,
-        right: 0, 
-        bottom: 0
+        top: 10,
+        left: 20,
+        right: 20, 
+        bottom: 10
     };
 
     /**
@@ -71,7 +71,7 @@ class ThrowableObject extends MovableObject {
                 setTimeout(() => {
                     this.x = 0;
                     this.y = -100;
-                }, 300);
+                }, 200);
             } else {
                 this.playAnimation(this.imagesRotate);
             }
