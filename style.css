@@ -1,6 +1,7 @@
 /* ================================================= FAVICON =================================================== */
 * {
     box-sizing: border-box;
+    font-family: 'Alfa Slab One', Verdana, Geneva, Tahoma, sans-serif;
 }
 
 body {
@@ -49,19 +50,25 @@ canvas {
     z-index: 1;
 }
 
-/* .loadingScreen {
-    display: none;
+.turnDeviceScreen {
+    display:  none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    align-items: center;
     justify-content: center;
-    background-image: none;
-    background-color: orange;
-    backdrop-filter: blur(50px);
-} */
+    width: 100%;
+    height: 100%;   
+    backdrop-filter: blur(15px);
+    padding: 20px;
+    z-index: 2;
+}
 
 #toolTip {
     visibility: hidden;
     position: absolute;
-    top: 10px;
-    right: 26.5px;
+    top: 11px;
+    right: 27px;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -75,8 +82,8 @@ canvas {
  */  animation: fadein 1.5s, fadeout 1.5s 2.5s;
 }
 
-.toolTipText {
-    font-family: 'Alfa Slab One';
+.toolTipText, .turnDeviceText {
+    font-family: 'Alfa Slab One', Verdana, Geneva, Tahoma, sans-serif;
     font-size: 12px;
     text-align: center;
     width: 160px;
@@ -84,6 +91,14 @@ canvas {
     padding: 5px;
     background-color: orange;
     border-radius: 5px;
+}
+
+.turnDeviceText {
+    width: 250px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .circle {
@@ -137,7 +152,7 @@ canvas {
 .startGameContainer {
     width: 150px;
     height: 50px;
-    border-radius: 20px;
+    border-radius: 14px;
     background-color: #FFDE02;
     display: flex;
     justify-content: center;
@@ -151,7 +166,7 @@ canvas {
 
 .startGame > div {
     font-size: 1.2rem;
-    font-family: 'Alfa Slab One';
+    font-family: 'Alfa Slab One', Verdana, Geneva, Tahoma, sans-serif;
 }
 
 /* =================================== LOADING ANIMATION ======================================= */
@@ -191,7 +206,7 @@ canvas {
 
 .lowerScreen {
     width: 100%;
-    display: flex;
+    display: none;
     justify-content: space-between;
     align-items: center;
 }
@@ -246,12 +261,11 @@ canvas {
     left: 0;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 20px;
+    justify-content: space-between;
     width: 100%;
     height: 100%;   
     backdrop-filter: blur(15px);
-    padding: 50px;
+    padding: 20px;
     z-index: 2;
 }
 
@@ -259,7 +273,6 @@ canvas {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-bottom: 30px;
     cursor: pointer;
 }
 
@@ -298,13 +311,14 @@ canvas {
 
 .icon > div > div {
     font-size: 4rem;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .icon p {
     margin-top: 0;
     margin-bottom: 0;
     font-size: 1.5rem;
-    font-family: 'Alfa Slab One';
+    font-family: 'Alfa Slab One', Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .gameOverScreen, .gameWonScreen {
@@ -322,6 +336,7 @@ canvas {
     background-position: center;
     background-repeat: no-repeat;
     padding: 50px;
+    padding-bottom: 20px;
     backdrop-filter: blur(10px);
     z-index: 1;
 }
@@ -333,7 +348,7 @@ canvas {
  .gameOverScreenBtns {
     width: 150px;
     height: 50px;
-    border-radius: 20px;
+    border-radius: 10px;
     background-color: #FFDE02;
     display: flex;
     justify-content: center;
@@ -347,15 +362,19 @@ canvas {
 
 .gameOverScreenBtns > div {
     font-size: 1.2rem;
-    font-family: 'Alfa Slab One';
+    font-family: 'Alfa Slab One', Verdana, Geneva, Tahoma, sans-serif;
     text-align: center;
 }
 
 /* ======================================== RESPONSIVENESS ============================================ */
-/* ====== Smartphones ===== */
+/* ================= SMARTPHONES =============== */
 @media only screen and (max-width: 760px){
     .gameContainer {
         width: 100%;
+    }
+
+    .lowerScreen {
+        display: flex;
     }
 }
 
@@ -372,3 +391,370 @@ canvas {
         top: 0 ;
     }
 } */
+
+/* ================= WIDTH =============== */
+@media (max-width: 650px) {
+    .turnDeviceScreen {
+        display: flex;
+    }
+
+    #toolTip {
+        scale: 0.8;
+        right: -13px;
+        top: -9px;
+    }
+    
+    .startScreen {
+        padding: 0.5rem;
+    }
+
+    .upperScreen {
+        gap: 0;
+    }
+
+    .startGameContainer {
+        width: 120px;
+        height: 35px;
+        border-radius: 10px;
+    }
+
+    .upperScreen img {
+        height: 22px;
+        width: 22px;
+    }
+
+    .startGame > div {
+        font-size: 14px;
+    }
+
+    .lowerScreen img{
+        width: 30px;
+        height: 30px;
+    }
+
+    .lowerScreenRightSide > div > img {
+        width: 20px;
+        height: 25px;
+    }
+
+    .lowerScreenRightSide > div {
+        width: 32px;
+        height: 32px;
+        border: 2px solid black;
+        border-radius: 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    .controls img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .icon > div > div {
+        font-size: 2.5rem;
+    }
+
+    .icon p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .gameOverScreenBtns {
+        border-radius: 10px;
+        width: 110px;
+        height: 40px;
+    }
+
+    .gameOverScreenBtns > div {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 400px) {
+    .controls {
+        padding: 10px;
+    }
+
+    .controls img {
+        width: 25px;
+        height: 25px;
+    }
+
+    .controls > div:first-of-type > img {
+        width: 20px;
+        height: 20px;;
+    }
+
+    .icon > div > div {
+        font-size: 2rem;
+    }
+
+    .icon p {
+        font-size: 0.8rem;
+    }
+
+    .gameOverScreen,
+    .gameWonScreen {
+        padding-bottom: 10px;
+    }
+
+    .gameOverScreenBtns {
+        border-radius: 10px;
+        width: 80px;
+        height: 30px;
+    }
+
+    .gameOverScreenBtns > div {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    #toolTip {
+        scale: 0.6;
+        right: -28px;
+        top: -20px;
+    }
+
+    .startGameContainer {
+        width: 100px;
+        height: 25px;
+        border-radius: 8px;
+    }
+
+    .icons {
+        gap: 5px;
+    }
+
+    .upperScreen img {
+        height: 15px;
+        width: 15px;
+    }
+
+    .startGame > div {
+        font-size: 12px;
+    }
+
+    .lowerScreen > div {
+        gap: 5px;
+    }
+
+    .lowerScreen img{
+        width: 25px;
+        height: 25px;
+    }
+
+    .lowerScreenRightSide > div > img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .lowerScreenRightSide > div {
+        width: 28px;
+        height: 28px;
+        border: 2px solid black;
+        border-radius: 8px;
+    }
+}
+
+@media (max-width: 300px) {
+    .controls img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .controls > div:first-of-type > img {
+        width: 15px;
+        height: 15px;;
+    }
+
+    .icon > div > div {
+        font-size: 1.2rem;
+    }
+
+    .icon p {
+        font-size: 0.6rem;
+    }
+
+    .gameOverScreenBtns {
+        border-radius: 8px;
+        width: 70px;
+        height: 25px;
+    }
+
+    .gameOverScreenBtns > div {
+        font-size: 8px;
+    }
+}
+
+/* ================= HEIGHT =============== */
+@media (max-height: 410px) {
+    #toolTip {
+        scale: 0.8;
+        right: -13px;
+        top: -9px;
+    }
+    
+    .startScreen {
+        padding: 0.5rem;
+    }
+
+    .upperScreen {
+        gap: 0;
+    }
+
+    .startGameContainer {
+        width: 120px;
+        height: 35px;
+        border-radius: 10px;
+    }
+
+    .upperScreen img {
+        height: 22px;
+        width: 22px;
+    }
+
+    .startGame > div {
+        font-size: 14px;
+    }
+
+    .lowerScreen img{
+        width: 30px;
+        height: 30px;
+    }
+
+    .lowerScreenRightSide > div > img {
+        width: 20px;
+        height: 25px;
+    }
+
+    .lowerScreenRightSide > div {
+        width: 32px;
+        height: 32px;
+        border: 2px solid black;
+        border-radius: 10px;
+    }
+}
+
+@media (max-height: 380px) {
+    .controls {
+        padding: 10px;
+    }
+
+    .controls img {
+        width: 25px;
+        height: 25px;
+    }
+
+    .controls > div:first-of-type > img {
+        width: 20px;
+        height: 20px;;
+    }
+
+    .icon > div > div {
+        font-size: 2rem;
+    }
+
+    .icon p {
+        font-size: 0.8rem;
+    }
+
+    .gameOverScreen,
+    .gameWonScreen {
+        padding-bottom: 10px;
+    }
+
+    .gameOverScreenBtns {
+        border-radius: 10px;
+        width: 80px;
+        height: 30px;
+    }
+
+    .gameOverScreenBtns > div {
+        font-size: 10px;
+    }
+}
+
+@media (max-height: 260px) {
+    #toolTip {
+        scale: 0.6;
+        right: -28px;
+        top: -20px;
+    }
+
+    .startGameContainer {
+        width: 100px;
+        height: 25px;
+        border-radius: 8px;
+    }
+
+    .icons {
+        gap: 5px;
+    }
+
+    .upperScreen img {
+        height: 15px;
+        width: 15px;
+    }
+
+    .startGame > div {
+        font-size: 12px;
+    }
+
+    .lowerScreen > div {
+        gap: 5px;
+    }
+
+    .lowerScreen img{
+        width: 25px;
+        height: 25px;
+    }
+
+    .lowerScreenRightSide > div > img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .lowerScreenRightSide > div {
+        width: 28px;
+        height: 28px;
+        border: 2px solid black;
+        border-radius: 8px;
+    }
+}
+
+
+@media (max-height: 200px) {
+    .controls img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .controls > div:first-of-type > img {
+        width: 15px;
+        height: 15px;;
+    }
+
+    .icon > div > div {
+        font-size: 1.2rem;
+    }
+
+    .icon p {
+        font-size: 0.6rem;
+    }
+
+    .gameOverScreenBtns {
+        border-radius: 8px;
+        width: 70px;
+        height: 25px;
+    }
+
+    .gameOverScreenBtns > div {
+        font-size: 8px;
+    }
+}
+
+
+

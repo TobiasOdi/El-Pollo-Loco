@@ -3,25 +3,25 @@ class ThrowableObject extends MovableObject {
     speedX = 30;
     level = level1;
     otherDirection;
-    bottleBurst = new Audio('../audio/bottleBurst1.mp3');
+    bottleBurst = new Audio('https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/audio/bottleBurst1.mp3');
     intervalIds = [];
     checkForHitInterval;
     throwInterval;
 
     imagesRotate = [
-        '../../img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
-        '../../img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png',
-        '../../img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png',
-        '../../img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png'
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png'
     ];
 
     imagesImpact = [
-        '../../img/6_salsa_bottle/bottle_rotation/bottle_splash/1_bottle_splash.png',
-        '../../img/6_salsa_bottle/bottle_rotation/bottle_splash/2_bottle_splash.png',
-        '../../img/6_salsa_bottle/bottle_rotation/bottle_splash/3_bottle_splash.png',
-        '../../img/6_salsa_bottle/bottle_rotation/bottle_splash/4_bottle_splash.png',
-        '../../img/6_salsa_bottle/bottle_rotation/bottle_splash/5_bottle_splash.png',
-        '../../img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png'
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/6_salsa_bottle/bottle_rotation/bottle_splash/1_bottle_splash.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/6_salsa_bottle/bottle_rotation/bottle_splash/2_bottle_splash.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/6_salsa_bottle/bottle_rotation/bottle_splash/3_bottle_splash.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/6_salsa_bottle/bottle_rotation/bottle_splash/4_bottle_splash.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/6_salsa_bottle/bottle_rotation/bottle_splash/5_bottle_splash.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png'
     ];
 
     offset =  {
@@ -38,7 +38,7 @@ class ThrowableObject extends MovableObject {
      * @param {*} direction 
      */
     constructor(x, y, direction) {
-        super().loadImage('../../img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
+        super().loadImage('https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png');
         this.loadImages(this.imagesRotate);
         this.loadImages(this.imagesImpact);
         this.x = x;
@@ -63,7 +63,9 @@ class ThrowableObject extends MovableObject {
         this.checkForHitInterval =
         setInterval(() => {
             if(this.bottleHit == true || this.y > 345) {
-                this.bottleBurst.play();
+                if(this.audioVolume == true) {
+                    this.bottleBurst.play();
+                }
                 this.playAnimation(this.imagesImpact);
                 this.bottleBurst = false;
                 this.speedY = 0;
@@ -71,7 +73,7 @@ class ThrowableObject extends MovableObject {
                 setTimeout(() => {
                     this.x = 0;
                     this.y = -100;
-                }, 200);
+                }, 150);
             } else {
                 this.playAnimation(this.imagesRotate);
             }

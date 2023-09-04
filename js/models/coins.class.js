@@ -5,8 +5,8 @@ class Coins extends MovableObject {
     width = 100;
 
     imagesCoin = [
-        '../../img/8_coin/coin_1.png',
-        '../../img/8_coin/coin_2.png'
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/8_coin/coin_1.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/8_coin/coin_2.png'
     ];
 
     offset =  {
@@ -20,10 +20,10 @@ class Coins extends MovableObject {
      * This function loads the collectable coins and sets the coordinates for there placement on the canvas
      */
     constructor() {
-        super().loadImage('../../img/8_coin/coin_1.png');
+        super().loadImage('https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/8_coin/coin_1.png');
         this.loadImages(this.imagesCoin);
         this.x = 300 + Math.random() * 4000;
-        this.y = 200 + Math.random() * 160;
+        this.y = 150 + Math.random() * 160;
         this.animate();
     }
 

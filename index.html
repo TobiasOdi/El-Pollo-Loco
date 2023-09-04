@@ -8,8 +8,8 @@
     <title>El Pollo Loco</title>
 
 <!-- ================================================= CSS FILES =================================================== -->
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href="fonts.css">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link rel="stylesheet" type="text/css" href="./fonts.css">
 
 <!-- ================================================= JAVA SCRIPT FILES =================================================== -->
     <script src="./js/models/keyboard.class.js"></script>
@@ -27,7 +27,7 @@
     <script src="./js/models/coins.class.js"></script>
     <script src="./js/models/bottles.class.js"></script>
     <script src="./js/models/level.class.js"></script>
-    <script src="./js/models/endBoss.class.js"></script>
+    <script src="./js/models/endboss.class.js"></script>
     <script src="./js/levels/level1.js"></script>
     <script src="./js/models/throwableObject.class.js"></script>
     <script src="./js/models/character.class.js"></script>
@@ -35,11 +35,10 @@
     <script src="./js/game.js"></script>
 
 <!-- ================================================= FAVICON =================================================== -->
-    <link rel="apple-touch-icon" sizes="180x180" href="./img/Favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./img/Favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./img/Favicon/favicon-16x16.png">
-<!--     <link rel="manifest" href="./img/Favicon/site.webmanifest">
- -->    <link rel="mask-icon" href="./img/Favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png">
+    <link rel="mask-icon" href="./img/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
    
@@ -65,8 +64,8 @@
                     <img id="sound" src="./img/icons/mute.svg" onclick="mute()">
                     <img src="./img/icons/joystick.svg" onclick="showControls()" id="controlsIcon" class="controlsIcon">
                 </div>
-                <div id="startGameContainer" class="startGameContainer">
-                    <div id="startGame" class="startGame" onclick="startGame()">
+                <div id="startGameContainer" class="startGameContainer" onclick="startGame()">
+                    <div id="startGame" class="startGame">
                         <div>Start Game</div>
                     </div>
 
@@ -163,8 +162,18 @@
                 <div>Main menue</div>
             </div>
         </div>
+
         <canvas id="canvas" width="720px" height="480px" id="canvas">
         </canvas>
+
+        <div class="turnDeviceScreen">
+            <div class="turnDeviceText">
+                <div>
+                    Please turn the device to play the game!
+                </div>
+            </div>
+        </div>
+
     </div>
 </body>
 </html>

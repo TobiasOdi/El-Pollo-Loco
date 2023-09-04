@@ -3,9 +3,10 @@ let canvas;
 let ctx;
 let world;
 let keyboard = new Keyboard();
+let movableObject = new MovableObject();
 let fullSize = false;
-let characterJump = new Audio('../audio/jump1.mp3');
 let loading = false;
+let audioVolume = false;
 
 //=============================================================== START GAME ==================================================================
 function showToolTip() {
@@ -18,14 +19,6 @@ function showToolTip() {
 }
 
 //=============================================================== START GAME ==================================================================
-/**
- * This function initializes the game.
- */
-async function init() {
-    await startLevel();
-    await setElements();
-}
-
 /**
  * This function starts the game and hides the startscreen/startbutton.
  */
@@ -40,8 +33,17 @@ async function startGame() {
             document.getElementById('startScreen').style.backgroundImage = 'none';
             document.getElementById('startGameContainer').style.display = 'none';
             document.getElementById('loader-wrapper').style.display = 'none';
+            document.getElementById('toolTip').style.visibility = "hidden";
         }, 1000);
     }
+}
+
+/**
+ * This function initializes the game.
+ */
+async function init() {
+    await startLevel();
+    await setElements();
 }
 
 /**
@@ -49,7 +51,7 @@ async function startGame() {
  */
 async function setElements() {
     canvas = document.getElementById('canvas');
-    world = new World(canvas, keyboard);
+    world = new World(canvas, keyboard, audioVolume);
     keyboard.lastKeyPress = new Date().getTime();
 }
 
@@ -57,15 +59,21 @@ async function setElements() {
 /**
  * This function plays and mutes the game sound.
  */
-function mute() {
-    let soundIcon = document.getElementById('sound');
-
-    if(soundIcon.src == 'http://127.0.0.1:5500/img/icons/volume.svg') {
-        soundIcon.src = 'http://127.0.0.1:5500/img/icons/mute.svg';
-        document.getElementById("gameSoundtrack").pause();
-    } else {
-        soundIcon.src = 'http://127.0.0.1:5500/img/icons/volume.svg';
-        document.getElementById("gameSoundtrack").play();
+async function mute() {
+    try {
+        let soundIcon = document.getElementById('sound');
+        if(soundIcon.src == 'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/icons/volume.svg') {
+            soundIcon.src = 'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/icons/mute.svg';
+            document.getElementById("gameSoundtrack").pause();
+            audioVolume = false;
+            world.audioVolume = false;
+        } else {
+            soundIcon.src = 'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/icons/volume.svg';
+            document.getElementById("gameSoundtrack").play();
+            audioVolume = true;
+            world.audioVolume = true;
+        }
+    } catch(e) {
     }
 }
 
@@ -144,7 +152,6 @@ window.addEventListener('keydown', (event) => {
 
     if(event.keyCode == 38 || event.keyCode == 87) {
         keyboard.up = true;
-        //characterJump.play();
     }
 
     if(event.keyCode == 40 || event.keyCode == 83) {
@@ -259,10 +266,10 @@ function restartGame(id) {
  */
 function toMainMenue(id) {
     world.ctx.clearRect(0, 0, canvas.width, canvas.height);
-    document.getElementById(id).style.display = "none";
-    document.getElementById('startScreen').style.backgroundImage = "url('./img/9_intro_outro_screens/start/startscreen_1.png')";
+    document.getElementById('startScreen').style.backgroundImage = "url('https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/9_intro_outro_screens/start/startscreen_1.png')";
     document.getElementById('startGameContainer').style.display = 'flex';
     document.getElementById('startGame').style.display = 'block';
+    document.getElementById(id).style.display = "none";
 }
 
 /**
@@ -272,7 +279,7 @@ function stopGame() {
     clearAllIntervals();
     document.getElementById("gameSoundtrack").pause();
     let soundIcon = document.getElementById('sound');
-    soundIcon.src = 'http://127.0.0.1:5500/img/icons/mute.svg'
+    soundIcon.src = 'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/icons/mute.svg';
 }
 
 /**
@@ -281,5 +288,3 @@ function stopGame() {
 function clearAllIntervals() {
     for (let i = 1; i < 9999; i++) window.clearInterval(i);
 };
-
-

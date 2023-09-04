@@ -2,35 +2,36 @@ class ChickenSmall extends MovableObject {
     y = 380;
     height = 40;
     width = 40;
-    chickenDieSound = new Audio('../audio/dieChickenSmall2.mp3');
+    chickenDieSound = new Audio('https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/audio/dieChickenSmall2.mp3');
     animationInterval;
 
     imagesWalking = [
-        '../../img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
-        '../../img/3_enemies_chicken/chicken_small/1_walk/2_w.png',
-        '../../img/3_enemies_chicken/chicken_small/1_walk/3_w.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/3_enemies_chicken/chicken_small/1_walk/2_w.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/3_enemies_chicken/chicken_small/1_walk/3_w.png',
     ];
 
     imagesDead = [
-        '../../img/3_enemies_chicken/chicken_small/2_dead/dead.png'
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/3_enemies_chicken/chicken_small/2_dead/dead.png'
     ];
 
     offset =  {
-        top: 5,
-        left: 5,
-        right: 5, 
-        bottom: 5
+        top: 0,
+        left: 0,
+        right: 0, 
+        bottom: 0
     };
 
     /**
      * This function loads the "chicken small" enemy and sets the coordinates for there placement on the canvas.
      */
     constructor() {
-        super().loadImage('../../img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
+        super().loadImage('https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/3_enemies_chicken/chicken_small/1_walk/1_w.png');
         this.loadImages(this.imagesWalking);
         this.loadImages(this.imagesDead);
         this.x = 400 + Math.random() * 4000;
         this.speed = 3 + Math.random() * 0.5;
+        this.audioVolume;
         this.animate();
         this.checkDeadChicken();    
     }
@@ -51,7 +52,9 @@ class ChickenSmall extends MovableObject {
     animations() {
         if(this.speed == 0) {
             this.playAnimation(this.imagesDead);
-            this.chickenDieSound.play();
+            if(this.audioVolume == true){
+                this.chickenDieSound.play();
+            }
             setTimeout(() => {
                 this.x = 0;
                 this.y = -100;

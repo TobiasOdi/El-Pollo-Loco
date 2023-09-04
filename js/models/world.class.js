@@ -2,6 +2,8 @@ class World {
     character = new Character();
     bottle = new ThrowableObject();
     endboss = new Endboss();
+    chicken = new Chicken();
+    chickenSmall = new ChickenSmall();
     level = level1;
     canvas;
     ctx;
@@ -15,28 +17,33 @@ class World {
     coins = new Coins();
     bottles = new Bottles();
     throwableObject = [];
+    throwObject = true;
     movableObject = new MovableObject();
-    collectCoinSound = new Audio('../audio/coins2.mp3');
-    collectBottleSound = new Audio('../audio/collectBottle.mp3');
+    collectCoinSound = new Audio('https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/audio/coins2.mp3');
+    collectBottleSound = new Audio('https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/audio/collectBottle.mp3');
     loseCoins;
+    audioVolume = false;
+    proximity = false;
 
-//=========================================================== BASE FUNCTIONS ======================================================
+    //=========================================================== BASE FUNCTIONS ======================================================
     /**
      * Creates the canvas and runs all the functions (draw(), run(), etc.)
      * @param {element} canvas - element where the objects can be drawn to
      * @param {class} keyboard - contains the controls for the character
      */
-    constructor(canvas, keyboard) {
+    constructor(canvas, keyboard, audioVolume) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
+        this.audioVolume = audioVolume;
         this.draw();
         this.setWorld();
         this.run();
     };
 
     /**
-     * 
+     * Sets the world
+     * @property {class} character - class of character
      */
     setWorld(){
         this.character.world = this;
@@ -58,11 +65,13 @@ class World {
             this.checkBottleHitEnemy();
             this.checkCollisionsCoins();
             this.checkCollisionsBottles();
+            this.checkProximity();
+            this.checkAudioEnemies();
+            this.checkAudioEndoboss();
+            this.checkAudioThrowableObjects();
         }, 1000 / 60);
 
-        setInterval(() => {
-            this.checkThrowObject();
-        }, 80);
+        setInterval(() => {this.checkThrowObject();}, 80);
     }
 
 //=========================================================== COLLISION CHECKS ======================================================
@@ -73,14 +82,14 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if(enemy.speed > 0 && this.character.isColliding(enemy) && !this.character.isAboveGround()){
                 this.character.hit();
-                this.statusbarHealth.setPercentage(this.character.energy);
+                this.statusbarHealth.setPercentageHealth(this.character.energy);
 
                 if(this.character.coinsColected > 0) {
                     this.character.coinsColected--;
-                    this.statusbarCoins.setPercentage(this.character.coinsColected);
+                    this.statusbarCoins.setPercentageCollectables(this.character.coinsColected);
                 } else {
                     this.character.coinsColected = 0;
-                    this.statusbarCoins.setPercentage(this.character.coinsColected);
+                    this.statusbarCoins.setPercentageCollectables(this.character.coinsColected);
                 }
             }});
     }
@@ -91,7 +100,7 @@ class World {
     checkCollisionsEnemyTop() {
         this.level.enemies.forEach((enemy) => {
             if(enemy.speed > 0 && this.character.isColliding(enemy)){
-                if(this.character.isAboveGround() && !this.character.isHurt()) {
+                if(this.character.isAboveGround() && !this.character.isHurt() && this.character.speedY < 0) {
                     enemy.speed = 0;
                 }
             }});
@@ -104,15 +113,15 @@ class World {
         this.level.endboss.forEach((endboss) => {
             if(this.character.isColliding(endboss)){
                 this.character.hitByEndboss();
-                this.statusbarHealth.setPercentage(this.character.energy);
+                this.statusbarHealth.setPercentageHealth(this.character.energy);
                 this.character.pushedBack();
     
                 if(this.character.coinsColected > 0) {
                     this.character.coinsColected--;
-                    this.statusbarCoins.setPercentage(this.character.coinsColected);
+                    this.statusbarCoins.setPercentageCollectables(this.character.coinsColected);
                 } else {
                     this.character.coinsColected = 0;
-                    this.statusbarCoins.setPercentage(this.character.coinsColected);
+                    this.statusbarCoins.setPercentageCollectables(this.character.coinsColected);
                 }
             }
         });
@@ -140,7 +149,7 @@ class World {
             this.level.endboss.forEach((endboss) => {
                 if(bottle.isColliding(endboss)){
                     endboss.endbossIsHit();
-                    this.statusbarHealthEndboss.setPercentage(endboss.energyEndboss);
+                    this.statusbarHealthEndboss.setPercentageHealth(endboss.energyEndboss);
                     bottle.bottleHit = true;
                 }
             })
@@ -154,8 +163,10 @@ class World {
         this.level.coins.forEach((coin) => {
             if(this.character.isColliding(coin)){
                 this.character.colectCoins();
-                this.statusbarCoins.setPercentage(this.character.coinsColected);
-                this.collectCoinSound.play();
+                this.statusbarCoins.setPercentageCollectables(this.character.coinsColected);
+                if(this.audioVolume == true){
+                    this.collectCoinSound.play();
+                }
                 coin.x = 0;
                 coin.y = -100;
             }
@@ -169,8 +180,10 @@ class World {
         this.level.bottles.forEach((bottle) => {
             if(this.character.isColliding(bottle)){
                 this.character.colectBottles();
-                this.statusbarBottles.setPercentage(this.character.bottlesColected);
-                this.collectBottleSound.play();
+                this.statusbarBottles.setPercentageCollectables(this.character.bottlesColected);
+                if(this.audioVolume == true){
+                    this.collectBottleSound.play();
+                }
                 bottle.x = 0;
                 bottle.y = -100;
             }
@@ -178,7 +191,6 @@ class World {
     }
 
 //=========================================================== CHECK CHARACTER PRIXIMITY ======================================================
-
     /**
      * This function cheks if the character is near the endboss.
      */
@@ -197,24 +209,87 @@ class World {
     checkThrowObject() {
         if(this.keyboard.throw) {
             if(this.character.bottlesColected > 0) {
-                if(this.character.otherDirection == true) {
-                    let bottle = new ThrowableObject(this.character.x - 60, this.character.y + 100, this.otherDirection = true);
-                    this.throwableObject.push(bottle);
-                    this.character.bottlesColected--;
-                    this.statusbarBottles.setPercentage(this.character.bottlesColected);
-                } else {
-                    let bottle = new ThrowableObject(this.character.x + 60, this.character.y + 100,this.otherDirection = false);
-                    this.throwableObject.push(bottle);
-                    this.character.bottlesColected--;
-                    this.statusbarBottles.setPercentage(this.character.bottlesColected);
+                if(this.throwObject == true){
+                    if(this.character.otherDirection == true) {
+                        this.throwBottleOtherDirection();
+                    } else {
+                        this.throwBottleCorrectDirection();
+                    }
                 }
             } else {
                 this.character.bottlesColected = 0;
-                this.statusbarBottles.setPercentage(this.character.bottlesColected);
-
+                this.statusbarBottles.setPercentageCollectables(this.character.bottlesColected);
             }
         }
     }
+
+    /**
+     * This function lets the character throw a bottle to the left side.
+     */
+    throwBottleOtherDirection() {
+        this.throwObject = false;
+        let bottle = new ThrowableObject(this.character.x - 60, this.character.y + 100, this.otherDirection = true);
+        this.throwableObject.push(bottle);
+        this.character.bottlesColected--;
+        this.statusbarBottles.setPercentageCollectables(this.character.bottlesColected);
+        setTimeout(() => {
+            this.throwObject = true;
+        }, 400);
+    }
+
+    /**
+     * This function lets the character throw a bottle to the right side.
+     */
+    throwBottleCorrectDirection() {
+        this.throwObject = false;
+        let bottle = new ThrowableObject(this.character.x + 60, this.character.y + 100,this.otherDirection = false);
+        this.throwableObject.push(bottle);
+        this.character.bottlesColected--;
+        this.statusbarBottles.setPercentageCollectables(this.character.bottlesColected);
+        setTimeout(() => {
+            this.throwObject = true;
+        }, 400);
+    }
+
+//================================================================ SOUND ============================================================
+/**
+ * This function checks if the sounds for the enemies are mute or not.
+ */
+checkAudioEnemies() {
+    this.level.enemies.forEach((enemy) => {
+        if(this.audioVolume == true){
+            enemy.audioVolume = true;
+        } else {
+            enemy.audioVolume = false;
+        }
+    });
+}
+
+/**
+ * This function checks if the sounds for the endboss is mute or not.
+ */
+checkAudioEndoboss() {
+    this.level.endboss.forEach((endboss) => {
+        if(this.audioVolume == true){
+            endboss.audioVolume = true;
+        } else {
+            endboss.audioVolume = false;
+        }
+    });
+}
+
+/**
+ * This function checks if the sounds for the throwable objects are mute or not.
+ */
+checkAudioThrowableObjects() {
+    this.throwableObject.forEach((bottle) => {
+        if(this.audioVolume == true){
+            bottle.audioVolume = true;
+        } else {
+            bottle.audioVolume = false;
+        }
+    });
+}
 
 //=========================================================== CANVAS FUNCTIONS ======================================================
     /**
@@ -222,39 +297,68 @@ class World {
      */
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
         this.ctx.translate(this.cameraX, 0);
-
-        this.addObjectsToMap(this.level.backgroundObjects);
-        this.addObjectsToMap(this.level.clouds);
-        this.addObjectsToMap(this.level.coins);
-        this.addObjectsToMap(this.level.bottles);
-
+        this.addBackgroundObjects();
         this.ctx.translate(-this.cameraX, 0); // Kamera bzw. Koordinatensystem nach hinten verschieben
-
         // ------------- Space for fixed objects --------------
-        this.addToMap(this.statusbarHealth);
-        this.addToMap(this.statusbarCoins);
-        this.addToMap(this.statusbarBottles);
-        this.addToMap(this.statusbarHealthEndboss);
-        this.addToMap(this.statusbarHealthEndbossLogo);
-
+        this.addStatusbars();
         // ----------------------------------------------------
-
         this.ctx.translate(this.cameraX, 0); // Kamera bzw. Koordinatensystem nach vorne verschieben
-
-        this.addToMap(this.character);
-        this.addObjectsToMap(this.level.enemies);
-        this.addObjectsToMap(this.level.endboss);
-        this.addObjectsToMap(this.throwableObject);
-
+        this.addMovableObjects();
         this.ctx.translate(-this.cameraX, 0);
-
         let self = this;                    //in der Funktion kann das Wort 'this' nicht verwendet werden, darum weist man diesem eine Variable zu
         requestAnimationFrame(function() {  //Die Funktion wird so oft aufgerufen wie es mit der Grafikkarte möglich ist.
             self.draw();
         });
     };
+
+    /**
+     * This function adds all the background objects to the canvas.
+     */
+    addBackgroundObjects() {
+        this.addObjectsToMap(this.level.backgroundObjects);
+        this.addObjectsToMap(this.level.clouds);
+        this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.bottles);
+    }
+
+    /**
+     * This function adds all the statusbars to the canvas.
+     */
+    addStatusbars() {
+        this.addToMap(this.statusbarHealth);
+        this.addToMap(this.statusbarCoins);
+        this.addToMap(this.statusbarBottles);
+        if(this.proximity){
+            this.addToMap(this.statusbarHealthEndboss);
+            this.addToMap(this.statusbarHealthEndbossLogo);
+        }
+    }
+
+    checkProximity() {
+        //let characterX = this.character.x + this.character.width - this.character.offset.right;
+        //let endbossX = this.endboss.x;
+        //this.difference = endbossX - characterX;
+
+        this.level.endboss.forEach((endboss) => {
+            if(this.character.isNearEndboss(endboss)){
+                this.proximity = true;
+            } else {
+                this.proximity = false;
+            }
+        });
+    }
+
+
+    /**
+     * This function adds all the movable objects to the canvas.
+     */
+    addMovableObjects() {
+        this.addToMap(this.character);
+        this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.endboss);
+        this.addObjectsToMap(this.throwableObject);
+    }
 
     /**
      * This function outsources the the forEach() Method to clean up the con in the draw() function.

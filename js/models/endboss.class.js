@@ -5,47 +5,47 @@ class Endboss extends MovableObject {
     animateEndboss;
     nearEndboss = false;
     attackRangeEndboss = false;
-    dieEndbossSound = new Audio('../audio/dieCicken.mp3');
-
+    dieEndbossSound = new Audio('https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/audio/dieCicken.mp3');
+    
     imagesWalking = [
-        '../../img/4_enemie_boss_chicken/1_walk/G1.png',
-        '../../img/4_enemie_boss_chicken/1_walk/G2.png',
-        '../../img/4_enemie_boss_chicken/1_walk/G3.png',
-        '../../img/4_enemie_boss_chicken/1_walk/G4.png'
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/4_enemie_boss_chicken/1_walk/G1.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/4_enemie_boss_chicken/1_walk/G2.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/4_enemie_boss_chicken/1_walk/G3.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/4_enemie_boss_chicken/1_walk/G4.png'
     ];
 
     imagesAlert = [
-        '../../img/4_enemie_boss_chicken/2_alert/G5.png',
-        '../../img/4_enemie_boss_chicken/2_alert/G6.png',
-        '../../img/4_enemie_boss_chicken/2_alert/G7.png',
-        '../../img/4_enemie_boss_chicken/2_alert/G8.png',
-        '../../img/4_enemie_boss_chicken/2_alert/G9.png',
-        '../../img/4_enemie_boss_chicken/2_alert/G10.png',
-        '../../img/4_enemie_boss_chicken/2_alert/G11.png',
-        '../../img/4_enemie_boss_chicken/2_alert/G12.png'
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/4_enemie_boss_chicken/2_alert/G5.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/4_enemie_boss_chicken/2_alert/G6.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/4_enemie_boss_chicken/2_alert/G7.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/4_enemie_boss_chicken/2_alert/G8.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/4_enemie_boss_chicken/2_alert/G9.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/4_enemie_boss_chicken/2_alert/G10.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/4_enemie_boss_chicken/2_alert/G11.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/4_enemie_boss_chicken/2_alert/G12.png'
     ];
 
     imagesAttack = [
-        '../../img/4_enemie_boss_chicken/3_attack/G13.png',
-        '../../img/4_enemie_boss_chicken/3_attack/G14.png',
-        '../../img/4_enemie_boss_chicken/3_attack/G15.png',
-        '../../img/4_enemie_boss_chicken/3_attack/G16.png',
-        '../../img/4_enemie_boss_chicken/3_attack/G17.png',
-        '../../img/4_enemie_boss_chicken/3_attack/G18.png',
-        '../../img/4_enemie_boss_chicken/3_attack/G19.png',
-        '../../img/4_enemie_boss_chicken/3_attack/G20.png'
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/4_enemie_boss_chicken/3_attack/G13.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/4_enemie_boss_chicken/3_attack/G14.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/4_enemie_boss_chicken/3_attack/G15.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/4_enemie_boss_chicken/3_attack/G16.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/4_enemie_boss_chicken/3_attack/G17.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/4_enemie_boss_chicken/3_attack/G18.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/4_enemie_boss_chicken/3_attack/G19.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/4_enemie_boss_chicken/3_attack/G20.png'
     ];
 
     imagesHurt = [
-        '../../img/4_enemie_boss_chicken/4_hurt/G21.png',
-        '../../img/4_enemie_boss_chicken/4_hurt/G22.png',
-        '../../img/4_enemie_boss_chicken/4_hurt/G23.png'
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/4_enemie_boss_chicken/4_hurt/G21.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/4_enemie_boss_chicken/4_hurt/G22.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/4_enemie_boss_chicken/4_hurt/G23.png'
     ];
 
     imagesDead = [
-        '../../img/4_enemie_boss_chicken/5_dead/G24.png',
-        '../../img/4_enemie_boss_chicken/5_dead/G25.png',
-        '../../img/4_enemie_boss_chicken/5_dead/G26.png'
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/4_enemie_boss_chicken/5_dead/G24.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/4_enemie_boss_chicken/5_dead/G25.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/4_enemie_boss_chicken/5_dead/G26.png'
     ];
 
     offset =  {
@@ -61,7 +61,7 @@ class Endboss extends MovableObject {
      * This function loads the endboss and sets the coordinates for there placement on the canvas.
      */
     constructor() {
-        super().loadImage('../../img/4_enemie_boss_chicken/2_alert/G5.png');
+        super().loadImage('https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/4_enemie_boss_chicken/2_alert/G5.png');
         this.loadImages(this.imagesWalking);
         this.loadImages(this.imagesAlert);
         this.loadImages(this.imagesAttack);
@@ -81,7 +81,6 @@ class Endboss extends MovableObject {
             setInterval(() => {
                 this.animations()
             }, 500);
-
     }
 
     /**
@@ -89,12 +88,7 @@ class Endboss extends MovableObject {
      */
     animations() {
         if(this.isDeadEndboss()) {
-            this.dieEndbossSound.play();            
-            this.playAnimation(this.imagesDead);
-            setTimeout(() => {
-                stopGame();
-                document.getElementById('gameWonScreen').style.display = "flex";
-            }, 1200);
+            this.endbossDeadActions();
         } else if(this.isHurtEndboss()) {
             this.playAnimation(this.imagesHurt);
         } else if(this.nearEndboss && !this.isHurtEndboss()) {
@@ -105,13 +99,24 @@ class Endboss extends MovableObject {
         }
     }
 
-     /**
-     * This function stopps the "animateEndboss" und "attackEndboss" intervals when the endboss is dead.
+    /**
+     * This function plays the dead sound and animation.
      */
-    stopInterval() {
+    endbossDeadActions() {
+        if(this.audioVolume == true){
+            this.dieEndbossSound.play();            
+        }
+        this.playAnimation(this.imagesDead);
+        setTimeout(() => {
+            stopGame();
+            document.getElementById('gameWonScreen').style.display = "flex";
+        }, 1200);
+    }
+
+       stopInterval() {
         setInterval(() => {
             if(this.isDeadEndboss()) {
-                clearInterval(this.animateEndboss, this.attackEndboss);
+                clearInterval(this.animateEndboss);
             }
         }, 500);
     }
@@ -123,5 +128,4 @@ class Endboss extends MovableObject {
     isDeadEndboss() {
         return this.energyEndboss == 0;
     }
-
 }

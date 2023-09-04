@@ -8,7 +8,7 @@ class Cloud extends MovableObject {
      */
     constructor() {
         // => super() gild nur für Methoden!!
-        super().loadImage('../../img/5_background/layers/4_clouds/1.png');
+        super().loadImage('https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/5_background/layers/4_clouds/1.png');
         this.x = 0 + Math.random() * 500;
         this.animate();
     }

@@ -2,17 +2,17 @@ class Chicken extends MovableObject {
     y = 360;
     height = 60;
     width = 60;
-    chickenDieSound = new Audio('../audio/dieChickenSmall2.mp3');
+    chickenDieSound = new Audio('https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/audio/dieChickenSmall2.mp3');
     animationInterval;
-
+    
     imagesWalking = [
-        '../../img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
-        '../../img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
-        '../../img/3_enemies_chicken/chicken_normal/1_walk/3_w.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/3_enemies_chicken/chicken_normal/1_walk/3_w.png',
     ];
 
     imagesDead = [
-        '../../img/3_enemies_chicken/chicken_normal/2_dead/dead.png'
+        'https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/3_enemies_chicken/chicken_normal/2_dead/dead.png'
     ];
 
     offset =  {
@@ -26,17 +26,18 @@ class Chicken extends MovableObject {
      * This function loads the "chicken" enemy and sets the coordinates for there placement on the canvas
      */
     constructor() {
-        super().loadImage('../../img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
+        super().loadImage('https://tobias-odermatt.developerakademie.net/Projekte/El_Pollo_Loco/img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
         this.loadImages(this.imagesWalking);
         this.loadImages(this.imagesDead);
         this.x = 400 + Math.random() * 4000;
         this.speed = 4 + Math.random() * 1.5;
+        this.audioVolume;  
         this.animate();
-        this.checkDeadChicken();    
+        this.checkDeadChicken();  
     }
 
     /**
-     * This function assigns an interval to predefined variable and runs the animations function
+     * This function assigns an interval to a variable and runs the animations function
      */
     animate() {
         this.animationInterval = 
@@ -51,7 +52,9 @@ class Chicken extends MovableObject {
     animations() {
         if(this.speed == 0) {
             this.playAnimation(this.imagesDead);
-            this.chickenDieSound.play();
+            if(this.audioVolume == true) {
+                this.chickenDieSound.play();
+            }
             setTimeout(() => {
                 this.x = 0;
                 this.y = -100;
